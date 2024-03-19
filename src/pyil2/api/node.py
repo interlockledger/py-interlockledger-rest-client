@@ -5,6 +5,7 @@ from .base import BaseApi
 class NodeApi(BaseApi):
     base_url=''
 
+    
     def details(self) -> node.NodeDetailsModel:
         """
         Get the node details.
@@ -19,6 +20,19 @@ class NodeApi(BaseApi):
         if resp.status_code != 200:
             raise Exception
         return node.NodeDetailsModel(**resp.json())
+
+    @property
+    def api_version(self) -> str:
+        """
+        :obj:`str`: REST API version.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}/apiVersion',
+            method='get',
+        )
+        if resp.status_code != 200:
+            raise Exception
+        return resp.json()
 
     def peers(self) -> List[node.PeerNodeModel]:
         """

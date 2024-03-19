@@ -33,3 +33,7 @@ class NodeApiTest(BaseApiTest):
             self.assertIsInstance(item.software_versions, node.SoftwerVersionModel)
             self.assertIsInstance(item.address, str)
             self.assertIsInstance(item.port, int)
+    
+    def test_api_version(self):
+        version = self.api.api_version()
+        self.assertIsInstance(version, str)
