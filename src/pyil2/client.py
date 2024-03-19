@@ -5,6 +5,7 @@ import requests
 import urllib.parse
 from base64 import b64encode
 from .utils.certificates import PKCS12Certificate
+from . import api
 
 class IL2Client:
     """
@@ -25,7 +26,9 @@ class IL2Client:
         read_timeout (:obj:`int`): Read timeout in seconds (default 30s).
     """
     
-    _available_apis = []
+    _available_apis = [
+        'node'
+    ]
     
     def __init__(self, 
             host: str,
@@ -61,7 +64,7 @@ class IL2Client:
         """
         return self._available_apis
 
-    def api(self, name: str) -> None:
+    def api(self, name: str) -> api.NodeApi:
         """
         Get an instance of an API.
 
@@ -73,6 +76,8 @@ class IL2Client:
         """
         name = name.lower()
         match name:
+            case 'node':
+                return api.NodeApi(self)
             case _:
                 raise ValueError(f'No API with name {name} found. Must be in {self._available_apis}')
     
