@@ -5,13 +5,10 @@ from .base import BaseApi
 class NodeApi(BaseApi):
     base_url=''
 
-    
+    @property
     def details(self) -> node.NodeDetailsModel:
         """
-        Get the node details.
-
-        Returns:
-            :obj:`models.node.NodeDetailsModel`: Details about the node.
+        :obj:`models.node.NodeDetailsModel`: Details about the node.
         """
         resp = self._client._request(
             url=f'{self.base_url}',
