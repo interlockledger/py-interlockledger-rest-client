@@ -7,7 +7,7 @@ from base64 import b64encode
 from .utils.certificates import PKCS12Certificate
 
 class IL2Client:
-    '''
+    """
      REST API client to the InterlockLedger node.
 
     You'll try to establish a bi-authenticated https connection with the 
@@ -23,7 +23,7 @@ class IL2Client:
         verify_ca (`bool`): If `True`, verifies the SSL certificate in a CA (default: True).
         connect_timeout (:obj:`int`): Connect timeout in seconds (default: 5s).
         read_timeout (:obj:`int`): Read timeout in seconds (default 30s).
-    '''
+    """
     
     _available_apis = []
     
@@ -56,13 +56,13 @@ class IL2Client:
     
     @property
     def api_list(self) -> List[str]:
-        '''
+        """
         [:obj:`str`]: List of available APIs.
-        '''
+        """
         return self._available_apis
 
     def api(self, name: str) -> None:
-        '''
+        """
         Get an instance of an API.
 
         Args:
@@ -70,7 +70,7 @@ class IL2Client:
         
         Returns:
             `BaseApi`: Instance of an API.
-        '''
+        """
         name = name.lower()
         match name:
             case _:
