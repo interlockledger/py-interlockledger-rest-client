@@ -43,7 +43,7 @@ class DataFieldModel(BaseCamelModel):
     """
     Name of the data  field.
     """
-    sub_data_fields: List['DataFieldModel']
+    sub_data_fields: List['DataFieldModel'] = Field(default_factory=list)
     """
     If the data field in composed of more fields, indicates the metadata of the subdata fields.
     """
@@ -83,7 +83,7 @@ class DataIndexModel(BaseCamelModel):
     """
     Elements of the index.
     """
-    is_unique: bool
+    is_unique: bool = None
     """
     Indicate if the data field is unique.
     """

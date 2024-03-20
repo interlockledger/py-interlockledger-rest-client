@@ -1,5 +1,7 @@
 from typing import List
 from ..models import node
+from ..models.apps import AppsModel
+
 from .base import BaseApi
 
 class NodeApi(BaseApi):
@@ -45,3 +47,18 @@ class NodeApi(BaseApi):
         if resp.status_code != 200:
             raise Exception
         return node.PeerNodeModel.validate_list_python(resp.json())
+
+    def apps(self):
+        """
+        Get the list of valid apps in the network.
+
+        Returns:
+            :obj:`models.apps.AppsModel`: Valid apps in the network.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}/apps',
+            method='get'
+        )
+        if resp.status_code != 200:
+            raise Exception
+        return AppsModel(**resp.json())

@@ -1,5 +1,8 @@
 from .base import BaseApiTest
-from src.pyil2.models import node
+from src.pyil2.models import (
+    node,
+    apps as apps_models
+)
 
 class NodeApiTest(BaseApiTest):
     def setUp(self):
@@ -7,7 +10,7 @@ class NodeApiTest(BaseApiTest):
         self.api = self.client.api('node')
     
     def test_details(self):
-        details = self.api.details()
+        details = self.api.details
         self.assertIsInstance(details.id, str)
         self.assertIsInstance(details.name, str)
         self.assertIsInstance(details.network, str)
@@ -35,5 +38,9 @@ class NodeApiTest(BaseApiTest):
             self.assertIsInstance(item.port, int)
     
     def test_api_version(self):
-        version = self.api.api_version()
+        version = self.api.api_version
         self.assertIsInstance(version, str)
+    
+    def test_apps(self):
+        apps = self.api.apps()
+        self.assertIsInstance(apps, apps_models.AppsModel)
