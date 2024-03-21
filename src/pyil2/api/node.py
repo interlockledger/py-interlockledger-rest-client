@@ -117,3 +117,22 @@ class NodeApi(BaseApi):
         if resp.status_code != 200:
             raise Exception
         return ChainIdModel.validate_list_python(resp.json())
+
+    def add_mirrors(self, chains: List[str]) -> bool:
+        """
+        Add chain mirrors to the node.
+
+        Args:
+            chains ([:obj:`str`]): List of chain IDs.
+        
+        Returns:
+            [:obj:`bool`]: Returns `True` if success.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}/mirrors',
+            method='post',
+            body=chains
+        )
+        if resp.status_code != 200:
+            raise Exception
+        return True

@@ -79,3 +79,7 @@ class NodeApiTest(BaseApiTest):
         self.assertIsInstance(mirrors, list)
         for item in mirrors:
             self.assertIsInstance(item, chains.ChainIdModel)
+    
+    def test_add_mirrors(self):
+        resp = self.api.add_mirrors(['xsNzHsq6Xiew1wukwJsCSDDhNvwHgb5Q-Njv_QB-Kng'])
+        self.assertTrue(resp)
