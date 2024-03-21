@@ -1,6 +1,6 @@
 import datetime
 
-from pyil2.enum import RecordType
+from ..enum import RecordType
 from .base import BaseCamelModel
 
 
@@ -13,7 +13,7 @@ class BaseRecordModel(BaseCamelModel):
     """
     Chain id that owns this record.
     """
-    create_at: datetime.datetime
+    created_at: datetime.datetime
     """
     Time of record creation.
     """
