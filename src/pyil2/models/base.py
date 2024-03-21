@@ -1,10 +1,12 @@
-from typing import Dict, List, Self
+from typing import Dict, Generic, List, Self, TypeVar
 from pydantic import (
     BaseModel,
     ConfigDict,
     TypeAdapter,
 )
 from pydantic.alias_generators import to_camel
+
+T = TypeVar('T')
 
 class BaseCamelModel(BaseModel):
     model_config = ConfigDict(
@@ -28,28 +30,28 @@ class BaseCamelModel(BaseModel):
             cls.__array_type_adapter = TypeAdapter(List[cls])
         return cls.__array_type_adapter.validate_python(entries)
 
-class ListModel(BaseCamelModel):
+class ListModel(BaseCamelModel, Generic[T]):
     """
     Base paginated list model.
     """
 
-    page: int=0
+    page: int = 0
     """
     Current page number.
     """
-    total_number_of_pages: int
+    total_number_of_pages: int = 0
     """
     Total number of pages.
     """
-    page_size: int
+    page_size: int = 0
     """
     Number of items in the page.
     """
-    last_to_first: bool
+    last_to_first: bool = False
     """
     If `True`, the list of items will be in from newer to older.
     """
-    items: List[BaseCamelModel]
+    items: List[T]
     """
     List of items.
     """
