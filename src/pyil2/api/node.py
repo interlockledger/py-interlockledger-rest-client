@@ -1,4 +1,6 @@
 from typing import List
+
+from ..models.chains import ChainIdModel
 from ..models import node
 from ..models.apps import AppsModel
 from ..models.base import ListModel
@@ -35,22 +37,7 @@ class NodeApi(BaseApi):
             raise Exception
         return resp.json()
 
-    def peers(self) -> List[node.PeerNodeModel]:
-        """
-        Get the list of known peer nodes.
-
-        Returns:
-            [:obj:`models.node.PeerNodeModel`]: List of peers.
-        """
-        resp = self._client._request(
-            url=f'{self.base_url}/peers',
-            method='get',
-        )
-        if resp.status_code != 200:
-            raise Exception
-        return node.PeerNodeModel.validate_list_python(resp.json())
-
-    def apps(self) -> AppsModel:
+    def list_apps(self) -> AppsModel:
         """
         Get the list of valid apps in the network.
 
@@ -65,7 +52,7 @@ class NodeApi(BaseApi):
             raise Exception
         return AppsModel(**resp.json())
 
-    def interlockings(self,
+    def list_interlockings(self,
             chain_id: str,
             last_known_block: int=None,
             last_to_first: bool=False,
@@ -100,3 +87,33 @@ class NodeApi(BaseApi):
         if resp.status_code != 200:
             raise Exception
         return ListModel[InterlockingRecordModel](**resp.json())
+    
+    def list_peers(self) -> List[node.PeerNodeModel]:
+        """
+        Get the list of known peer nodes.
+
+        Returns:
+            [:obj:`models.node.PeerNodeModel`]: List of peers.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}/peers',
+            method='get',
+        )
+        if resp.status_code != 200:
+            raise Exception
+        return node.PeerNodeModel.validate_list_python(resp.json())
+
+    def list_mirrors(self) -> List[ChainIdModel]:
+        """
+        List of mirror instances.
+
+        Returns:
+            [:obj:`models.chains.ChainIdModel`]: List of mirrors.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}/mirrors',
+            method='get',
+        )
+        if resp.status_code != 200:
+            raise Exception
+        return ChainIdModel.validate_list_python(resp.json())

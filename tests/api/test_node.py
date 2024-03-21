@@ -2,7 +2,8 @@ from .base import BaseApiTest
 from src.pyil2.models import (
     node,
     apps as apps_models,
-    records
+    records,
+    chains,
 )
 
 class NodeApiTest(BaseApiTest):
@@ -24,7 +25,7 @@ class NodeApiTest(BaseApiTest):
         self.assertIsInstance(details.software_versions, node.SoftwerVersionModel)
     
     def test_peers(self):
-        peers = self.api.peers()
+        peers = self.api.list_peers()
         self.assertIsInstance(peers, list)
         for item in peers:
             self.assertIsInstance(item.id, str)
@@ -43,11 +44,11 @@ class NodeApiTest(BaseApiTest):
         self.assertIsInstance(version, str)
     
     def test_apps(self):
-        apps = self.api.apps()
+        apps = self.api.list_apps()
         self.assertIsInstance(apps, apps_models.AppsModel)
     
     def test_interlockings(self):
-        interlocks = self.api.interlockings(
+        interlocks = self.api.list_interlockings(
             self.default_chain
         )
         self.assertEqual(interlocks.page, 0)
@@ -60,7 +61,7 @@ class NodeApiTest(BaseApiTest):
             self.assertGreaterEqual(interlocks.items[1].created_at, interlocks.items[0].created_at)
     
     def test_interlockings_params(self):
-        interlocks = self.api.interlockings(
+        interlocks = self.api.list_interlockings(
             self.default_chain,
             page=1,
             size=2,
@@ -72,4 +73,9 @@ class NodeApiTest(BaseApiTest):
         self.assertIsInstance(interlocks.items, list)
         for item in interlocks.items:
             self.assertIsInstance(item, records.InterlockingRecordModel)
-        
+    
+    def test_list_mirrors(self):
+        mirrors = self.api.list_mirrors()
+        self.assertIsInstance(mirrors, list)
+        for item in mirrors:
+            self.assertIsInstance(item, chains.ChainIdModel)
