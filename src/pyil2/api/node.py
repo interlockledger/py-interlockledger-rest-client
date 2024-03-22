@@ -9,6 +9,15 @@ from ..models.records import InterlockingRecordModel
 from .base import BaseApi
 
 class NodeApi(BaseApi):
+    '''
+    API class for the node requests.
+
+    Args:
+        client (`:obj:`IL2Client`): IL2Client to be used to send requests.
+    
+    Attributes:
+        base_url (`str`): Base path of the requests.
+    '''
     base_url=''
 
     @property
