@@ -1,6 +1,6 @@
 from typing import List
 
-from ..models.chains import ChainIdModel
+from ..models.chain import ChainIdModel
 from ..models import node
 from ..models.apps import AppsModel
 from ..models.base import ListModel

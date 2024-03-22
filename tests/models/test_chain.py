@@ -1,5 +1,5 @@
 from unittest import TestCase
-from src.pyil2.models import chains
+from src.pyil2.models import chain
 import datetime
 
 class ChainIdModelTest(TestCase):
@@ -13,9 +13,9 @@ class ChainIdModelTest(TestCase):
             "sizeInBytes": 74153,
             "isClosedForNewTransactions": False,
         }
-        model = chains.ChainIdModel(**data)
+        model = chain.ChainIdModel(**data)
         self.assertFalse(model.closed)
         data["isClosedForNewTransactions"] = True
-        model = chains.ChainIdModel(**data)
+        model = chain.ChainIdModel(**data)
         self.assertTrue(model.closed)
         

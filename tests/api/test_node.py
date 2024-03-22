@@ -1,9 +1,9 @@
+from src.pyil2.models import chain
 from .base import BaseApiTest
 from src.pyil2.models import (
     node,
     apps as apps_models,
     records,
-    chains,
 )
 
 class NodeApiTest(BaseApiTest):
@@ -78,7 +78,7 @@ class NodeApiTest(BaseApiTest):
         mirrors = self.api.list_mirrors()
         self.assertIsInstance(mirrors, list)
         for item in mirrors:
-            self.assertIsInstance(item, chains.ChainIdModel)
+            self.assertIsInstance(item, chain.ChainIdModel)
     
     def test_add_mirrors(self):
         resp = self.api.add_mirrors(['xsNzHsq6Xiew1wukwJsCSDDhNvwHgb5Q-Njv_QB-Kng'])
