@@ -27,7 +27,8 @@ class IL2Client:
     """
     
     _available_apis = [
-        'node'
+        'node',
+        'chain',
     ]
     
     def __init__(self, 
@@ -64,7 +65,7 @@ class IL2Client:
         """
         return self._available_apis
 
-    def api(self, name: str) -> api.NodeApi:
+    def api(self, name: str) -> api.NodeApi | api.ChainApi:
         """
         Get an instance of an API.
 
@@ -78,6 +79,8 @@ class IL2Client:
         match name:
             case 'node':
                 return api.NodeApi(self)
+            case 'chain':
+                return api.ChainApi(self)
             case _:
                 raise ValueError(f'No API with name {name} found. Must be in {self._available_apis}')
     
