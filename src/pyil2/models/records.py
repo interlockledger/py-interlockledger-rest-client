@@ -1,4 +1,5 @@
 import datetime
+from typing import Optional
 
 from ..enum import RecordType
 from .base import BaseCamelModel
@@ -71,11 +72,11 @@ class InterlockingRecordModel(BaseRecordModel):
     """
     Payload bytes.
     """
-    interlocked_chain_id: str = None
+    interlocked_chain_id: Optional[str] = None
     """
     Interlocked Chain.
     """
-    interlocked_record_hash: str = None
+    interlocked_record_hash: Optional[str] = None
     """
     Interlock Record Hash.
     """

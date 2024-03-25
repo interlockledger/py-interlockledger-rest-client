@@ -1,4 +1,4 @@
-from typing import Dict, List, Self
+from typing import Dict, List, Optional, Self
 from pydantic import Field, field_serializer, field_validator
 import datetime
 
@@ -11,35 +11,35 @@ class DataFieldModel(BaseCamelModel):
     Data field model.
     """
     
-    cast: DataFieldCast = None
+    cast: Optional[DataFieldCast] = None
     """
     Type of the data field.
     """
-    description: str = None
+    description: Optional[str] = None
     """
     Data field description.
     """
-    element_tag_id: int = None
+    element_tag_id: Optional[int] = None
     """
     The type of the field in case it is an array.
     """
-    enumeration: str = None
+    enumeration: Optional[str] = None
     """
     A string containing all enumerations concatenated in the format "#<number>|<name>|<description>|".
     """
-    enumeration_as_flags: bool = None
+    enumeration_as_flags: Optional[bool] = None
     """
     If `True`, the enumerations can be combined using bitwise-or. If `False`, only one value can be used.
     """
-    is_dreprecated: bool = None
+    is_dreprecated: Optional[bool] = None
     """
     If `True` the field is deprecated.
     """
-    is_opaque: bool = None
+    is_opaque: Optional[bool] = None
     """
     If `True` the field is stored in raw bytes.
     """
-    name: str = None
+    name: Optional[str] = None
     """
     Name of the data  field.
     """
@@ -61,15 +61,15 @@ class DataIndexElementModel(BaseCamelModel):
     Data index element.
     """
     
-    descending_order: bool = None
+    descending_order: Optional[bool] = None
     """
     Indicate if the field is ordered in descending order.
     """
-    field_path: str = None
+    field_path: Optional[str] = None
     """
     Path of the data field to be indexed.
     """
-    function: str = None
+    function: Optional[str] = None
     """
     To be defined.
     """
@@ -83,11 +83,11 @@ class DataIndexModel(BaseCamelModel):
     """
     Elements of the index.
     """
-    is_unique: bool = None
+    is_unique: Optional[bool] = None
     """
     Indicate if the data field is unique.
     """
-    name: str = None
+    name: Optional[str] = None
     """
     Name of the index.
     """
@@ -101,7 +101,7 @@ class DataModel(BaseCamelModel):
     """
     The list of data fields.
     """
-    description: str = None
+    description: Optional[str] = None
     """
     Description of the data model.
     """
@@ -109,7 +109,7 @@ class DataModel(BaseCamelModel):
     """
     List of indexes for records of this type.
     """
-    payload_name: str = None
+    payload_name: Optional[str] = None
     """
     Name of the record model.
     """
@@ -157,7 +157,7 @@ class AppsModel(BaseCamelModel):
     List of valid apps in the network.
     """
     
-    network: str = None
+    network: Optional[str] = None
     """
     Network name.
     """

@@ -6,6 +6,18 @@ from src.pyil2.utils.certificates import PKCS12Certificate
 import datetime
 
 class ChainIdModelTest(TestCase):
+    def test_base(self):
+        data = {
+            "id": "chain_id",
+            "lastRecord": 40,
+            "lastUpdate": "2023-10-17T21:00:02.015+00:00",
+            "sizeInBytes": 74153,
+        }
+        model = chain.ChainIdModel(**data)
+        self.assertFalse(model.closed)
+        
+
+
     def test_closed_for_transaction(self):
         data = {
             "id": "chain_id",

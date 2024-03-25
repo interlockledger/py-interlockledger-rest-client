@@ -34,11 +34,11 @@ class ChainIdModel(BaseCamelModel):
     """
     Date last record was added.
     """
-    licensing_status: str = None
+    licensing_status: Optional[str] = None
     """
     Licensing status.
     """
-    name: str = None
+    name: Optional[str] = None
     """
     Chain name.
     """
