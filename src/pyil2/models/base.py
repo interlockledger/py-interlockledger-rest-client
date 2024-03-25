@@ -15,6 +15,7 @@ class BaseCamelModel(BaseModel):
         from_attributes=True,
         use_enum_values=True,
         arbitrary_types_allowed=True,
+        validate_default=True,
     )
 
     @classmethod
