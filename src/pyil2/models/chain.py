@@ -3,7 +3,10 @@ from typing import List, Optional
 
 from pydantic import Field
 
-from .keys import CertificatePermitModel
+from .keys import (
+    CertificatePermitModel,
+    ExportedKeyFileModel,
+)
 
 from ..enum import (
     KeyStrength,
@@ -45,6 +48,17 @@ class ChainIdModel(BaseCamelModel):
     size_in_bytes: int
     """
     Chain size in bytes.
+    """
+
+
+class ChainCreatedModel(ChainIdModel):
+    """
+    Chain created response.
+    """
+    
+    key_files: List[ExportedKeyFileModel] = Field(default_factory=list)
+    """
+    Key file names.
     """
 
 

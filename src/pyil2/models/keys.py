@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import field_serializer, field_validator
 
@@ -64,3 +64,23 @@ class CertificatePermitModel(BaseCamelModel):
         for item in value:
             ret.append(str(item))
         return ret
+
+
+class ExportedKeyFileModel(BaseCamelModel):
+    """
+    Key file info.
+    """
+
+    key_file_bytes: Optional[bytes] = None
+    """
+    Key file in bytes.
+    """
+    key_file_name: Optional[str] = None
+    """
+    Filename of the key.
+    """
+    key_name: Optional[str] = None
+    """
+    Name of the key.
+    """
+    
