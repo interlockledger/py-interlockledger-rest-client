@@ -1,6 +1,7 @@
 from typing import List
 
 from ..models.base import ListModel
+from ..models.records import InterlockingRecordModel
 from ..models import chain as chain_models
 
 from .base import BaseApi
@@ -99,3 +100,35 @@ class ChainApi(BaseApi):
         if resp.status_code != 200:
             raise Exception
         return resp.json()
+    
+    def list_interlockings(self,
+            chain_id: str,
+            page: int=0,
+            size: int=10,
+            how_many_from_last: int=0,
+        ) -> ListModel[InterlockingRecordModel]:
+        """
+        Get list of interlocks registered in the chain.
+
+        Args:
+            chain_id (:obj:`str`): Chain ID.
+            page (:obj:`int`): Page to return.
+            size (:obj:`int`): Number of items per page.
+            how_many_from_last (:obj:`int`): How many interlocking records to return. If ommited or 0 returns all.
+
+        Returns:
+            :obj:`models.ListModel[models.records.InterlockingRecordModel]`: List of interlocking records.
+        """
+        params = {
+            "howManyFromLast": how_many_from_last,
+            "page": page,
+            "pageSize": size
+        }
+        resp = self._client._request(
+            url=f'{self.base_url}/{chain_id}/interlockings',
+            method='get',
+            params=params
+        )
+        if resp.status_code != 200:
+            raise Exception
+        return ListModel[InterlockingRecordModel](**resp.json())
