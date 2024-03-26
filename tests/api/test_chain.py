@@ -11,3 +11,8 @@ class ChainApiTest(BaseApiTest):
         self.assertIsInstance(chains, list)
         for item in chains:
             self.assertIsInstance(item, chain_models.ChainIdModel)
+
+    def test_chain_summary(self):
+        chain = self.api.summary(self.default_chain)
+        self.assertIsInstance(chain, chain_models.ChainSummaryModel)
+        

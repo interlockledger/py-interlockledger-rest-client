@@ -28,10 +28,10 @@ class ChainApi(BaseApi):
         Create a new chain.
 
         Args:
-            model (:obj:`models.ChainCreationModel`): Model with the new chain attrbutes.
+            model (:obj:`models.chain.ChainCreationModel`): Model with the new chain attrbutes.
 
         Returns:
-            :obj:`models.ChainCreatedModel`: Chain created model.
+            :obj:`models.chain.ChainCreatedModel`: Chain created model.
         """
         if not isinstance(new_chain, chain_models.ChainCreationModel):
             raise ValueError("'new_chain' must be a ChainCreationModel.")
@@ -44,4 +44,21 @@ class ChainApi(BaseApi):
         if resp.status_code != 201:
             raise Exception
         return chain_models.ChainCreatedModel(**resp.json())
-        pass
+
+    def summary(self, chain_id: str) -> chain_models.ChainSummaryModel:
+        """
+        Get the chain details by ID.
+
+        Args:
+            chain_id (:obj:`str`): Chain ID.
+        
+        Returns:
+            :obj:`models.chain.ChainSummaryModel`: Chain details.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}/{chain_id}',
+            method='get',
+        )
+        if resp.status_code != 200:
+            raise Exception
+        return chain_models.ChainSummaryModel(**resp.json())
