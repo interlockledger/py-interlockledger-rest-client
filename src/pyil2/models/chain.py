@@ -61,6 +61,24 @@ class ChainCreatedModel(ChainIdModel):
     Key file names.
     """
 
+class ChainSummaryModel(ChainIdModel):
+    """
+    Chain summary.
+    """
+    
+    active_apps: List[int] = Field(default_factory=list)
+    """
+    List of active apps (only the numeric ids).
+    """
+    description: Optional[str] = None
+    """
+    Chain description.
+    """
+    is_mirror: bool = False
+    """
+    If `True`, this chain is a mirror copy from an outside node.
+    """
+
 
 class ChainCreationModel(BaseCamelModel):
     addional_apps: List[int] = Field(default_factory=list)
