@@ -80,3 +80,22 @@ class ChainApi(BaseApi):
         if resp.status_code != 200:
             raise Exception
         return resp.json()
+
+    def add_active_apps(self, chain_id: str, apps_to_permit: List[int]) -> List[int]:
+        """
+        Get the list os active apps in the chain.
+
+        Args:
+            chain_id (:obj:`str`): Chain ID.
+        
+        Returns:
+            [:obj:`int`]: Enumerate apps that are currently permitted in this chain.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}/{chain_id}/activeApps',
+            method='post',
+            body=apps_to_permit
+        )
+        if resp.status_code != 200:
+            raise Exception
+        return resp.json()
