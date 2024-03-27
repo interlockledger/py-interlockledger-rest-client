@@ -61,7 +61,7 @@ class NodeApi(BaseApi):
             raise Exception
         return AppsModel(**resp.json())
 
-    def list_interlockings(self,
+    def list_interlockings_to_chain(self,
             chain_id: str,
             last_known_block: int=None,
             last_to_first: bool=False,
