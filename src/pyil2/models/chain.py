@@ -29,7 +29,7 @@ class ChainIdModel(BaseCamelModel):
     """
     If `True`, this chain is not able to accept new records.
     """
-    last_record: int
+    last_record: int = 0
     """
     Last record (serial number).
     """
@@ -45,7 +45,7 @@ class ChainIdModel(BaseCamelModel):
     """
     Chain name.
     """
-    size_in_bytes: int
+    size_in_bytes: int = 0
     """
     Chain size in bytes.
     """
