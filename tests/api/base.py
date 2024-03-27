@@ -16,7 +16,8 @@ class BaseApiTest(TestCase):
             host=self.host,
             cert_filepath=self.filepath,
             cert_password=self.password,
-            timeout=100
+            timeout=100,
+            verify_ca=False,
         )
 
     

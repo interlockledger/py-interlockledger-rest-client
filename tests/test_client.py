@@ -15,7 +15,8 @@ class IL2ClientTest(TestCase):
         client = IL2Client(
             host=self.host,
             cert_filepath=self.filepath,
-            cert_password=self.password
+            cert_password=self.password,
+            verify_ca=False,
         )
         resp = client._request('/', 'GET')
         self.assertEqual(resp.status_code, 200)
