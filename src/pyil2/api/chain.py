@@ -2,7 +2,10 @@ from typing import List
 
 from ..models.base import ListModel
 from ..models.errors import ErrorDetailsModel
-from ..models.records import InterlockingRecordModel
+from ..models.records import (
+    InterlockingRecordModel,
+    ForceInterlockModel,
+)
 from ..models import chain as chain_models
 
 from .base import BaseApi
@@ -133,3 +136,29 @@ class ChainApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return ListModel[InterlockingRecordModel](**resp.json())
+    
+    def force_interlocking(self, chain_id: str, interlock: ForceInterlockModel):
+        """
+        Forces an interlock on a target chain.
+
+        Args:
+            chain_id (:obj:`str`): Chain ID.
+            interlock (:obj:`models.records.ForceInterlockModel`): Force interlock details.
+
+        Returns:
+            :obj:`models.records.InterlockingRecordModel`: Interlocking details.
+        """
+        if not isinstance(interlock, ForceInterlockModel):
+            raise ValueError("'interlock' must be a ForceInterlockModel.")
+        
+        resp = self._client._request(
+            url=f'{self.base_url}/{chain_id}/interlockings',
+            method='post',
+            body=interlock.model_dump(exclude_none=True, by_alias=True)
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return InterlockingRecordModel(**resp.json())
+    
+    def list_keys(self, chain_id: str):
+        pass

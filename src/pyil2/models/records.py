@@ -1,7 +1,12 @@
 import datetime
 from typing import Optional
 
-from ..enum import RecordType
+from pydantic import Field
+
+from ..enum import (
+    RecordType,
+    HashAlgorithms,
+)
 from .base import BaseCamelModel
 
 
@@ -88,4 +93,21 @@ class InterlockingRecordModel(BaseRecordModel):
     """
     Interlocked Record Serial.
     """
-    
+
+class ForceInterlockModel(BaseCamelModel):
+    """
+    Force interlock parameter details.
+    """
+
+    hash_algorithm: HashAlgorithms = Field(default=HashAlgorithms.Copy)
+    """
+    Hash algorithm to use.
+    """
+    min_serial: int = 0
+    """
+    Required minimum of the serial of the last record in target chain whose hash will be pulled.
+    """
+    target_chain: str
+    """
+    Id of chain to be interlocked.
+    """

@@ -64,4 +64,7 @@ class ChainApiTest(BaseApiTest):
         for item in interlocks.items:
             self.assertIsInstance(item, records.InterlockingRecordModel)
         
-    
+    def test_force_interlock(self):
+        interlock = records.ForceInterlockModel(target_chain=self.default_chain)
+        #response = self.api.force_interlocking(self.default_chain, interlock)
+        #self.assertIsInstance(response, records.InterlockingRecordModel)
