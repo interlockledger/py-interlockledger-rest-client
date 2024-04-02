@@ -47,4 +47,13 @@ class ChainApiTest(BaseApiTest):
         for item in interlocks.items:
             self.assertIsInstance(item, records.InterlockingRecordModel)
         
-    
+    def test_create_chain(self):
+        new_chain = chain_models.ChainCreationModel(
+            name="Chain name",
+            emergency_closing_key_password="emergencyPassword",
+            management_key_password="managementPassword",
+        )
+
+        created = self.api.create_chain(new_chain)
+        self.assertIsInstance(created, chain_models.ChainCreatedModel)
+        self.assertIsInstance(created.id, str)
