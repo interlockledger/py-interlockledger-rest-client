@@ -3,6 +3,7 @@ from src.pyil2.models import (
     chain as chain_models,
     records,
     errors,
+    keys as keys_models,
 )
 
 class ChainApiTest(BaseApiTest):
@@ -68,3 +69,9 @@ class ChainApiTest(BaseApiTest):
         interlock = records.ForceInterlockModel(target_chain=self.default_chain)
         #response = self.api.force_interlocking(self.default_chain, interlock)
         #self.assertIsInstance(response, records.InterlockingRecordModel)
+    
+    def test_list_keys(self):
+        keys = self.api.list_keys(self.default_chain)
+        self.assertIsInstance(keys, list)
+        for item in keys:
+            self.assertIsInstance(item, keys_models.KeyDetailsModel)

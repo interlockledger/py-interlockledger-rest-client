@@ -6,7 +6,10 @@ from ..models.records import (
     InterlockingRecordModel,
     ForceInterlockModel,
 )
-from ..models import chain as chain_models
+from ..models import (
+    chain as chain_models,
+    keys as keys_models,
+)
 
 from .base import BaseApi
 
@@ -137,7 +140,7 @@ class ChainApi(BaseApi):
             return resp
         return ListModel[InterlockingRecordModel](**resp.json())
     
-    def force_interlocking(self, chain_id: str, interlock: ForceInterlockModel):
+    def force_interlocking(self, chain_id: str, interlock: ForceInterlockModel) -> InterlockingRecordModel | ErrorDetailsModel:
         """
         Forces an interlock on a target chain.
 
@@ -160,5 +163,20 @@ class ChainApi(BaseApi):
             return resp
         return InterlockingRecordModel(**resp.json())
     
-    def list_keys(self, chain_id: str):
-        pass
+    def list_keys(self, chain_id: str) -> List[keys_models.KeyDetailsModel] | ErrorDetailsModel:
+        """
+        List keys that are currently permitted in the chain.
+
+        Args:
+            chain_id (:obj:`str`): Chain ID.
+        
+        Returns:
+            [:obj:`models.keys.KeyDetailsModel`]: List of key details.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}/{chain_id}/key',
+            method='get',
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return keys_models.KeyDetailsModel.validate_list_python(resp.json())
