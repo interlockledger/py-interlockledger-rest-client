@@ -9,6 +9,10 @@ from .base import BaseCamelModel
 from ..enum import KeyPurpose
 
 class BaseKeyModel(BaseCamelModel):
+    """
+    Base key model.
+    """
+    
     name: str
     """
     Key name. Must match the name imported in te node.
@@ -46,6 +50,19 @@ class BaseKeyModel(BaseCamelModel):
             ret.append(str(item))
         return ret
 
+class KeyDetailsModel(BaseKeyModel):
+    """
+    Key details model
+    """
+    
+    id: str
+    """
+    Unique key id.
+    """
+    public_key: str
+    """
+    Key public key.
+    """
 
 class CertificatePermitModel(BaseKeyModel):
     certificate_in_X509: str
