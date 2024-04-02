@@ -8,7 +8,7 @@ from ..utils import AppPermissions
 from .base import BaseCamelModel
 from ..enum import KeyPurpose
 
-class CertificatePermitModel(BaseCamelModel):
+class BaseKeyModel(BaseCamelModel):
     name: str
     """
     Key name. Must match the name imported in te node.
@@ -21,25 +21,6 @@ class CertificatePermitModel(BaseCamelModel):
     """
     Key valid purposes.
     """
-    certificate_in_X509: str
-    """
-    The public certificate in PEM encoding in base64.
-    """
-
-    @field_validator('certificate_in_X509', mode='before')
-    @classmethod
-    def pre_process_certificate(cls, raw: PKCS12Certificate) -> str:
-        """
-        Deserialize permissions field
-        """
-        if isinstance(raw, str):
-            return raw
-        return (raw
-                .public_certificate.decode('utf-8')
-                .replace('-----BEGIN CERTIFICATE-----','')
-                .replace('-----END CERTIFICATE-----','')
-                .replace('\n',''))
-
     
     @field_validator('permissions', mode='before')
     @classmethod
@@ -66,6 +47,27 @@ class CertificatePermitModel(BaseCamelModel):
         return ret
 
 
+class CertificatePermitModel(BaseKeyModel):
+    certificate_in_X509: str
+    """
+    The public certificate in PEM encoding in base64.
+    """
+
+    @field_validator('certificate_in_X509', mode='before')
+    @classmethod
+    def pre_process_certificate(cls, raw: PKCS12Certificate) -> str:
+        """
+        Deserialize permissions field
+        """
+        if isinstance(raw, str):
+            return raw
+        return (raw
+                .public_certificate.decode('utf-8')
+                .replace('-----BEGIN CERTIFICATE-----','')
+                .replace('-----END CERTIFICATE-----','')
+                .replace('\n',''))
+
+
 class ExportedKeyFileModel(BaseCamelModel):
     """
     Key file info.
@@ -83,4 +85,4 @@ class ExportedKeyFileModel(BaseCamelModel):
     """
     Name of the key.
     """
-    
+
