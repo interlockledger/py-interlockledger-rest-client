@@ -6,6 +6,7 @@ import urllib.parse
 from base64 import b64encode
 from .utils.certificates import PKCS12Certificate
 from . import api
+from .models.errors import ErrorDetailsModel
 
 class IL2Client:
     """
@@ -118,6 +119,11 @@ class IL2Client:
         return headers
 
     def _handle_error_response(self, response: requests.Response) -> requests.Response:
+        try:
+            if 400 <= response.status_code and response.status_code <= 599:
+                return ErrorDetailsModel(**response.json())
+        except Exception as exc:
+            raise exc
         return response
 
     def _request(self, 

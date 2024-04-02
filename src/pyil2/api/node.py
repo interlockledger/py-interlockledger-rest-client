@@ -4,6 +4,7 @@ from ..models.chain import ChainIdModel
 from ..models import node
 from ..models.apps import AppsModel
 from ..models.base import ListModel
+from ..models.errors import ErrorDetailsModel
 from ..models.records import InterlockingRecordModel
 
 from .base import BaseApi
@@ -21,7 +22,7 @@ class NodeApi(BaseApi):
     base_url=''
 
     @property
-    def details(self) -> node.NodeDetailsModel:
+    def details(self) -> node.NodeDetailsModel | ErrorDetailsModel:
         """
         :obj:`models.node.NodeDetailsModel`: Details about the node.
         """
@@ -29,12 +30,12 @@ class NodeApi(BaseApi):
             url=f'{self.base_url}',
             method='get',
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return node.NodeDetailsModel(**resp.json())
 
     @property
-    def api_version(self) -> str:
+    def api_version(self) -> str | ErrorDetailsModel:
         """
         :obj:`str`: REST API version.
         """
@@ -42,11 +43,11 @@ class NodeApi(BaseApi):
             url=f'{self.base_url}/apiVersion',
             method='get',
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return resp.json()
 
-    def list_apps(self) -> AppsModel:
+    def list_apps(self) -> AppsModel | ErrorDetailsModel:
         """
         Get the list of valid apps in the network.
 
@@ -57,8 +58,8 @@ class NodeApi(BaseApi):
             url=f'{self.base_url}/apps',
             method='get'
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return AppsModel(**resp.json())
 
     def list_interlockings_to_chain(self,
@@ -67,7 +68,7 @@ class NodeApi(BaseApi):
             last_to_first: bool=False,
             page: int=0,
             size: int=10,
-        ) -> ListModel[InterlockingRecordModel]:
+        ) -> ListModel[InterlockingRecordModel] | ErrorDetailsModel:
         """
         Get the list of interlocking records pointing to a target chain instance.
 
@@ -93,11 +94,11 @@ class NodeApi(BaseApi):
             method='get',
             params=params,
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return ListModel[InterlockingRecordModel](**resp.json())
     
-    def list_peers(self) -> List[node.PeerNodeModel]:
+    def list_peers(self) -> List[node.PeerNodeModel] | ErrorDetailsModel:
         """
         Get the list of known peer nodes.
 
@@ -108,11 +109,11 @@ class NodeApi(BaseApi):
             url=f'{self.base_url}/peers',
             method='get',
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return node.PeerNodeModel.validate_list_python(resp.json())
 
-    def list_mirrors(self) -> List[ChainIdModel]:
+    def list_mirrors(self) -> List[ChainIdModel] | ErrorDetailsModel:
         """
         List of mirror instances.
 
@@ -123,11 +124,11 @@ class NodeApi(BaseApi):
             url=f'{self.base_url}/mirrors',
             method='get',
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return ChainIdModel.validate_list_python(resp.json())
 
-    def add_mirrors(self, chains: List[str]) -> bool:
+    def add_mirrors(self, chains: List[str]) -> bool | ErrorDetailsModel:
         """
         Add chain mirrors to the node.
 
@@ -142,6 +143,6 @@ class NodeApi(BaseApi):
             method='post',
             body=chains
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return True

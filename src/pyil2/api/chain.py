@@ -1,6 +1,7 @@
 from typing import List
 
 from ..models.base import ListModel
+from ..models.errors import ErrorDetailsModel
 from ..models.records import InterlockingRecordModel
 from ..models import chain as chain_models
 
@@ -9,7 +10,7 @@ from .base import BaseApi
 class ChainApi(BaseApi):
     base_url='chain'
 
-    def list_chains(self) -> List[chain_models.ChainIdModel]:
+    def list_chains(self) -> List[chain_models.ChainIdModel] | ErrorDetailsModel:
         """
         Get a list of chains in the node.
 
@@ -20,11 +21,11 @@ class ChainApi(BaseApi):
             url=f'{self.base_url}',
             method='get',
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return chain_models.ChainIdModel.validate_list_python(resp.json())
 
-    def create_chain(self, new_chain: chain_models.ChainCreationModel) -> chain_models.ChainCreatedModel:
+    def create_chain(self, new_chain: chain_models.ChainCreationModel) -> chain_models.ChainCreatedModel | ErrorDetailsModel:
         """
         Create a new chain.
 
@@ -42,11 +43,11 @@ class ChainApi(BaseApi):
             method='post',
             body=new_chain.model_dump(exclude_none=True, by_alias=True)
         )
-        if resp.status_code != 201:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return chain_models.ChainCreatedModel(**resp.json())
 
-    def summary(self, chain_id: str) -> chain_models.ChainSummaryModel:
+    def summary(self, chain_id: str) -> chain_models.ChainSummaryModel | ErrorDetailsModel:
         """
         Get the chain details by ID.
 
@@ -60,11 +61,11 @@ class ChainApi(BaseApi):
             url=f'{self.base_url}/{chain_id}',
             method='get',
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return chain_models.ChainSummaryModel(**resp.json())
     
-    def list_active_apps(self, chain_id: str) -> List[int]:
+    def list_active_apps(self, chain_id: str) -> List[int] | ErrorDetailsModel:
         """
         Get the list os active apps in the chain.
 
@@ -78,11 +79,11 @@ class ChainApi(BaseApi):
             url=f'{self.base_url}/{chain_id}/activeApps',
             method='get',
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return resp.json()
 
-    def add_active_apps(self, chain_id: str, apps_to_permit: List[int]) -> List[int]:
+    def add_active_apps(self, chain_id: str, apps_to_permit: List[int]) -> List[int] | ErrorDetailsModel:
         """
         Get the list os active apps in the chain.
 
@@ -97,8 +98,8 @@ class ChainApi(BaseApi):
             method='post',
             body=apps_to_permit
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return resp.json()
     
     def list_interlockings(self,
@@ -106,7 +107,7 @@ class ChainApi(BaseApi):
             page: int=0,
             size: int=10,
             how_many_from_last: int=0,
-        ) -> ListModel[InterlockingRecordModel]:
+        ) -> ListModel[InterlockingRecordModel] | ErrorDetailsModel:
         """
         Get list of interlocks registered in the chain.
 
@@ -129,6 +130,6 @@ class ChainApi(BaseApi):
             method='get',
             params=params
         )
-        if resp.status_code != 200:
-            raise Exception
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
         return ListModel[InterlockingRecordModel](**resp.json())
