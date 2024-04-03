@@ -5,7 +5,7 @@ from ..models import node
 from ..models.apps import AppsModel
 from ..models.base import ListModel
 from ..models.errors import ErrorDetailsModel
-from ..models.records import InterlockingRecordModel
+from ..models.record import InterlockingRecordModel
 
 from .base import BaseApi
 

@@ -2,13 +2,10 @@ from typing import List
 
 from ..models.base import ListModel
 from ..models.errors import ErrorDetailsModel
-from ..models.record import (
-    InterlockingRecordModel,
-    ForceInterlockModel,
-)
 from ..models import (
     chain as chain_models,
     keys as keys_models,
+    record as record_models,
 )
 
 from .base import BaseApi

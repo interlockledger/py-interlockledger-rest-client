@@ -53,7 +53,7 @@ class RecordModel(BaseRecordModel):
     Record model.
     """
     
-    payload_bytes: str
+    payload_bytes: bytes
     """
     Payload bytes.
     """

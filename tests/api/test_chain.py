@@ -1,9 +1,9 @@
 from .base import BaseApiTest
 from src.pyil2.models import (
     chain as chain_models,
-    records,
     errors,
     keys as keys_models,
+    record,
 )
 
 class ChainApiTest(BaseApiTest):
@@ -49,7 +49,7 @@ class ChainApiTest(BaseApiTest):
         #self.assertEqual(interlocks.page_size, 10)
         self.assertIsInstance(interlocks.items, list)
         for item in interlocks.items:
-            self.assertIsInstance(item, records.InterlockingRecordModel)
+            self.assertIsInstance(item, record.InterlockingRecordModel)
         
     def test_list_interlockings_params(self):
         interlocks = self.api.list_interlockings(
@@ -63,12 +63,12 @@ class ChainApiTest(BaseApiTest):
         #self.assertEqual(interlocks.page_size, 2)
         self.assertIsInstance(interlocks.items, list)
         for item in interlocks.items:
-            self.assertIsInstance(item, records.InterlockingRecordModel)
+            self.assertIsInstance(item, record.InterlockingRecordModel)
         
     def test_force_interlock(self):
-        interlock = records.ForceInterlockModel(target_chain=self.second_chain)
+        interlock = record.ForceInterlockModel(target_chain=self.second_chain)
         response = self.api.force_interlocking(self.default_chain, interlock)
-        self.assertIsInstance(response, records.InterlockingRecordModel)
+        self.assertIsInstance(response, record.InterlockingRecordModel)
         
     def test_list_keys(self):
         keys = self.api.list_keys(self.default_chain)

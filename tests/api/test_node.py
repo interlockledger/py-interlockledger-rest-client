@@ -3,7 +3,7 @@ from .base import BaseApiTest
 from src.pyil2.models import (
     node,
     apps as apps_models,
-    records,
+    record,
 )
 
 class NodeApiTest(BaseApiTest):
@@ -56,7 +56,7 @@ class NodeApiTest(BaseApiTest):
         self.assertFalse(interlocks.last_to_first)
         self.assertIsInstance(interlocks.items, list)
         for item in interlocks.items:
-            self.assertIsInstance(item, records.InterlockingRecordModel)
+            self.assertIsInstance(item, record.InterlockingRecordModel)
         if len(interlocks.items) > 1:
             self.assertGreaterEqual(interlocks.items[1].created_at, interlocks.items[0].created_at)
     
@@ -72,7 +72,7 @@ class NodeApiTest(BaseApiTest):
         self.assertTrue(interlocks.last_to_first)
         self.assertIsInstance(interlocks.items, list)
         for item in interlocks.items:
-            self.assertIsInstance(item, records.InterlockingRecordModel)
+            self.assertIsInstance(item, record.InterlockingRecordModel)
     
     def test_list_mirrors(self):
         mirrors = self.api.list_mirrors()
