@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from pydantic import field_serializer, field_validator
+from pydantic import Field, field_serializer, field_validator
 
 from ..utils.certificates import PKCS12Certificate
 
@@ -13,9 +13,9 @@ class BaseKeyModel(BaseCamelModel):
     Base key model.
     """
     
-    name: str
+    name: Optional[str] = None
     """
-    Key name. Must match the name imported in te node.
+    Key name. Must match the name imported in the node.
     """
     permissions: List[AppPermissions]
     """
@@ -63,6 +63,7 @@ class KeyDetailsModel(BaseKeyModel):
     """
     Key public key.
     """
+
 
 class CertificatePermitModel(BaseKeyModel):
     certificate_in_X509: str

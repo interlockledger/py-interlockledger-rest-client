@@ -66,12 +66,34 @@ class ChainApiTest(BaseApiTest):
             self.assertIsInstance(item, records.InterlockingRecordModel)
         
     def test_force_interlock(self):
-        interlock = records.ForceInterlockModel(target_chain=self.default_chain)
-        #response = self.api.force_interlocking(self.default_chain, interlock)
-        #self.assertIsInstance(response, records.InterlockingRecordModel)
-    
+        interlock = records.ForceInterlockModel(target_chain=self.second_chain)
+        response = self.api.force_interlocking(self.default_chain, interlock)
+        self.assertIsInstance(response, records.InterlockingRecordModel)
+        
     def test_list_keys(self):
         keys = self.api.list_keys(self.default_chain)
         self.assertIsInstance(keys, list)
         for item in keys:
             self.assertIsInstance(item, keys_models.KeyDetailsModel)
+    
+    def test_add_keys(self):
+        keys = self.api.list_keys(self.default_chain)
+        keys_to_permit= []
+        for item in keys:
+            if item.name.find("rest.api") < 0:
+                continue
+            keys_to_permit.append(item)
+        keys = self.api.add_keys(
+            self.default_chain,
+            keys_to_permit=keys_to_permit
+        )
+        self.assertIsInstance(keys, list)
+        for item in keys:
+            self.assertIsInstance(item, keys_models.KeyDetailsModel)
+    
+    def test_add_keys_empty(self):
+        keys = self.api.add_keys(
+            self.default_chain,
+            keys_to_permit=[]
+        )
+        self.assertIsInstance(keys, errors.ErrorDetailsModel)

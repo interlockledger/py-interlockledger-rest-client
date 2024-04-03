@@ -180,3 +180,33 @@ class ChainApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return keys_models.KeyDetailsModel.validate_list_python(resp.json())
+    
+    def add_keys(self, 
+            chain_id: str,
+            keys_to_permit: List[keys_models.KeyDetailsModel]
+        ) -> List[keys_models.KeyDetailsModel] | ErrorDetailsModel:
+        """
+        Add keys to the permitted list for the chain.
+        
+        Args:
+            chain_id (:obj:`str`): Chain ID.
+            keys_to_permit ([:obj:`models.keys.KeyPermitModel`]): List of keys to permitted.
+        
+        Returns:
+            [:obj:`models.keys.KeyDetailsModel`]: List of key details.
+        """
+        if not isinstance(keys_to_permit, list):
+            raise ValueError("'keys_to_permit' must be a list of KeyDetailsModel.")
+        body = []
+        for item in keys_to_permit:
+            if not isinstance(item, keys_models.KeyDetailsModel):
+                raise ValueError("'keys_to_permit' must be a list of KeyDetailsModel.")
+            body.append(item.model_dump(exclude_none=True, by_alias=True))
+        resp = self._client._request(
+            url=f'{self.base_url}/{chain_id}/key',
+            method='post',
+            body=body,
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return keys_models.KeyDetailsModel.validate_list_python(resp.json())
