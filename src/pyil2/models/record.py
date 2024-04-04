@@ -11,7 +11,7 @@ from .base import BaseCamelModel
 
 
 class BaseRecordModel(BaseCamelModel):
-    application_id: int
+    application_id: int = 0
     """
     Application id this record is associated with.
     """
@@ -27,7 +27,7 @@ class BaseRecordModel(BaseCamelModel):
     """
     Network name this chain is part.
     """
-    payload_tag_id: int
+    payload_tag_id: int = 0
     """
     The payload's TagId.
     """
@@ -35,15 +35,15 @@ class BaseRecordModel(BaseCamelModel):
     """
     Universal reference of this record.
     """
-    serial: int
+    serial: int = 0
     """
     Block serial number. For the first record this value is zero (0).
     """
-    type: RecordType
+    type: RecordType = Field(default=RecordType.Root)
     """
     Block type. Most records are of the type 'Data'.
     """
-    version: int
+    version: int = 0
     """
     Version of this record structure.
     """
@@ -53,7 +53,7 @@ class RecordModel(BaseRecordModel):
     Record model.
     """
     
-    payload_bytes: bytes
+    payload_bytes: Optional[bytes] = None
     """
     Payload bytes.
     """
