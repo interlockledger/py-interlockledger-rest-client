@@ -14,6 +14,16 @@ from ..models import (
 from .base import BaseApi
 
 class ChainApi(BaseApi):
+    '''
+    API class for the chain requests.
+
+    Args:
+        client (`:obj:`IL2Client`): IL2Client to be used to send requests.
+    
+    Attributes:
+        base_url (`str`): Base path of the requests.
+    '''
+
     base_url='chain'
 
     def list_chains(self) -> List[chain_models.ChainIdModel] | ErrorDetailsModel:
