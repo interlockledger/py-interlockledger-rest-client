@@ -146,7 +146,7 @@ class IL2Client:
             case 'DELETE':
                 resp = self._delete(url=url, accept=accept, params=params, auth=auth)
             case 'POST':
-                resp = self._post(url=url, accept=accept, content_type=content_type, body=body, auth=auth)
+                resp = self._post(url=url, accept=accept, content_type=content_type, body=body, auth=auth, params=params)
             case 'PATCH':
                 resp = self._patch(url=url, accept=accept, content_type=content_type, body=body, auth=auth)
             case 'PUT':
@@ -198,13 +198,14 @@ class IL2Client:
         )
         return response
 
-    def _post(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool=True):
+    def _post(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool=True, params: Dict[str, str]={}):
         cur_uri = self._join_uri(url)
         headers = self._prepare_headers(accept, content_type, auth=auth)
         response = self._get_session().post(
             url=cur_uri,
             headers=headers,
             json=body,
+            params=params,
             timeout=self.timeout,
         )
         return response

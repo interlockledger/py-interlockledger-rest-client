@@ -1,5 +1,9 @@
-from typing import List
+from typing import (
+    Any,
+    Dict,
+)
 
+from ..enum import RecordType
 from ..models.base import ListModel
 from ..models.errors import ErrorDetailsModel
 from ..models import (
@@ -191,6 +195,46 @@ class RecordApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return ListModel[record_models.RecordAsJsonModel](**resp.json())
+
+    def add_record_as_json(self,
+            chain_id: str,
+            application_id: int,
+            payload_tag_id: int,
+            payload: Dict[str, Any],
+            record_type: RecordType=RecordType.Data,
+        ) -> record_models.RecordAsJsonModel | ErrorDetailsModel:
+        """
+        Add a new record with a payload encoded as JSON.
+        The JSON value will be mapped to the payload tagged format as described by \
+        the metadata associated with the payloadTagId - [THIS AFFECTS THE PERFORMANCE SIGNIFICANTLY].
+        
+        Note: Use this method only if you know the payload format. \
+            We highly recommend to use the applications APIs to insert records.
+
+        Args:
+            chain_id (`str`): Chain ID.
+            application_id (:obj:`int`): Application id of the record.
+            payload_tag_id (:obj:`int`): Payload tag id of the record.
+            payload (:obj:`{`str`: `str`}`): Payload data encoded as JSON
+            record_type (:obj:`enums.RecordType`): Type of record.
+        
+        Returns:
+            :obj:`models.record.RecordAsJsonModel`: Added record model with the payload as JSON.
+        """
+        params = {
+            "applicationId": application_id,
+            "payloadTagId": payload_tag_id,
+            "type": record_type.value
+        }
+        resp = self._client._request(
+            url=f'{self.base_url}{chain_id}/asJson',
+            method='post',
+            params=params,
+            body=payload
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return record_models.RecordAsJsonModel(**resp.json())
 
     def get_record_at_as_json(self,
             chain_id: str,
