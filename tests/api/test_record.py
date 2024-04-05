@@ -146,3 +146,17 @@ class RecordApiTest(BaseApiTest):
         if chains.items:
             self.assertEqual(chains.items[0].serial, 0)
     
+    def test_get_record_at_as_json(self):
+        record = self.api.get_record_at_as_json(self.default_chain, 0)
+        self.assertIsInstance(record, record_models.RecordAsJsonModel)
+        self.assertEqual(record.serial, 0)
+    
+    def test_record_query_as_json(self):
+        chains = self.api.query_records_as_json(self.default_chain, query="USE APP #3\nEVERYTHING")
+        self.assertIsInstance(chains, ListModel)
+        self.assertFalse(chains.last_to_first)
+        for item in chains.items:
+            self.assertIsInstance(item, record_models.RecordAsJsonModel)
+            self.assertIsInstance(item.payload, dict)
+            self.assertEqual(chains.items[0].application_id, 3)
+    

@@ -191,3 +191,66 @@ class RecordApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return ListModel[record_models.RecordAsJsonModel](**resp.json())
+
+    def get_record_at_as_json(self,
+            chain_id: str,
+            serial: int,
+        ) -> record_models.RecordAsJsonModel | ErrorDetailsModel:
+        """
+        Get a record with the payload as JSON by serial number.
+
+        Args:
+            chain_id (`str`): Chain ID.
+            serial (`int`): Record serial number.
+
+        Returns:
+            [:obj:`models.record.RecordAsJsonModel`]: Record in a chain with the payload as JSON.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}{chain_id}/asJson/{serial}',
+            method='get',
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return record_models.RecordAsJsonModel(**resp.json())
+
+    def query_records_as_json(self,
+            chain_id: str,
+            query: str,
+            how_many: int=None,
+            last_to_first: bool=False,
+            ommit_payload: bool=False,
+            page: int=0,
+            size: int=10,
+        ) -> ListModel[record_models.RecordAsJsonModel] | ErrorDetailsModel:
+        """
+        Query records with the payload as JSON in a chain using the InterlockQL language.
+
+        Args:
+            chain_id (`str`): Chain ID.
+            query (`str`): Query in the InterlockQL language.
+            how_many (`int`): How many records to return. If ommited or 0 returns all.
+            last_to_first (`bool`): If `True`, return the items in reverse order.
+            page (:obj:`int`): Page to return.
+            size (:obj:`int`): Number of items per page.
+
+        Returns:
+            [:obj:`models.record.RecordAsJsonModel`]: List of records in a chain with the payload as JSON.
+        """
+        params = {
+            "queryAsInterlockQL": query,
+            "page": page,
+            "pageSize": size,
+            "lastToFirst": last_to_first,
+        }
+        if how_many is not None:
+            params['howMany'] = how_many
+        
+        resp = self._client._request(
+            url=f'{self.base_url}{chain_id}/asJson/query',
+            method='get',
+            params=params,
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return ListModel[record_models.RecordAsJsonModel](**resp.json())
