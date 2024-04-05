@@ -79,3 +79,8 @@ class RecordApiTest(BaseApiTest):
         )
         record = self.api.add_record(self.default_chain, new_record)
         self.assertIsInstance(record, errors.ErrorDetailsModel)
+    
+    def test_get_record_at(self):
+        record = self.api.get_record_at(self.default_chain, 0)
+        self.assertIsInstance(record, record_models.RecordModel)
+        self.assertEqual(record.serial, 0)

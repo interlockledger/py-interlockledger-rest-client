@@ -85,3 +85,25 @@ class RecordApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return record_models.RecordModel(**resp.json())
+
+    def get_record_at(self,
+            chain_id: str,
+            serial: int,
+        ) -> record_models.RecordModel | ErrorDetailsModel:
+        """
+        Get a record by serial number.
+
+        Args:
+            chain_id (`str`): Chain ID.
+            serial (`int`): Record serial number.
+
+        Returns:
+            [:obj:`models.record.RecordModel`]: Record in a chain.
+        """
+        resp = self._client._request(
+            url=f'{self.base_url}{chain_id}/{serial}',
+            method='get',
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return record_models.RecordModel(**resp.json())
