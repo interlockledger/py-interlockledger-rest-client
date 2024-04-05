@@ -1,7 +1,10 @@
 import datetime
 from typing import Optional
 
-from pydantic import Field
+from pydantic import (
+    Field,
+    field_serializer,
+)
 
 from ..enum import (
     RecordType,
@@ -9,6 +12,32 @@ from ..enum import (
 )
 from .base import BaseCamelModel
 
+
+class NewRecordModel(BaseCamelModel):
+    """
+    New record model to be added to the chain as raw bytes.
+    """
+
+    application_id: int
+    """
+    Application id this record is associated with.
+    """
+    payload_bytes: bytes
+    """
+    Payload bytes.
+    """
+    type: RecordType = Field(default=RecordType.Data)
+    """
+    Block type. Most records are of the type 'Data'.
+    """
+
+    @field_serializer('payload_bytes')
+    @classmethod
+    def serialize_reserved_tags(cls, value: bytes) -> str:
+        """
+        Serialize payload_bytes field.
+        """
+        return value.decode()
 
 class BaseRecordModel(BaseCamelModel):
     application_id: int = 0
