@@ -107,3 +107,46 @@ class RecordApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return record_models.RecordModel(**resp.json())
+
+    def query_records(self,
+            chain_id: str,
+            query: str,
+            how_many: int=None,
+            last_to_first: bool=False,
+            ommit_payload: bool=False,
+            page: int=0,
+            size: int=10,
+        ) -> ListModel[record_models.RecordModel] | ErrorDetailsModel:
+        """
+        Query records in a chain using the InterlockQL language.
+
+        Args:
+            chain_id (`str`): Chain ID.
+            query (`str`): Query in the InterlockQL language.
+            how_many (`int`): How many records to return. If ommited or 0 returns all.
+            last_to_first (`bool`): If `True`, return the items in reverse order.
+            ommit_payload (`bool`): If `True`, ommits the payload in the response.
+            page (:obj:`int`): Page to return.
+            size (:obj:`int`): Number of items per page.
+
+        Returns:
+            [:obj:`models.record.RecordModel`]: List of records in a chain.
+        """
+        params = {
+            "queryAsInterlockQL": query,
+            "page": page,
+            "pageSize": size,
+            "lastToFirst": last_to_first,
+            "ommitPayload": ommit_payload,
+        }
+        if how_many is not None:
+            params['howMany'] = how_many
+        
+        resp = self._client._request(
+            url=f'{self.base_url}{chain_id}/query',
+            method='get',
+            params=params,
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return ListModel[record_models.RecordModel](**resp.json())

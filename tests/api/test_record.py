@@ -84,3 +84,54 @@ class RecordApiTest(BaseApiTest):
         record = self.api.get_record_at(self.default_chain, 0)
         self.assertIsInstance(record, record_models.RecordModel)
         self.assertEqual(record.serial, 0)
+    
+    def test_record_query(self):
+        chains = self.api.query_records(self.default_chain, query="USE APP #3\nEVERYTHING")
+        self.assertIsInstance(chains, ListModel)
+        self.assertFalse(chains.last_to_first)
+        for item in chains.items:
+            self.assertIsInstance(item, record_models.RecordModel)
+            self.assertIsInstance(item.payload_bytes, bytes)
+            self.assertEqual(chains.items[0].application_id, 3)
+    
+    def test_record_query_how_many(self):
+        chains = self.api.query_records(
+            self.default_chain, 
+            query="USE APP #3\nEVERYTHING", 
+            how_many=1
+        )
+        self.assertIsInstance(chains, ListModel)
+        self.assertFalse(chains.last_to_first)
+        self.assertEqual(len(chains.items), 1)
+        for item in chains.items:
+            self.assertIsInstance(item, record_models.RecordModel)
+            self.assertIsInstance(item.payload_bytes, bytes)
+            self.assertEqual(chains.items[0].application_id, 3)
+    
+    def test_record_query_from_last_ommit(self):
+        chains = self.api.query_records(
+            self.default_chain,
+            query="USE APP #3\nEVERYTHING",
+            last_to_first=True,
+            ommit_payload=True,
+        )
+        self.assertIsInstance(chains, ListModel)
+        self.assertTrue(chains.last_to_first)
+        for item in chains.items:
+            self.assertIsInstance(item, record_models.RecordModel)
+            self.assertIsNone(item.payload_bytes)
+            self.assertEqual(chains.items[0].application_id, 3)
+        if len(chains.items) > 1:
+            self.assertGreater(chains.items[0].serial, chains.items[1].serial)
+    
+    def test_record_query_page(self):
+        chains = self.api.query_records(
+            self.default_chain, 
+            query="USE APP #3\nEVERYTHING", 
+            page=1,
+            size=2
+        )
+        self.assertIsInstance(chains, ListModel)
+        self.assertFalse(chains.last_to_first)
+        self.assertLessEqual(len(chains.items), 2)
+        self.assertEqual(chains.page, 1)
