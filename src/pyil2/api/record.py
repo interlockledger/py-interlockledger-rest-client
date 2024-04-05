@@ -25,6 +25,15 @@ class RecordApi(BaseApi):
         """
         Get a list of records in a chain.
 
+        Args:
+            chain_id (`str`): Chain ID.
+            first_serial (`int`): Serial number of first record to read. Default: First in whole chain.
+            last_serial (`int`): Serial number of last record to read. Default: Last in whole chain.
+            last_to_first (`bool`): If `True`, return the items in reverse order.
+            ommit_payload (`bool`): If `True`, ommits the payload in the response.
+            page (:obj:`int`): Page to return.
+            size (:obj:`int`): Number of items per page.
+
         Returns:
             [:obj:`models.record.RecordModel`]: List of records in a chain.
         """
@@ -48,4 +57,31 @@ class RecordApi(BaseApi):
             return resp
         return ListModel[record_models.RecordModel](**resp.json())
 
-    
+    def add_record(self,
+            chain_id: str,
+            new_record: record_models.NewRecordModel
+        ) -> record_models.RecordModel | ErrorDetailsModel:
+        """
+        Add a new record using raw bytes. 
+        The payload must be in the correct application ID format in Base64.
+        
+        Note: Use this method only if you know the payload format. \
+            We highly recommend to use the applications APIs to insert records.
+
+        Args:
+            chain_id (`str`): Chain ID.
+            new_record (:obj:`models.record.NewRecordModel`): Model with the description of the new record.
+        
+        Returns:
+            :obj:`models.record.RecordModel`: Added record model.
+        """
+        if not isinstance(new_record, record_models.NewRecordModel):
+            raise ValueError("'new_record' must be a NewRecordModel.")
+        resp = self._client._request(
+            url=f'{self.base_url}{chain_id}',
+            method='post',
+            body=new_record.model_dump(exclude_none=True, by_alias=True)
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return record_models.RecordModel(**resp.json())
