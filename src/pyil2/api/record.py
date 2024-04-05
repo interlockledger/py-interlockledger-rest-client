@@ -150,3 +150,44 @@ class RecordApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return ListModel[record_models.RecordModel](**resp.json())
+    
+    def list_records_as_json(self,
+            chain_id: str,
+            first_serial: int=None,
+            last_serial: int=None,
+            last_to_first: bool=False,
+            page: int=0,
+            size: int=10,
+        ) -> ListModel[record_models.RecordAsJsonModel] | ErrorDetailsModel:
+        """
+        Get a list of records in a chain with the payload mapped to a JSON format.
+
+        Args:
+            chain_id (`str`): Chain ID.
+            first_serial (`int`): Serial number of first record to read. Default: First in whole chain.
+            last_serial (`int`): Serial number of last record to read. Default: Last in whole chain.
+            last_to_first (`bool`): If `True`, return the items in reverse order.
+            page (:obj:`int`): Page to return.
+            size (:obj:`int`): Number of items per page.
+
+        Returns:
+            [:obj:`models.record.RecordAsJsonModel`]: List of records in a chain with the payload as JSON.
+        """
+        params = {
+            "page": page,
+            "pageSize": size,
+            "lastToFirst": last_to_first,
+        }
+        if first_serial is not None:
+            params['firstSerial'] = first_serial
+        if last_serial is not None:
+            params['lastSerial'] = last_serial
+        
+        resp = self._client._request(
+            url=f'{self.base_url}{chain_id}/asJson',
+            method='get',
+            params=params,
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return ListModel[record_models.RecordAsJsonModel](**resp.json())

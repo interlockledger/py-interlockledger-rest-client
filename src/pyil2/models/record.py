@@ -1,5 +1,9 @@
 import datetime
-from typing import Optional
+from typing import (
+    Optional,
+    Dict,
+    Any
+)
 
 from pydantic import (
     Field,
@@ -92,7 +96,7 @@ class RecordAsJsonModel(BaseRecordModel):
     Record model as JSON.
     """
 
-    payload: str
+    payload: Dict[str, Any]
     """
     Payload as JSON.
     """

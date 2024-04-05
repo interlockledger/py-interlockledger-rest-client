@@ -135,3 +135,14 @@ class RecordApiTest(BaseApiTest):
         self.assertFalse(chains.last_to_first)
         self.assertLessEqual(len(chains.items), 2)
         self.assertEqual(chains.page, 1)
+    
+    def test_list_records_as_json(self):
+        chains = self.api.list_records_as_json(self.default_chain)
+        self.assertIsInstance(chains, ListModel)
+        self.assertFalse(chains.last_to_first)
+        for item in chains.items:
+            self.assertIsInstance(item, record_models.RecordAsJsonModel)
+            self.assertIsInstance(item.payload, dict)
+        if chains.items:
+            self.assertEqual(chains.items[0].serial, 0)
+    
