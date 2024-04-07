@@ -67,7 +67,7 @@ class IL2Client:
         """
         return self._available_apis
 
-    def api(self, name: str) -> api.NodeApi | api.ChainApi | api.RecordApi:
+    def api(self, name: str) -> api.NodeApi | api.ChainApi | api.RecordApi | api.OpaqueApi:
         """
         Get an instance of an API.
 
@@ -85,6 +85,8 @@ class IL2Client:
                 return api.ChainApi(self)
             case 'record':
                 return api.RecordApi(self)
+            case 'opaque':
+                return api.OpaqueApi(self)
             case _:
                 raise ValueError(f'No API with name {name} found. Must be in {self._available_apis}')
     
@@ -136,7 +138,8 @@ class IL2Client:
             content_type: str='application/json',
             body: Dict[str, Any]=None, 
             params: Dict[str, str]={},
-            auth: bool=True
+            auth: bool=True,
+            data: bytes=None,
         ) -> requests.Response:
         method = method.upper()
 
@@ -146,7 +149,10 @@ class IL2Client:
             case 'DELETE':
                 resp = self._delete(url=url, accept=accept, params=params, auth=auth)
             case 'POST':
-                resp = self._post(url=url, accept=accept, content_type=content_type, body=body, auth=auth, params=params)
+                if data:
+                    resp = self._post_data(url=url, accept=accept, content_type=content_type, data=data, auth=auth, params=params)
+                else:
+                    resp = self._post(url=url, accept=accept, content_type=content_type, body=body, auth=auth, params=params)
             case 'PATCH':
                 resp = self._patch(url=url, accept=accept, content_type=content_type, body=body, auth=auth)
             case 'PUT':
@@ -210,5 +216,16 @@ class IL2Client:
         )
         return response
 
+    def _post_data(self, url: str, accept: str, content_type: str, data: bytes, auth: bool=True, params: Dict[str, str]={}):
+        cur_uri = self._join_uri(url)
+        headers = self._prepare_headers(accept, content_type, auth=auth)
+        response = self._get_session().post(
+            url=cur_uri,
+            headers=headers,
+            data=data,
+            params=params,
+            timeout=self.timeout,
+        )
+        return response
 
 

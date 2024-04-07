@@ -144,3 +144,11 @@ class ForceInterlockModel(BaseCamelModel):
     """
     Id of chain to be interlocked.
     """
+
+class OpaqueRecordModel(BaseCamelModel):
+    network: Optional[str] = None
+    chain_id: Optional[str] = None
+    serial: int
+    application_id: int
+    payload_tag_id: int
+    created_at: datetime.datetime
