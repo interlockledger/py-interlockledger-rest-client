@@ -49,7 +49,7 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            [:obj:`models.record.RecordModel`]: List of records in a chain.
+            :obj:`models.ListModel[models.records.RecordModel]`: List of records in a chain.
         """
         params = {
             "page": page,
@@ -144,7 +144,7 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            [:obj:`models.record.RecordModel`]: List of records in a chain.
+            :obj:`models.ListModel[models.records.RecordModel]`: List of records in a chain.
         """
         params = {
             "queryAsInterlockQL": query,
@@ -185,7 +185,7 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            [:obj:`models.record.RecordAsJsonModel`]: List of records in a chain with the payload as JSON.
+            :obj:`models.ListModel[models.records.RecordAsJsonModel]`: List of records in a chain with the payload as JSON.
         """
         params = {
             "page": page,
@@ -289,7 +289,7 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            [:obj:`models.record.RecordAsJsonModel`]: List of records in a chain with the payload as JSON.
+            :obj:`models.ListModel[models.records.RecordAsJsonModel]`: List of records in a chain with the payload as JSON.
         """
         params = {
             "queryAsInterlockQL": query,
