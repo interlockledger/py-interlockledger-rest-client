@@ -31,6 +31,7 @@ class IL2Client:
         'node',
         'chain',
         'record',
+        'opaque',
     ]
     
     def __init__(self, 
