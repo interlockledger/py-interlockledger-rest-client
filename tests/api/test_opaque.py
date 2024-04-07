@@ -12,9 +12,16 @@ class OpaqueApiTest(BaseApiTest):
             chain_id=self.default_chain,
             application_id=13,
             payload_type_id=1313,
-            payload=b'test'
+            payload=b'test2'
         )
         self.assertIsInstance(opaque, OpaqueRecordModel)
+
+        resp = self.api.get_opaque(self.default_chain, opaque.serial)
+        self.assertEqual(opaque.serial, resp.serial)
+        self.assertEqual(opaque.application_id, resp.application_id)
+        self.assertEqual(opaque.payload_tag_id, resp.payload_tag_id)
+        self.assertEqual(opaque.created_at.replace(microsecond=0), resp.created_at.replace(microsecond=0))
+        self.assertEqual(resp.payload, b'test2')
     
 
     def test_opaque_last_changed_serial_error(self):
@@ -27,3 +34,6 @@ class OpaqueApiTest(BaseApiTest):
         )
         self.assertIsInstance(opaque, ErrorDetailsModel)
     
+    def test_get_opaque_invalid_serial(self):
+        opaque = self.api.get_opaque(self.default_chain, 0)
+        self.assertIsInstance(opaque, ErrorDetailsModel)

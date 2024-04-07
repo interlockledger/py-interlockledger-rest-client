@@ -146,9 +146,35 @@ class ForceInterlockModel(BaseCamelModel):
     """
 
 class OpaqueRecordModel(BaseCamelModel):
+    """
+    Opaque record details.
+    """
+    
     network: Optional[str] = None
+    """
+    Network name this chain is part.
+    """
     chain_id: Optional[str] = None
+    """
+    Chain id that owns this record.
+    """
     serial: int
+    """
+    Block serial number. For the first record this value is zero (0).
+    """
     application_id: int
+    """
+    Application id this record is associated with.
+    """
     payload_tag_id: int
+    """
+    The payload's TagId.
+    """
     created_at: datetime.datetime
+    """
+    Time of record creation.
+    """
+    payload: Optional[bytes] = None
+    """
+    Opaque payload bytes.
+    """

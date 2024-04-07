@@ -36,7 +36,7 @@ class OpaqueApi(BaseApi):
             last_changed_serial (:obj:`int`): The serial number that the last record in the chain must be equal.
 
         Returns:
-            [:obj:`models.record.OpaqueRecordModel`]: Opaque record details.
+            :obj:`models.record.OpaqueRecordModel`: Opaque record details.
         """
         params = {
             "appId": application_id,
@@ -55,3 +55,31 @@ class OpaqueApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return OpaqueRecordModel(**resp.json())
+
+    def get_opaque(self, chain_id: str, serial: int) -> OpaqueRecordModel | ErrorDetailsModel:
+        """
+        Get an opaque record in a chain by serial number.
+
+        Args:
+            chain_id (`str`): Chain ID.
+            serial (`int`): Record serial number.
+            
+        Returns:
+            :obj:`models.record.OpaqueRecordModel`: Opaque record details.
+        """
+        resp = self._client._request(
+            f'{self.base_url}{chain_id}@{serial}',
+            method='get',
+            accept='application/octet-stream',
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        model = OpaqueRecordModel(
+            chain_id=chain_id,
+            serial=serial,
+            application_id=resp.headers.get('x-app-id'),
+            payload_tag_id=resp.headers.get('x-payload-type-id'),
+            created_at=resp.headers.get('x-created-at'),
+            payload=resp.content,
+        )
+        return model
