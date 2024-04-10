@@ -120,5 +120,15 @@ class EncryptedTextModel(BaseCamelModel):
         return json_loads(json_bytes[1+dec_size:1+dec_size+dec].decode('utf-8'))
 
 class JsonDocumentModel(BaseRecordModel):
-    encrypted_json: None
-    json_text: Optional[str]
+    """
+    Record to store JSON documents.
+    """
+    
+    encrypted_json: Optional[EncryptedTextModel] = None
+    """
+    JSON Documents encrypted text.
+    """
+    json_text: Optional[str] = None
+    """
+    JSON document as string.
+    """
