@@ -1,4 +1,5 @@
 from .base import BaseApiTest
+import os
 from src.pyil2.utils.certificates import PKCS12Certificate
 from src.pyil2.models.errors import ErrorDetailsModel
 from src.pyil2.models.json import JsonDocumentModel
@@ -7,7 +8,10 @@ class JsonApiTest(BaseApiTest):
     def setUp(self):
         super().setUp()
         self.api = self.client.api('json')
+        cert_2_filepath = os.environ.get('TEST_CERTIFICATE_2_PATH')
+        cert_2_password = os.environ.get('TEST_CERTIFICATE_2_PASS')
         self.certificate = PKCS12Certificate(self.filepath, self.password)
+        self.certificate_2 = PKCS12Certificate(cert_2_filepath, cert_2_password)
         
     
     def test_add_json_document(self):
@@ -18,3 +22,20 @@ class JsonApiTest(BaseApiTest):
         self.assertIsInstance(resp, JsonDocumentModel)
         decrypted = resp.encrypted_json.decode(self.certificate)
         self.assertDictEqual(decrypted, payload)
+        with self.assertRaises(ValueError):
+            decrypted = resp.encrypted_json.decode(self.certificate_2)
+
+    def test_add_json_with_key(self):
+        payload = {
+            'attr': 'value'
+        }
+        resp = self.api.add_json_document_with_key(
+            self.default_chain,
+            payload,
+            self.certificate_2.pub_key, 
+            self.certificate_2.key_id
+        )
+        self.assertIsInstance(resp, JsonDocumentModel)
+        decrypted = resp.encrypted_json.decode(self.certificate_2)
+        self.assertDictEqual(decrypted, payload)
+    

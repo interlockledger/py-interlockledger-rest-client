@@ -37,3 +37,35 @@ class JsonApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return JsonDocumentModel(**resp.json())
+
+    def add_json_document_with_key(
+            self, chain_id: str,
+            payload: Dict[str, Any],
+            public_key: str,
+            public_key_id: str
+        ) -> JsonDocumentModel | ErrorDetailsModel:
+        """
+        Add a JSON document record encrypted with a given key.
+
+        Args:
+            chain_id (:obj:`str`): Chain ID.
+            payload ({:obj:`str`: Any}): A valid JSON in dictionary format.
+            public_key (:obj:`str`): IL2 text representation of a public key to encrypt the content for.
+            public_key_id (:obj:`str`): IL2 text representation of the key ID.
+        
+        Returns:
+            :obj:`models.json.JsonDocumentModel`: Added JSON document details.
+        """
+        headers = {
+            'X-PubKey': public_key,
+            'X-PubKeyId': public_key_id,
+        }
+        resp = self._client._request(
+            f'{self.base_url}{chain_id}/withKey',
+            method='post',
+            body=payload,
+            headers=headers
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return JsonDocumentModel(**resp.json())
