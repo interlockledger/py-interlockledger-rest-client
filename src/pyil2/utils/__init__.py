@@ -1,6 +1,21 @@
-
-
 from typing import List, Self
+from cryptography.hazmat.primitives import ciphers
+
+def aes_decrypt(msg: bytes, key: bytes, iv: bytes) -> bytes:
+    """
+    AES decryptor.
+
+    Args:
+        msg (:obj:`bytes`): Encrypted message.
+        key (:obj:`bytes`): AES key.
+        iv (:obj:`bytes`): AES IV.
+    
+    Returns:
+        :obj:`bytes`: Decrypted message.
+    """
+    cipher = ciphers.Cipher(ciphers.algorithms.AES(key), ciphers.modes.CBC(iv))
+    decryptor = cipher.decryptor()
+    return decryptor.update(msg) + decryptor.finalize()
 
 
 class AppPermissions:
