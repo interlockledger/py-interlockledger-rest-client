@@ -33,6 +33,7 @@ class IL2Client:
         'record',
         'opaque',
         'json',
+        'documents',
     ]
     
     def __init__(self, 
@@ -69,7 +70,7 @@ class IL2Client:
         """
         return self._available_apis
 
-    def api(self, name: str) -> api.NodeApi | api.ChainApi | api.RecordApi | api.OpaqueApi | api.JsonApi:
+    def api(self, name: str) -> api.NodeApi | api.ChainApi | api.RecordApi | api.OpaqueApi | api.JsonApi | api.DocumentsApi:
         """
         Get an instance of an API.
 
@@ -91,6 +92,8 @@ class IL2Client:
                 return api.OpaqueApi(self)
             case 'json':
                 return api.JsonApi(self)
+            case 'documents':
+                return api.DocumentsApi(self)
             case _:
                 raise ValueError(f'No API with name {name} found. Must be in {self._available_apis}')
     
