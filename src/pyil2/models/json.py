@@ -1,14 +1,21 @@
 from typing import (
     List,
-    Optional
+    Dict,
+    Any,
+    Optional,
 )
 
+import base64
 from pydantic import Field
+from pyilint import ilint_decode
+from json import loads as json_loads
+
 from ..enum import CipherAlgorithms
 from .base import BaseCamelModel
 from .record import BaseRecordModel
 from ..utils.certificates import PKCS12Certificate
 import datetime
+from ..utils import aes_decrypt
 
 class ReadingKeyModel(BaseCamelModel):
     """
@@ -58,9 +65,59 @@ class ReadingKeyModel(BaseCamelModel):
         return True
 
 class EncryptedTextModel(BaseCamelModel):
+    """
+    JSON Documents encrypted text.
+    """
+    
     cipher: CipherAlgorithms
-    cipher_text: Optional[str] = None
+    """
+    Cipher algorithm used to cipher the text.
+    """
+    cipher_text: Optional[str] = ''
+    """
+    Encrypted text.
+    """
     reading_keys: List[ReadingKeyModel]
+    """
+    List of keys able to read this encrypted text.
+    """
+
+    def decode(self, certificate: PKCS12Certificate) -> Dict[str, Any]:
+        """
+        Decodes the encrypted JSON text to a dictionary using a given certificate.
+
+        Args:
+            certificate (:obj:`utils.certificate.PKCS12Certificate`): PKCS12 certificate.
+        
+        Returns:
+            {:obj:`str`: Any}: Decoded JSON.
+        
+        Raises:
+            `ValueError`: If there is no encrypted text or the certificate is not in the reading keys.
+        
+        """
+        if not self.cipher :
+            raise ValueError(f' No cipher detected.')
+        if self.cipher != CipherAlgorithms.AES256.value:
+            raise ValueError(f'Cipher {self.cipher} is not currently supported.')
+        
+        authorized_key = None
+        for rk in self.reading_keys:
+            if rk.check_certificate(certificate):
+                authorized_key = rk
+                break
+        if not authorized_key:
+            raise ValueError('Your key does not match one of the authorized reading keys.')
+
+        aes_key = certificate.decrypt(base64.urlsafe_b64decode(authorized_key.encrypted_key))
+        aes_iv = certificate.decrypt(base64.urlsafe_b64decode(authorized_key.encrypted_iv))
+        
+        json_bytes = aes_decrypt(base64.urlsafe_b64decode(self.cipher_text), aes_key, aes_iv)
+        if json_bytes[0] != 17 :
+            raise ValueError('Something went wrong while decrypting the content. Unexpected initial bytes.')
+        
+        dec, dec_size = ilint_decode(json_bytes[1:])
+        return json_loads(json_bytes[1+dec_size:1+dec_size+dec].decode('utf-8'))
 
 class JsonDocumentModel(BaseRecordModel):
     encrypted_json: None
