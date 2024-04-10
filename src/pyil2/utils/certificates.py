@@ -59,31 +59,26 @@ class PKCS12Certificate:
     @property
     def pub_key_hash(self) -> str:
         """:obj:`str`: Public key hash in IL2 text representation."""
-        if not self._pkcs12_cert[1] :
+        pub_key_parameter_tag = self._format_pub_key()
+        if pub_key_parameter_tag is None:
             return None
-        modulus = self._pkcs12_cert[1].public_key().public_numbers().n
-        exponet = self._pkcs12_cert[1].public_key().public_numbers().e
-        
-        writer = io.BytesIO()
-        t = pyiltags.ILRawTag(16, modulus.to_bytes((modulus.bit_length()+7)//8, byteorder='big'))
-        t.serialize(writer)
-        modulus_tag = writer.getvalue()
-
-        writer = io.BytesIO()
-        t = pyiltags.ILRawTag(16, exponet.to_bytes((exponet.bit_length()+7)//8, byteorder='big'))
-        t.serialize(writer)
-        exponet_tag = writer.getvalue()
-
-        writer = io.BytesIO()
-        t = pyiltags.ILRawTag(40, modulus_tag+exponet_tag)
-        t.serialize(writer)
-        pub_key_parameter_tag = writer.getvalue()
 
         digest = hashes.Hash(hashes.SHA256())
         digest.update(pub_key_parameter_tag)
         s = base64.urlsafe_b64encode(digest.finalize()).decode().replace('=','')
         
         return f'{s}#SHA256'
+    
+    @property
+    def pub_key(self) -> str:
+        """:obj:`str`: Public key in IL2 text representation."""
+        pub_key_parameter_tag = self._format_pub_key()
+        if pub_key_parameter_tag is None:
+            return None
+
+        s = base64.urlsafe_b64encode(pub_key_parameter_tag).decode().replace('=','')
+        
+        return f'PubKey!{s}#RSA'
         
 
     @property
@@ -126,3 +121,25 @@ class PKCS12Certificate:
         with open(os.path.expanduser(cert_path), 'rb') as f :
             pkcs_cert = pkcs12.load_key_and_certificates(f.read(), cert_pass.encode())
         return pkcs_cert
+
+    def _format_pub_key(self) -> bytes | None:
+        if not self._pkcs12_cert[1] :
+            return None
+        modulus = self._pkcs12_cert[1].public_key().public_numbers().n
+        exponet = self._pkcs12_cert[1].public_key().public_numbers().e
+        
+        writer = io.BytesIO()
+        t = pyiltags.ILRawTag(16, modulus.to_bytes((modulus.bit_length()+7)//8, byteorder='big'))
+        t.serialize(writer)
+        modulus_tag = writer.getvalue()
+
+        writer = io.BytesIO()
+        t = pyiltags.ILRawTag(16, exponet.to_bytes((exponet.bit_length()+7)//8, byteorder='big'))
+        t.serialize(writer)
+        exponet_tag = writer.getvalue()
+
+        writer = io.BytesIO()
+        t = pyiltags.ILRawTag(40, modulus_tag+exponet_tag)
+        t.serialize(writer)
+        pub_key_parameter_tag = writer.getvalue()
+        return pub_key_parameter_tag
