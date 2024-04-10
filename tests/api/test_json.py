@@ -24,6 +24,11 @@ class JsonApiTest(BaseApiTest):
         self.assertDictEqual(decrypted, payload)
         with self.assertRaises(ValueError):
             decrypted = resp.encrypted_json.decode(self.certificate_2)
+        
+        resp_from_get = self.api.get_json_document(self.default_chain, resp.serial)
+        self.assertIsInstance(resp_from_get, JsonDocumentModel)
+        decrypted = resp_from_get.encrypted_json.decode(self.certificate)
+        self.assertDictEqual(decrypted, payload)
 
     def test_add_json_with_key(self):
         payload = {
@@ -39,3 +44,18 @@ class JsonApiTest(BaseApiTest):
         decrypted = resp.encrypted_json.decode(self.certificate_2)
         self.assertDictEqual(decrypted, payload)
     
+    def test_add_json_with_chain_key(self):
+        self.skipTest('TODO')
+        payload = {
+            'attr': 'value'
+        }
+        resp = self.api.add_json_document_with_chain_keys(
+            self.default_chain,
+            payload,
+            self.second_chain,
+        )
+        self.assertIsInstance(resp, JsonDocumentModel)
+        
+    def test_get_json_document_invalid_serial(self):
+        json_document = self.api.get_json_document(self.default_chain, 0)
+        self.assertIsInstance(json_document, ErrorDetailsModel)
