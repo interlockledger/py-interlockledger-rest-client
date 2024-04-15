@@ -16,11 +16,13 @@ class OpaqueApiTest(BaseApiTest):
             payload=b'test2'
         )
         self.assertIsInstance(opaque, OpaqueRecordModel)
+        self.assertEqual(opaque.payload_tag_id, 132)
 
         resp = self.api.get_opaque(self.default_chain, opaque.serial)
         self.assertEqual(opaque.serial, resp.serial)
         self.assertEqual(opaque.application_id, resp.application_id)
         self.assertEqual(opaque.payload_tag_id, resp.payload_tag_id)
+        self.assertEqual(opaque.payload_type_id, resp.payload_type_id)
         self.assertEqual(opaque.created_at.replace(microsecond=0), resp.created_at.replace(microsecond=0))
         self.assertEqual(resp.payload, b'test2')
     

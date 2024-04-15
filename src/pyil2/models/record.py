@@ -170,6 +170,14 @@ class OpaqueRecordModel(BaseCamelModel):
     """
     The payload's TagId.
     """
+    payload_type_id: int
+    """
+    The payload's TypeId.
+    """
+    payload_length: int
+    """
+    The opaque payload length in bytes.
+    """
     created_at: datetime.datetime
     """
     Time of record creation.

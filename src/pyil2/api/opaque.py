@@ -80,7 +80,9 @@ class OpaqueApi(BaseApi):
             chain_id=chain_id,
             serial=serial,
             application_id=resp.headers.get('x-app-id'),
-            payload_tag_id=resp.headers.get('x-payload-type-id'),
+            payload_tag_id=132,
+            payload_type_id=resp.headers.get('x-payload-type-id'),
+            payload_length=len(resp.content),
             created_at=resp.headers.get('x-created-at'),
             payload=resp.content,
         )
