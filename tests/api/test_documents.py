@@ -18,3 +18,7 @@ class DocumentsApiTest(BaseApiTest):
         )
         transaction = self.api.begin_document_transaction(new_transaction)
         self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
+
+        status = self.api.get_document_transaction_status(transaction.transaction_id)
+        self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
+        self.assertEqual(transaction.transaction_id, status.transaction_id)

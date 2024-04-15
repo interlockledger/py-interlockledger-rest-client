@@ -53,3 +53,21 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
+
+    def get_document_transaction_status(self, transaction_id: str) -> documents_models.DocumentTransactionModel:
+        """
+        Get a document upload transaction status.
+
+        Args:
+            transaction_id (:obj:`str`): Document upload transaction ID.
+        
+        Returns:
+            :obj:`models.documents.BeginDocumentTransactionModel`: Document upload transaction status.
+        """
+        resp = self._client._request(
+            f'{self.base_url}/transaction/{transaction_id}',
+            method='get',
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return documents_models.DocumentTransactionModel(**resp.json())
