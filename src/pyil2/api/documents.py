@@ -27,3 +27,29 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return documents_models.DocumentUploadConfigurationModel(**resp.json())
+
+    def begin_document_transaction(self,
+            new_transaction: documents_models.BeginDocumentTransactionModel
+        ) -> documents_models.DocumentTransactionModel:
+        """
+        Begin a document upload transaction.
+
+        The transaction will rollback on timeout or errors.
+
+        Args:
+            new_transaction (:obj:`models.documents.BeginDocumentTransactionModel`): Begin transaction details.
+        
+        Returns:
+            :obj:`models.documents.BeginDocumentTransactionModel`: Document upload transaction status.
+        """
+        if not isinstance(new_transaction, documents_models.BeginDocumentTransactionModel):
+            raise ValueError("'new_transaction' must be a BeginDocumentTransactionModel.")
+        
+        resp = self._client._request(
+            f'{self.base_url}/transaction',
+            method='post',
+            body=new_transaction.model_dump(by_alias=True, exclude_none=True)
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return documents_models.DocumentTransactionModel(**resp.json())

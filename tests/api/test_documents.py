@@ -11,3 +11,10 @@ class DocumentsApiTest(BaseApiTest):
     def test_documents_configuration(self):
         config = self.api.documents_configuration
         self.assertIsInstance(config, documents_models.DocumentUploadConfigurationModel)
+
+    def test_document_upload(self):
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain
+        )
+        transaction = self.api.begin_document_transaction(new_transaction)
+        self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
