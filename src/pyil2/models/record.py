@@ -166,10 +166,6 @@ class OpaqueRecordModel(BaseCamelModel):
     """
     Application id this record is associated with.
     """
-    payload_tag_id: int
-    """
-    The payload's TagId.
-    """
     payload_type_id: int
     """
     The payload's TypeId.

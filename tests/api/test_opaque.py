@@ -16,12 +16,10 @@ class OpaqueApiTest(BaseApiTest):
             payload=b'test2'
         )
         self.assertIsInstance(opaque, OpaqueRecordModel)
-        self.assertEqual(opaque.payload_tag_id, 132)
-
+        
         resp = self.api.get_opaque(self.default_chain, opaque.serial)
         self.assertEqual(opaque.serial, resp.serial)
         self.assertEqual(opaque.application_id, resp.application_id)
-        self.assertEqual(opaque.payload_tag_id, resp.payload_tag_id)
         self.assertEqual(opaque.payload_type_id, resp.payload_type_id)
         self.assertEqual(opaque.created_at.replace(microsecond=0), resp.created_at.replace(microsecond=0))
         self.assertEqual(resp.payload, b'test2')
@@ -50,7 +48,7 @@ class OpaqueApiTest(BaseApiTest):
         for item in opaques.items:
             self.assertIsInstance(item, OpaqueRecordModel)
     
-    def test_query_opaque_filter_tag_ids(self):
+    def test_query_opaque_filter_type_ids(self):
         opaque = self.api.add_opaque(
             chain_id=self.default_chain,
             application_id=13,
@@ -73,9 +71,9 @@ class OpaqueApiTest(BaseApiTest):
         self.assertIsInstance(opaques, ListModel)
         for item in opaques.items:
             self.assertIsInstance(item, OpaqueRecordModel)
-            self.assertEqual(item.payload_tag_id, 1313)
+            self.assertEqual(item.payload_type_id, 1313)
     
-    def test_query_opaque_filter_empty_tag_ids(self):
+    def test_query_opaque_filter_empty_type_ids(self):
         opaques = self.api.query_opaque(
             self.default_chain,
             application_id=13,
