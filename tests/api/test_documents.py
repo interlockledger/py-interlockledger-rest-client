@@ -35,3 +35,6 @@ class DocumentsApiTest(BaseApiTest):
         locator = self.api.commit_document_transaction(transaction.transaction_id)
         self.assertIsInstance(locator, str)
         self.assertFalse('$' in locator)
+
+        metadata = self.api.get_document_metadata(locator)
+        self.assertIsInstance(metadata, documents_models.DocumentMetadataModel)

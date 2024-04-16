@@ -130,3 +130,23 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return resp.json()
+
+    def get_document_metadata(self, 
+            locator: str
+        ) -> documents_models.DocumentMetadataModel | ErrorDetailsModel:
+        """
+        Get the documents metadata by the locator.
+
+        Args:
+            locator (:obj:`str`): Document locator.
+        
+        Returns:
+            :obj:`models.documents.DocumentMetadataModel`: Documents metadata.
+        """
+        resp = self._client._request(
+            f'{self.base_url}/{locator}/metadata',
+            method='get',
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return documents_models.DocumentMetadataModel(**resp.json())
