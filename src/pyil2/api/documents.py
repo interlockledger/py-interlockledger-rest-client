@@ -16,7 +16,7 @@ class DocumentsApi(BaseApi):
     base_url='documents'
 
     @property
-    def documents_configuration(self) -> documents_models.DocumentUploadConfigurationModel:
+    def documents_configuration(self) -> documents_models.DocumentUploadConfigurationModel | ErrorDetailsModel:
         """
         :obj:`models.documents.DocumentUploadConfigurationModel`: Documents upload configuration.
         """
@@ -30,7 +30,7 @@ class DocumentsApi(BaseApi):
 
     def begin_document_transaction(self,
             new_transaction: documents_models.BeginDocumentTransactionModel
-        ) -> documents_models.DocumentTransactionModel:
+        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Begin a document upload transaction.
 
@@ -54,7 +54,9 @@ class DocumentsApi(BaseApi):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
 
-    def get_document_transaction_status(self, transaction_id: str) -> documents_models.DocumentTransactionModel:
+    def get_document_transaction_status(self,
+            transaction_id: str
+        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel :
         """
         Get a document upload transaction status.
 
@@ -79,7 +81,7 @@ class DocumentsApi(BaseApi):
             file_bytes: bytes,
             comment: str=None,
             relative_path: str="/",
-        ) -> documents_models.DocumentTransactionModel:
+        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Add a file to a document upload transaction.
 
@@ -110,3 +112,21 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
+
+    def commit_document_transaction(self, transaction_id: str) -> str | ErrorDetailsModel:
+        """
+        Commits a document upload transaction.
+
+        Args:
+            transaction_id (:obj:`str`): Document upload transaction ID.
+        
+        Returns:
+            :obj:`str`: Document locator.
+        """
+        resp = self._client._request(
+            f'{self.base_url}/transaction/{transaction_id}/commit',
+            method='post',
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return resp.json()

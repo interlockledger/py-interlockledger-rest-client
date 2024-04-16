@@ -31,3 +31,7 @@ class DocumentsApiTest(BaseApiTest):
         )
         self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
         self.assertGreaterEqual(len(transaction.document_names), 1)
+
+        locator = self.api.commit_document_transaction(transaction.transaction_id)
+        self.assertIsInstance(locator, str)
+        self.assertFalse('$' in locator)
