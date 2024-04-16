@@ -71,3 +71,42 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
+
+    def upload_document(self, 
+            transaction_id: str,
+            filename: str,
+            content_type: str,
+            file_bytes: bytes,
+            comment: str=None,
+            relative_path: str="/",
+        ) -> documents_models.DocumentTransactionModel:
+        """
+        Add a file to a document upload transaction.
+
+        Args:
+            transaction_id (:obj:`str`): Document upload transaction ID.
+            filename (:obj:`str`): File name.
+            content_type (:obj:`str`): File mime-type
+            file_bytes (:obj:`str`): File bytes.
+            comment (:obj:`str`): Additional comment.
+            relative_path (:obj:`str`): Relative path of the file inside the record.
+        
+        Returns:
+            :obj:`models.documents.BeginDocumentTransactionModel`: Document upload transaction status.
+        """
+        params = {
+            "name": filename,
+            "path": relative_path,
+        }
+        if comment:
+            params['comment'] = comment
+        resp = self._client._request(
+            f'{self.base_url}/transaction/{transaction_id}',
+            method='post',
+            params=params,
+            content_type=content_type,
+            data=file_bytes,
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return documents_models.DocumentTransactionModel(**resp.json())

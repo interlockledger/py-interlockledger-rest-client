@@ -22,3 +22,12 @@ class DocumentsApiTest(BaseApiTest):
         status = self.api.get_document_transaction_status(transaction.transaction_id)
         self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
         self.assertEqual(transaction.transaction_id, status.transaction_id)
+
+        transaction = self.api.upload_document(
+            transaction_id=transaction.transaction_id,
+            filename='test.txt',
+            content_type='text/plain',
+            file_bytes=b'file 1',
+        )
+        self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
+        self.assertGreaterEqual(len(transaction.document_names), 1)
