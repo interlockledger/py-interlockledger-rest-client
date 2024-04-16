@@ -126,5 +126,80 @@ class DocumentTransactionModel(BaseDocumentTransactionModel):
     """
     ID of the transaction to use when uploading each file and committing the transaction.
     """
+
+class EncryptionParameterModel(BaseCamelModel):
+    """
+    The parameters used to make the encryption of the set of documents.
+    """
+
+    iterations: int
+    """
+    Number of iterations to generate the key.
+    """
+    salt: Optional[str] = None
+    """
+    Salt value to feed the cypher engine.
+    """
     
 
+class DirectoryEntryModel(BaseCamelModel):
+    """
+    Entry details for each stored document in this documents record.
+    """
+
+    comment: Optional[str] = None
+    """
+    Additional comment for the document entry.
+    """
+    mime_type: Optional[str] = None
+    """
+    Mime Type for the document content.
+    """
+    name: Optional[str] = None
+    """
+    Document file name.
+    """
+    path: Optional[str] = None
+    """
+    Relative path of the file in the public directory
+    """
+    hash_sha256: Optional[str] = Field(alias='hashSHA256', default=None)
+    """
+    SHA256 hash of the file bytes.
+    """
+    size: Optional[int] = 0
+    """
+    File size in bytes.
+    """
+    
+
+class DocumentMetadataModel(BaseCamelModel):
+    record_reference: Optional[str] = None
+    """
+    Universal reference of this record.
+    """
+    creation_time: datetime.datetime
+    """
+    Time of record creation.
+    """
+    comment: Optional[str] = None
+    """
+    Any additional information about this set of documents.
+    """
+    compression: Optional[str] = None
+    """
+    Compression algorithm.
+    """
+    encryption: Optional[str] = None
+    """
+    The encryption descriptor in the <pbe>-<hash>-<cipher>-<level> format.
+    """
+    encryption_parameters: Optional[EncryptionParameterModel] = None
+    """
+    The parameters used to make the encryption of the set of documents.
+    """
+    public_directory: List[DirectoryEntryModel] = Field(default_factory=list)
+    """
+    List of stored documents.
+    """
+    
