@@ -3,7 +3,10 @@ from typing import (
     List,
 )
 import datetime
-from pydantic import Field
+from pydantic import (
+    Field,
+    model_validator,
+)
 from .base import BaseCamelModel
 from ..enum import DocumentsCompression
 
@@ -82,7 +85,7 @@ class BeginDocumentTransactionModel(BaseDocumentTransactionModel):
     """
     Override for the number of PBE iterations to generate the key.
     """
-    password: Optional[str] = None
+    password: Optional[str] = Field(default=None, min_length=12)
     """
     Password as bytes if `encryption` is not null.
     """
@@ -100,6 +103,12 @@ class BeginDocumentTransactionModel(BaseDocumentTransactionModel):
     Comment added for children records.
     """
     
+    @model_validator(mode='after')
+    def validate_encrypted_password(self):
+        if self.encryption and not self.password:
+            raise ValueError(f'Password is required if encryption is defined.')
+        return self
+
 
 class DocumentTransactionModel(BaseDocumentTransactionModel):
     """
