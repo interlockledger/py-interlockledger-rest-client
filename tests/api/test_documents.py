@@ -1,4 +1,5 @@
 from .base import BaseApiTest
+import requests
 import os
 from src.pyil2.models.errors import ErrorDetailsModel
 from src.pyil2.models import documents as documents_models
@@ -43,11 +44,17 @@ class DocumentsApiTest(BaseApiTest):
         self.assertIsInstance(document_path, str)
         self.assertTrue(os.path.isfile(document_path))
         os.remove(document_path)
-
+        
         document_zip = self.api.download_documents_as_zip(locator)
         self.assertIsInstance(document_zip, str)
         self.assertTrue(os.path.isfile(document_zip))
         os.remove(document_zip)
+
+        document_response = self.api.download_single_document_at_as_response(locator, 1)
+        self.assertIsInstance(document_response, requests.Response)
+        
+        document_zip_response = self.api.download_documents_as_zip_as_response(locator)
+        self.assertIsInstance(document_zip_response, requests.Response)
     
     def test_document_metadata_not_found(self):
         locator = self.default_chain + 'A'
@@ -65,4 +72,16 @@ class DocumentsApiTest(BaseApiTest):
         locator = self.default_chain + 'A'
 
         resp = self.api.download_documents_as_zip(locator)
+        self.assertIsInstance(resp, ErrorDetailsModel)
+    
+    def test_download_single_response_not_found(self):
+        locator = self.default_chain + 'A'
+
+        resp = self.api.download_single_document_at_as_response(locator, 10)
+        self.assertIsInstance(resp, ErrorDetailsModel)
+    
+    def test_download_zip_response_not_found(self):
+        locator = self.default_chain + 'A'
+
+        resp = self.api.download_documents_as_zip_as_response(locator)
         self.assertIsInstance(resp, ErrorDetailsModel)

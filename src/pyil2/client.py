@@ -252,5 +252,12 @@ class IL2Client:
             with open(filepath, 'wb') as f :
                 shutil.copyfileobj(r.raw, f) 
         return filepath
-        
+    
+    def _download_response(self, url: str) -> requests.Response:
+        cur_uri = self._join_uri(url)
+        s = self._get_session()
+        resp = s.get(cur_uri, stream=True, timeout=self.timeout)
+        return self._handle_error_response(resp)
+
+
 

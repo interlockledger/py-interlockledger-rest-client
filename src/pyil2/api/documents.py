@@ -1,10 +1,12 @@
 import os
 import re
 import shutil
+import requests
 from .base import BaseApi
 
 from ..models.errors import ErrorDetailsModel
 from ..models import documents as documents_models
+
 
 class DocumentsApi(BaseApi):
     '''
@@ -198,6 +200,47 @@ class DocumentsApi(BaseApi):
         )
         if isinstance(resp, ErrorDetailsModel):
             return resp
+        return resp
+    
+    def download_single_document_at_as_response(self, 
+        locator: str,
+        index: int,
+        dst_path: str='./',
+    ) -> requests.Response | ErrorDetailsModel:
+        """
+        Get the request response to download a single document by position from the set of documents.
+
+        *Note:* For advance use only.
+
+        Args:
+            locator (:obj:`str`): A Documents Storage Locator.
+            index (:obj:`int`): Index of the file.
+        
+        Returns:
+            :obj:`requests.Response`: Request response.
+        """
+        resp = self._client._download_response(
+            f'{self.base_url}/{locator}/{index}'
+        )
+        return resp
+    
+    def download_documents_as_zip_as_response(self, 
+        locator: str,
+    ) -> requests.Response | ErrorDetailsModel:
+        """
+        Get the request response to download documents in a compressed file.
+
+        *Note:* For advance use only.
+
+        Args:
+            locator (:obj:`str`): A Documents Storage Locator.
+        
+        Returns:
+            :obj:`requests.Response`: Request response.
+        """
+        resp = self._client._download_response(
+            f'{self.base_url}/{locator}/zip',
+        )
         return resp
     
     
