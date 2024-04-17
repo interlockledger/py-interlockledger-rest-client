@@ -47,6 +47,10 @@ class AllowedReadersModel(BaseCamelModel):
     """
 
 class AllowedReadersDetailsModel(AllowedReadersModel):
+    """
+    Allowed readers details model.
+    """
+
     record_reference: Optional[str] = None
     """
     A record reference in the form chainId@recordSerial
