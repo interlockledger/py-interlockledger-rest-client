@@ -38,3 +38,20 @@ class DocumentsApiTest(BaseApiTest):
 
         metadata = self.api.get_document_metadata(locator)
         self.assertIsInstance(metadata, documents_models.DocumentMetadataModel)
+
+        document_path = self.api.download_single_document_at(locator, 1)
+        self.assertIsInstance(document_path, str)
+        self.assertTrue(os.path.isfile(document_path))
+        os.remove(document_path)
+    
+    def test_document_metadata_not_found(self):
+        locator = self.default_chain + 'A'
+
+        resp = self.api.get_document_metadata(locator)
+        self.assertIsInstance(resp, ErrorDetailsModel)
+
+    def test_download_single_not_found(self):
+        locator = self.default_chain + 'A'
+
+        resp = self.api.download_single_document_at(locator, 10)
+        self.assertIsInstance(resp, ErrorDetailsModel)

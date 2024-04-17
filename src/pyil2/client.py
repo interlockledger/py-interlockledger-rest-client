@@ -1,4 +1,7 @@
 import contextlib
+import os
+import re
+import shutil
 import tempfile
 from typing import Any, Dict, List, Union
 import requests
@@ -236,4 +239,18 @@ class IL2Client:
         )
         return response
 
+    def _download_file(self, url: str, dst_path: str='./') -> str:
+        cur_uri = self._join_uri(url)
+        s = self._get_session()
+        with s.get(cur_uri, stream=True, timeout=self.timeout) as r:
+            err = self._handle_error_response(r)
+            if isinstance(err, ErrorDetailsModel):
+                return err
+            d = r.headers['content-disposition']
+            filename = re.findall("filename=(.+);", d)[0]
+            filepath = os.path.expanduser(os.path.join(dst_path, filename))
+            with open(filepath, 'wb') as f :
+                shutil.copyfileobj(r.raw, f) 
+        return filepath
+        
 

@@ -1,3 +1,6 @@
+import os
+import re
+import shutil
 from .base import BaseApi
 
 from ..models.errors import ErrorDetailsModel
@@ -150,3 +153,27 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return documents_models.DocumentMetadataModel(**resp.json())
+
+    def download_single_document_at(self, 
+        locator: str,
+        index: int,
+        dst_path: str='./',
+    ) -> str | ErrorDetailsModel:
+        """
+        Download a single document by position from the set of documents to a folder (default: current folder).
+
+        Args:
+            locator (:obj:`str`): A Documents Storage Locator.
+            index (:obj:`int`): Index of the file.
+            dst_path (:obj:`str`): Download the file to this folder.
+        
+        Returns:
+            :obj:`str`: Downloaded file full path.
+        """
+        resp = self._client._download_file(
+            f'{self.base_url}/{locator}/{index}',
+            dst_path=dst_path
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return resp
