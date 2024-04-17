@@ -1,8 +1,13 @@
 from .base import BaseApiTest
 import os
+from src.pyil2.models.base import ListModel
 from src.pyil2.utils.certificates import PKCS12Certificate
 from src.pyil2.models.errors import ErrorDetailsModel
-from src.pyil2.models.json import JsonDocumentModel
+from src.pyil2.models.json import (
+    JsonDocumentModel,
+    AllowedReadersModel,
+    AllowedReadersDetailsModel
+)
 
 class JsonApiTest(BaseApiTest):
     def setUp(self):
@@ -59,3 +64,26 @@ class JsonApiTest(BaseApiTest):
     def test_get_json_document_invalid_serial(self):
         json_document = self.api.get_json_document(self.default_chain, 0)
         self.assertIsInstance(json_document, ErrorDetailsModel)
+    
+    def test_allow_reader_keys(self):
+        data = {
+            "contextId": "test_readers",
+            "readers": [
+                {
+                    "name": "cert2",
+                    "publicKey": self.certificate_2.pub_key
+                }
+            ]
+        }
+        allowed_readers = AllowedReadersModel(**data)
+        reference = self.api.allow_json_document_readers(self.default_chain, allowed_readers)
+        self.assertIsInstance(reference, str)
+
+    def test_list_allowed_readers(self):
+        allowed_readers = self.api.list_json_document_allowed_readers(
+            self.default_chain
+        )
+        self.assertIsInstance(allowed_readers, ListModel)
+        for item in allowed_readers.items:
+            self.assertIsInstance(item, AllowedReadersDetailsModel)
+            

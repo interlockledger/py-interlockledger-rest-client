@@ -4,7 +4,8 @@ from typing import (
 )
 from .base import BaseApi
 from ..models.errors import ErrorDetailsModel
-from ..models.json import JsonDocumentModel
+from ..models import json as json_models
+from ..models.base import ListModel
 
 class JsonApi(BaseApi):
     '''
@@ -18,7 +19,7 @@ class JsonApi(BaseApi):
     '''
     base_url='jsonDocuments@'
 
-    def get_json_document(self, chain_id: str, serial: int) -> JsonDocumentModel | ErrorDetailsModel:
+    def get_json_document(self, chain_id: str, serial: int) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Get a JSON document record by serial number.
 
@@ -35,9 +36,9 @@ class JsonApi(BaseApi):
         )
         if isinstance(resp, ErrorDetailsModel):
             return resp
-        return JsonDocumentModel(**resp.json())
+        return json_models.JsonDocumentModel(**resp.json())
 
-    def add_json_document(self, chain_id: str, payload: Dict[str, Any]) -> JsonDocumentModel | ErrorDetailsModel:
+    def add_json_document(self, chain_id: str, payload: Dict[str, Any]) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Add a JSON document record encrypted with the client certificate used in the request.
 
@@ -55,14 +56,14 @@ class JsonApi(BaseApi):
         )
         if isinstance(resp, ErrorDetailsModel):
             return resp
-        return JsonDocumentModel(**resp.json())
+        return json_models.JsonDocumentModel(**resp.json())
 
     def add_json_document_with_key(self,
             chain_id: str,
             payload: Dict[str, Any],
             public_key: str,
             public_key_id: str
-        ) -> JsonDocumentModel | ErrorDetailsModel:
+        ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Add a JSON document record encrypted with a given key.
 
@@ -87,13 +88,13 @@ class JsonApi(BaseApi):
         )
         if isinstance(resp, ErrorDetailsModel):
             return resp
-        return JsonDocumentModel(**resp.json())
+        return json_models.JsonDocumentModel(**resp.json())
 
     def add_json_document_with_chain_keys(self,
             chain_id: str,
             payload: Dict[str, Any],
             keys_chain_id: str,
-        ) -> JsonDocumentModel | ErrorDetailsModel:
+        ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Add a JSON document record encrypted with the public keys from a given chain.
 
@@ -116,4 +117,64 @@ class JsonApi(BaseApi):
         )
         if isinstance(resp, ErrorDetailsModel):
             return resp
-        return JsonDocumentModel(**resp.json())
+        return json_models.JsonDocumentModel(**resp.json())
+
+    def list_json_document_allowed_readers(self,
+        chain_id: str,
+        context_id: str=None,
+        last_to_first: bool=False,
+        page: int=0,
+        size: int=10,
+    ) -> ListModel[json_models.AllowedReadersDetailsModel] | ErrorDetailsModel:
+        """
+        Get a list of JSON document allowed reader keys.
+
+        Args:
+            chain_id (`str`): Chain ID.
+            context_id (`str`): Filter by context ID name.
+            last_to_first (`bool`): If `True`, return the items in reverse order.
+            page (:obj:`int`): Page to return.
+            size (:obj:`int`): Number of items per page.
+
+        Returns:
+            :obj:`models.ListModel[models.json.AllowedReadersDetailsModel]`: List of allowed reader keys.
+        """
+        params = {
+            "page": page,
+            "pageSize": size,
+            "lastToFirst": last_to_first,
+        }
+        if context_id is not None:
+            params['contextId'] = context_id
+        
+        resp = self._client._request(
+            f'{self.base_url}{chain_id}/allow',
+            method='get',
+            params=params,
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return ListModel[json_models.AllowedReadersDetailsModel](**resp.json())
+
+    def allow_json_document_readers(self,
+            chain_id: str,
+            allowed_readers: json_models.AllowedReadersModel
+        ) -> str | ErrorDetailsModel:
+        """
+        Create a new list of allowed readers to encrypt JSON documents.
+
+        Args:
+            chain_id (:obj:`str`): Chain ID.
+            allowed_readers (:obj:`models.json.AllowedReadersModel`): List of reader keys to be allowed.
+
+        Returns:
+            :obj:`str`: A record reference in the format chainId@recordSerial
+        """
+        resp = self._client._request(
+            f'{self.base_url}{chain_id}/allow',
+            method='post',
+            body=allowed_readers.model_dump(by_alias=True, exclude_none=True),
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return resp.json()
