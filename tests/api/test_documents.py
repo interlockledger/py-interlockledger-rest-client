@@ -43,6 +43,11 @@ class DocumentsApiTest(BaseApiTest):
         self.assertIsInstance(document_path, str)
         self.assertTrue(os.path.isfile(document_path))
         os.remove(document_path)
+
+        document_zip = self.api.download_documents_as_zip(locator)
+        self.assertIsInstance(document_zip, str)
+        self.assertTrue(os.path.isfile(document_zip))
+        os.remove(document_zip)
     
     def test_document_metadata_not_found(self):
         locator = self.default_chain + 'A'
@@ -54,4 +59,10 @@ class DocumentsApiTest(BaseApiTest):
         locator = self.default_chain + 'A'
 
         resp = self.api.download_single_document_at(locator, 10)
+        self.assertIsInstance(resp, ErrorDetailsModel)
+    
+    def test_download_zip_not_found(self):
+        locator = self.default_chain + 'A'
+
+        resp = self.api.download_documents_as_zip(locator)
         self.assertIsInstance(resp, ErrorDetailsModel)

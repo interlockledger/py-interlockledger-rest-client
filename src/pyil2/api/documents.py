@@ -177,3 +177,27 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return resp
+    
+    def download_documents_as_zip(self, 
+        locator: str,
+        dst_path: str='./',
+    ) -> str | ErrorDetailsModel:
+        """
+        Download documents in a compressed file to a folder (default: current folder).
+
+        Args:
+            locator (:obj:`str`): A Documents Storage Locator.
+            dst_path (:obj:`str`): Download the file to this folder.
+        
+        Returns:
+            :obj:`str`: Downloaded file full path.
+        """
+        resp = self._client._download_file(
+            f'{self.base_url}/{locator}/zip',
+            dst_path=dst_path
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return resp
+    
+    
