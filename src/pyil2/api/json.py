@@ -96,7 +96,7 @@ class JsonApi(BaseApi):
             keys_chain_id: str,
         ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
-        Add a JSON document record encrypted with the public keys from a given chain.
+        Add a JSON document record encrypted with the public keys from a given list of chains.
 
         Args:
             chain_id (:obj:`str`): Chain ID.
@@ -107,7 +107,7 @@ class JsonApi(BaseApi):
             :obj:`models.json.JsonDocumentModel`: Added JSON document details.
         """
         headers = {
-            'X-PubKeyChains': keys_chain_id,
+            'X-PubKeyChains': ','.join(keys_chain_id),
         }
         resp = self._client._request(
             f'{self.base_url}{chain_id}/withChainKeys',

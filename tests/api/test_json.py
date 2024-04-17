@@ -1,4 +1,5 @@
 from .base import BaseApiTest
+import datetime
 import os
 from src.pyil2.models.base import ListModel
 from src.pyil2.utils.certificates import PKCS12Certificate
@@ -50,16 +51,30 @@ class JsonApiTest(BaseApiTest):
         self.assertDictEqual(decrypted, payload)
     
     def test_add_json_with_chain_key(self):
-        self.skipTest('TODO')
+        context_id = f"test_readers_{int(datetime.datetime.now().timestamp())}"
+        data = {
+            "contextId": context_id,
+            "readers": [
+                {
+                    "name": self.certificate_2.key_id,
+                    "publicKey": self.certificate_2.pub_key
+                }
+            ]
+        }
+        allowed_readers = AllowedReadersModel(**data)
+        reference = self.api.allow_json_document_readers(self.default_chain, allowed_readers)
+        
         payload = {
             'attr': 'value'
         }
         resp = self.api.add_json_document_with_chain_keys(
             self.default_chain,
             payload,
-            self.second_chain,
+            [self.default_chain],
         )
         self.assertIsInstance(resp, JsonDocumentModel)
+        decrypted = resp.encrypted_json.decode(self.certificate_2)
+        self.assertDictEqual(decrypted, payload)
         
     def test_get_json_document_invalid_serial(self):
         json_document = self.api.get_json_document(self.default_chain, 0)
@@ -67,10 +82,10 @@ class JsonApiTest(BaseApiTest):
     
     def test_allow_reader_keys(self):
         data = {
-            "contextId": "test_readers",
+            "contextId": f"test_readers_{int(datetime.datetime.now().timestamp())}",
             "readers": [
                 {
-                    "name": "cert2",
+                    "name": self.certificate_2.key_id,
                     "publicKey": self.certificate_2.pub_key
                 }
             ]
@@ -86,4 +101,3 @@ class JsonApiTest(BaseApiTest):
         self.assertIsInstance(allowed_readers, ListModel)
         for item in allowed_readers.items:
             self.assertIsInstance(item, AllowedReadersDetailsModel)
-            
