@@ -1,3 +1,4 @@
+from pydantic import ValidationError
 from .base import BaseApiTest
 import requests
 import os
@@ -56,6 +57,51 @@ class DocumentsApiTest(BaseApiTest):
         document_zip_response = self.api.download_documents_as_zip_as_response(locator)
         self.assertIsInstance(document_zip_response, requests.Response)
     
+    def test_document_upload_encrypted_comment(self):
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456'
+        )
+        transaction = self.api.begin_document_transaction(new_transaction)
+        
+        transaction = self.api.upload_document(
+            transaction_id=transaction.transaction_id,
+            filename='test.txt',
+            content_type='text/plain',
+            file_bytes=b'file 1',
+            comment='File comment'
+        )
+        locator = self.api.commit_document_transaction(transaction.transaction_id)
+        self.assertIsInstance(locator, str)
+        self.assertTrue('$' in locator)
+
+        locator_without_password = locator.split('$')[0]
+
+        document_response = self.api.download_single_document_at_as_response(locator_without_password, 1)
+        self.assertIsInstance(document_response, ErrorDetailsModel)
+
+        document_response = self.api.download_single_document_at_as_response(locator, 1)
+        self.assertIsInstance(document_response, requests.Response)
+        
+
+    def test_document_upload_encrypted_short_password(self):
+        with self.assertRaises(ValidationError):
+            new_transaction = documents_models.BeginDocumentTransactionModel(
+                chain=self.default_chain,
+                encryption='PBKDF2-SHA512-AES256-MID',
+                password='12345678901'
+            )
+
+
+    def test_document_upload_encrypted_no_password(self):
+        with self.assertRaises(ValueError):
+            new_transaction = documents_models.BeginDocumentTransactionModel(
+                chain=self.default_chain,
+                encryption='PBKDF2-SHA512-AES256-MID'
+            )
+
     def test_document_metadata_not_found(self):
         locator = self.default_chain + 'A'
 
