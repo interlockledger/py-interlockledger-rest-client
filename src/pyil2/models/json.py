@@ -17,6 +17,41 @@ from ..utils.certificates import PKCS12Certificate
 import datetime
 from ..utils import aes_decrypt
 
+
+class ReaderKeyModel(BaseCamelModel):
+    """
+    Reader key model.
+    """
+
+    name: str
+    """
+    Name of the reader key
+    """
+    public_key: str
+    """
+    IL2 text representation of a public key to encrypt the content for.
+    """
+
+class AllowedReadersModel(BaseCamelModel):
+    """
+    List of allow readers model.
+    """
+
+    contextId: str
+    """
+    Allowed readers list name.
+    """
+    readers: List[ReaderKeyModel] = Field(default_factory=list)
+    """
+    List of reader keys.
+    """
+
+class AllowedReadersDetailsModel(AllowedReadersModel):
+    record_reference: Optional[str] = None
+    """
+    A record reference in the form chainId@recordSerial
+    """
+
 class ReadingKeyModel(BaseCamelModel):
     """
     Keys able to read an encrypted JSON Document record.
