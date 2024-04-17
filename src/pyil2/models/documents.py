@@ -115,15 +115,15 @@ class DocumentTransactionModel(BaseDocumentTransactionModel):
     Document transaction status model.
     """
     
-    can_commit_now: bool
+    can_commit_now: bool = False
     """
     If `True`, the transaction is able to be committed.
     """
-    count_of_uploaded_documents: int
+    count_of_uploaded_documents: int = 0
     """
     Total count of uploaded documents for this transaction.
     """
-    document_names: List[str]
+    document_names: List[str] = Field(default_factory=list)
     """
     List of documents uploaded in the transaction.
     """

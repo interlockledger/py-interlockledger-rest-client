@@ -123,7 +123,7 @@ class DocumentsApiTest(BaseApiTest):
                 found = True
                 self.assertEqual(item.mime_type, 'application/json')
         self.assertTrue(found)
-        
+
         os.remove(filepath)
 
     def test_document_upload_encrypted_comment(self):
@@ -226,6 +226,46 @@ class DocumentsApiTest(BaseApiTest):
                 found = True
         self.assertFalse(found)
 
+    def test_documents_update_not_valid(self):
+        self.skipTest('Skipping this test until defining the correct behavior.')
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+            allow_children=False,
+        )
+        transaction = self.api.begin_document_transaction(new_transaction)
+        
+        transaction = self.api.upload_document(
+            transaction_id=transaction.transaction_id,
+            filename='file1.txt',
+            content_type='text/plain',
+            file_bytes=b'file 1',
+            comment='File comment'
+        )
+        locator = self.api.commit_document_transaction(transaction.transaction_id)
+
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+            previous=locator,
+        )
+        update_transaction = self.api.begin_document_transaction(new_transaction)
+        #self.assertIsInstance(update_transaction, ErrorDetailsModel)
+
+        update_transaction = self.api.upload_document(
+            transaction_id=update_transaction.transaction_id,
+            filename='file2.txt',
+            content_type='text/plain',
+            file_bytes=b'file 2',
+            comment='File comment'
+        )
+        new_locator = self.api.commit_document_transaction(update_transaction.transaction_id)
+        new_metadata = self.api.get_document_metadata(new_locator)
+        
 
     def test_document_upload_encrypted_short_password(self):
         with self.assertRaises(ValidationError):
