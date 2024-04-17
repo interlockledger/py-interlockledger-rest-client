@@ -106,12 +106,57 @@ class DocumentsApiTest(BaseApiTest):
         
         transaction = self.api.upload_document(
             transaction_id=transaction.transaction_id,
-            filename='test.txt',
+            filename='file1.txt',
             content_type='text/plain',
             file_bytes=b'file 1',
             comment='File comment'
         )
         locator = self.api.commit_document_transaction(transaction.transaction_id)
+
+        metadata = self.api.get_document_metadata(locator)
+        
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+            previous=locator,
+        )
+        update_transaction = self.api.begin_document_transaction(new_transaction)
+
+        update_transaction = self.api.upload_document(
+            transaction_id=update_transaction.transaction_id,
+            filename='file2.txt',
+            content_type='text/plain',
+            file_bytes=b'file 2',
+            comment='File comment'
+        )
+        new_locator = self.api.commit_document_transaction(update_transaction.transaction_id)
+        new_metadata = self.api.get_document_metadata(new_locator)
+        self.assertGreater(len(new_metadata.public_directory), len(metadata.public_directory))
+        index = 0
+        for idx, item in enumerate(new_metadata.public_directory):
+            if item.name == 'file1.txt':
+                index = idx
+
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+            previous=new_locator,
+            previous_documents_not_to_copy=[index]
+        )
+        remove_transaction = self.api.begin_document_transaction(new_transaction)
+        remove_locator = self.api.commit_document_transaction(remove_transaction.transaction_id)
+        remove_metadata = self.api.get_document_metadata(remove_locator)
+        
+        found = False
+        for item in remove_metadata.public_directory:
+            if item.name == 'file1.txt':
+                found = True
+        self.assertFalse(found)
+
 
     def test_document_upload_encrypted_short_password(self):
         with self.assertRaises(ValidationError):
