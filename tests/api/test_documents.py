@@ -58,6 +58,44 @@ class DocumentsApiTest(BaseApiTest):
         self.assertIsInstance(document_zip_response, requests.Response)
     
     def test_document_upload_encrypted_comment(self):
+        doc_comment = 'This is a comment'
+        file_comment = 'File comment'
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment=doc_comment,
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456'
+        )
+        transaction = self.api.begin_document_transaction(new_transaction)
+        
+        transaction = self.api.upload_document(
+            transaction_id=transaction.transaction_id,
+            filename='test.txt',
+            content_type='text/plain',
+            file_bytes=b'file 1',
+            comment=file_comment
+        )
+        locator = self.api.commit_document_transaction(transaction.transaction_id)
+        self.assertIsInstance(locator, str)
+        self.assertTrue('$' in locator)
+
+        metadata = self.api.get_document_metadata(locator)
+        self.assertIsInstance(metadata, documents_models.DocumentMetadataModel)
+        self.assertEqual(metadata.comment, doc_comment)
+        for item in metadata.public_directory:
+            if item.name == 'test.txt':
+                self.assertEqual(item.comment, file_comment)
+
+        locator_without_password = locator.split('$')[0]
+
+        document_response = self.api.download_single_document_at_as_response(locator_without_password, 1)
+        self.assertIsInstance(document_response, ErrorDetailsModel)
+
+        document_response = self.api.download_single_document_at_as_response(locator, 1)
+        self.assertIsInstance(document_response, requests.Response)
+        
+
+    def test_documents_update(self):
         new_transaction = documents_models.BeginDocumentTransactionModel(
             chain=self.default_chain,
             comment='This is a comment',
@@ -74,17 +112,6 @@ class DocumentsApiTest(BaseApiTest):
             comment='File comment'
         )
         locator = self.api.commit_document_transaction(transaction.transaction_id)
-        self.assertIsInstance(locator, str)
-        self.assertTrue('$' in locator)
-
-        locator_without_password = locator.split('$')[0]
-
-        document_response = self.api.download_single_document_at_as_response(locator_without_password, 1)
-        self.assertIsInstance(document_response, ErrorDetailsModel)
-
-        document_response = self.api.download_single_document_at_as_response(locator, 1)
-        self.assertIsInstance(document_response, requests.Response)
-        
 
     def test_document_upload_encrypted_short_password(self):
         with self.assertRaises(ValidationError):
