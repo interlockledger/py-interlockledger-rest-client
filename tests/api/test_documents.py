@@ -57,6 +57,75 @@ class DocumentsApiTest(BaseApiTest):
         document_zip_response = self.api.download_documents_as_zip_as_response(locator)
         self.assertIsInstance(document_zip_response, requests.Response)
     
+    def test_document_upload_file(self):
+        filepath = './filename.txt'
+        with open(filepath, 'wb') as f:
+            f.write(b'Test filepath.')
+        
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain
+        )
+        transaction = self.api.begin_document_transaction(new_transaction)
+        self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
+
+        status = self.api.get_document_transaction_status(transaction.transaction_id)
+        self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
+        self.assertEqual(transaction.transaction_id, status.transaction_id)
+
+        transaction = self.api.upload_document_file(
+            transaction_id=transaction.transaction_id,
+            filepath=filepath,
+        )
+        self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
+        self.assertGreaterEqual(len(transaction.document_names), 1)
+
+        locator = self.api.commit_document_transaction(transaction.transaction_id)
+        self.assertIsInstance(locator, str)
+        self.assertFalse('$' in locator)
+
+        metadata = self.api.get_document_metadata(locator)
+        self.assertIsInstance(metadata, documents_models.DocumentMetadataModel)
+    
+    def test_document_upload_file_force_name_content(self):
+        filepath = './filename.txt'
+        with open(filepath, 'wb') as f:
+            f.write(b'{"attr": "value"}')
+        
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain
+        )
+        transaction = self.api.begin_document_transaction(new_transaction)
+        self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
+
+        status = self.api.get_document_transaction_status(transaction.transaction_id)
+        self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
+        self.assertEqual(transaction.transaction_id, status.transaction_id)
+
+        transaction = self.api.upload_document_file(
+            transaction_id=transaction.transaction_id,
+            filepath=filepath,
+            filename='data.json',
+            content_type='application/json'
+        )
+        self.assertIsInstance(transaction, documents_models.DocumentTransactionModel)
+        self.assertGreaterEqual(len(transaction.document_names), 1)
+
+        locator = self.api.commit_document_transaction(transaction.transaction_id)
+        self.assertIsInstance(locator, str)
+        self.assertFalse('$' in locator)
+
+        metadata = self.api.get_document_metadata(locator)
+        self.assertIsInstance(metadata, documents_models.DocumentMetadataModel)
+
+        found = False
+        for item in metadata.public_directory:
+            if item.name == 'data.json':
+                found = True
+                self.assertEqual(item.mime_type, 'application/json')
+        self.assertTrue(found)
+        
+        os.remove(filepath)
+
     def test_document_upload_encrypted_comment(self):
         doc_comment = 'This is a comment'
         file_comment = 'File comment'

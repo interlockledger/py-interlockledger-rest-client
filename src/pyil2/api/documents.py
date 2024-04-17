@@ -2,6 +2,7 @@ import os
 import re
 import shutil
 import requests
+import mimetypes
 from .base import BaseApi
 
 from ..models.errors import ErrorDetailsModel
@@ -88,13 +89,13 @@ class DocumentsApi(BaseApi):
             relative_path: str="/",
         ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
-        Add a file to a document upload transaction.
+        Add a file to a document upload transaction using bytes.
 
         Args:
             transaction_id (:obj:`str`): Document upload transaction ID.
             filename (:obj:`str`): File name.
             content_type (:obj:`str`): File mime-type
-            file_bytes (:obj:`str`): File bytes.
+            file_bytes (:obj:`bytes`): File bytes.
             comment (:obj:`str`): Additional comment.
             relative_path (:obj:`str`): Relative path of the file inside the record.
         
@@ -117,6 +118,56 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
+
+    def upload_document_file(self, 
+            transaction_id: str,
+            filepath: str,
+            comment: str=None,
+            relative_path: str="/",
+            filename: str=None,
+            content_type: str=None,
+        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
+        """
+        Add a file to a document upload transaction using file path.
+        This method will try to get the filename and the MIME-type from the filepath.
+        If needed, you can force the filename and/or the content-type.
+
+        Args:
+            transaction_id (:obj:`str`): Document upload transaction ID.
+            filepath (:obj:`str`): File path.
+            comment (:obj:`str`): Additional comment.
+            relative_path (:obj:`str`): Relative path of the file inside the record.
+            filename (:obj:`str`): File name. \
+                If None, it will try to use the filename in the filepath.
+            content_type (:obj:`str`): File mime-type. \
+                If None, it will try to guess the mime-type based on the file extension.
+        
+        Returns:
+            :obj:`models.documents.BeginDocumentTransactionModel`: Document upload transaction status.
+        """
+        if not filename:
+            filename = os.path.basename(filepath)
+        if not content_type:
+            content_type = mimetypes.MimeTypes().guess_type(filepath)[0]
+        
+        params = {
+            "name": filename,
+            "path": relative_path,
+        }
+        if comment:
+            params['comment'] = comment
+        with open(filepath, 'rb') as f:
+            resp = self._client._request(
+                f'{self.base_url}/transaction/{transaction_id}',
+                method='post',
+                params=params,
+                content_type=content_type,
+                data=f,
+            )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return documents_models.DocumentTransactionModel(**resp.json())
+    
 
     def commit_document_transaction(self, transaction_id: str) -> str | ErrorDetailsModel:
         """
