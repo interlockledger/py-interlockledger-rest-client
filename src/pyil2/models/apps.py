@@ -47,11 +47,11 @@ class DataFieldModel(BaseCamelModel):
     """
     If the data field in composed of more fields, indicates the metadata of the subdata fields.
     """
-    tag_id: int
+    tag_id: int = 0
     """
     Type of the field. (see tags in the InterlockLedger node documentation)
     """
-    version: int
+    version: int = 0
     """
     Version of the data field.
     """
@@ -113,11 +113,11 @@ class DataModel(BaseCamelModel):
     """
     Name of the record model.
     """
-    payload_tag_id: int
+    payload_tag_id: int = 0
     """
     Tag id for this payload type. It must be a number in the reserved ranges.
     """
-    version: int
+    version: int = 0
     """
     Version of this data model, should start from 1.
     """
@@ -128,13 +128,13 @@ class InterlockAppTraitsModel(BaseCamelModel):
     app_version: str
     data_models: List[DataModel]
     description: str
-    id: int
+    id: int = 0
     name: str
     publisher_id: str
     publisher_name: str
     reserved_il_tag_ids: List[LimitedRange] = Field(alias='reservedILTagIds')
     start: datetime.datetime
-    version: int
+    version: int = 0
 
     @field_validator('reserved_il_tag_ids', mode='before')
     @classmethod
