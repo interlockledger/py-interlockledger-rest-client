@@ -1,6 +1,7 @@
 from typing import (
     Dict, 
     Any,
+    List,
 )
 from .base import BaseApi
 from ..models.errors import ErrorDetailsModel
@@ -90,10 +91,10 @@ class JsonApi(BaseApi):
             return resp
         return json_models.JsonDocumentModel(**resp.json())
 
-    def add_json_document_with_chain_keys(self,
+    def add_json_document_with_indirect_keys(self,
             chain_id: str,
             payload: Dict[str, Any],
-            keys_chain_id: str,
+            keys_references: List[str],
         ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Add a JSON document record encrypted with the public keys from a given list of chains.
@@ -101,7 +102,36 @@ class JsonApi(BaseApi):
         Args:
             chain_id (:obj:`str`): Chain ID.
             payload ({:obj:`str`: Any}): A valid JSON in dictionary format.
-            keys_chain_id (:obj:`str`): ID of a local chain from which the 'allowed readers' list of public keys will be used to encrypt the content.
+            keys_references ([:obj:`str`]): List of references on the format 'chainId@serial' to records on local chains containing 'allowed readers' lists.
+        
+        Returns:
+            :obj:`models.json.JsonDocumentModel`: Added JSON document details.
+        """
+        headers = {
+            'X-PubKeyReferences': ','.join(keys_references),
+        }
+        resp = self._client._request(
+            f'{self.base_url}{chain_id}/withIndirectKeys',
+            method='post',
+            body=payload,
+            headers=headers
+        )
+        if isinstance(resp, ErrorDetailsModel):
+            return resp
+        return json_models.JsonDocumentModel(**resp.json())
+
+    def add_json_document_with_chain_keys(self,
+            chain_id: str,
+            payload: Dict[str, Any],
+            keys_chain_id: List[str],
+        ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
+        """
+        Add a JSON document record encrypted with the public keys from a given list of chains.
+
+        Args:
+            chain_id (:obj:`str`): Chain ID.
+            payload ({:obj:`str`: Any}): A valid JSON in dictionary format.
+            keys_chain_id ([:obj:`str`]): List of IDs of a local chain from which the 'allowed readers' list of public keys will be used to encrypt the content.
         
         Returns:
             :obj:`models.json.JsonDocumentModel`: Added JSON document details.

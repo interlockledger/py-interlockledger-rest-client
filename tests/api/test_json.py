@@ -75,7 +75,33 @@ class JsonApiTest(BaseApiTest):
         self.assertIsInstance(resp, JsonDocumentModel)
         decrypted = resp.encrypted_json.decode(self.certificate_2)
         self.assertDictEqual(decrypted, payload)
+    
+    def test_add_json_with_indirect_key(self):
+        context_id = f"test_readers_{int(datetime.datetime.now().timestamp())}"
+        data = {
+            "contextId": context_id,
+            "readers": [
+                {
+                    "name": self.certificate_2.key_id,
+                    "publicKey": self.certificate_2.pub_key
+                }
+            ]
+        }
+        allowed_readers = AllowedReadersModel(**data)
+        reference = self.api.allow_json_document_readers(self.default_chain, allowed_readers)
         
+        payload = {
+            'attr': 'value'
+        }
+        resp = self.api.add_json_document_with_indirect_keys(
+            self.default_chain,
+            payload,
+            [reference],
+        )
+        self.assertIsInstance(resp, JsonDocumentModel)
+        decrypted = resp.encrypted_json.decode(self.certificate_2)
+        self.assertDictEqual(decrypted, payload)
+
     def test_get_json_document_invalid_serial(self):
         json_document = self.api.get_json_document(self.default_chain, 0)
         self.assertIsInstance(json_document, ErrorDetailsModel)
