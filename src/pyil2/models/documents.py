@@ -141,7 +141,7 @@ class EncryptionParameterModel(BaseCamelModel):
     The parameters used to make the encryption of the set of documents.
     """
 
-    iterations: int
+    iterations: int = 0
     """
     Number of iterations to generate the key.
     """

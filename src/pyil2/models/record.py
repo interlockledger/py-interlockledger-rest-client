@@ -22,7 +22,7 @@ class NewRecordModel(BaseCamelModel):
     New record model to be added to the chain as raw bytes.
     """
 
-    application_id: int
+    application_id: int = 0
     """
     Application id this record is associated with.
     """
@@ -118,11 +118,11 @@ class InterlockingRecordModel(BaseRecordModel):
     """
     Interlock Record Hash.
     """
-    interlocked_record_offset: int
+    interlocked_record_offset: int = 0
     """
     Interlocked Record Offset.
     """
-    interlocked_record_serial: int
+    interlocked_record_serial: int = 0
     """
     Interlocked Record Serial.
     """
@@ -158,19 +158,19 @@ class OpaqueRecordModel(BaseCamelModel):
     """
     Chain id that owns this record.
     """
-    serial: int
+    serial: int = 0
     """
     Block serial number. For the first record this value is zero (0).
     """
-    application_id: int
+    application_id: int = 0
     """
     Application id this record is associated with.
     """
-    payload_type_id: int
+    payload_type_id: int = 0
     """
     The payload's TypeId.
     """
-    payload_length: int
+    payload_length: int = 0
     """
     The opaque payload length in bytes.
     """

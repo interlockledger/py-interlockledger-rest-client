@@ -62,7 +62,7 @@ class PeerNodeModel(BaseNodeModel):
     """
     Network address to contact the peer.
     """
-    port: int
+    port: int = 0
     """
     Port the peer is listening.
     """
