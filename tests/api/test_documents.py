@@ -227,7 +227,6 @@ class DocumentsApiTest(BaseApiTest):
         self.assertFalse(found)
 
     def test_documents_update_not_valid(self):
-        self.skipTest('Skipping this test until defining the correct behavior.')
         new_transaction = documents_models.BeginDocumentTransactionModel(
             chain=self.default_chain,
             comment='This is a comment',
@@ -254,17 +253,8 @@ class DocumentsApiTest(BaseApiTest):
             previous=locator,
         )
         update_transaction = self.api.begin_document_transaction(new_transaction)
-        #self.assertIsInstance(update_transaction, ErrorDetailsModel)
+        self.assertIsInstance(update_transaction, ErrorDetailsModel)
 
-        update_transaction = self.api.upload_document(
-            transaction_id=update_transaction.transaction_id,
-            filename='file2.txt',
-            content_type='text/plain',
-            file_bytes=b'file 2',
-            comment='File comment'
-        )
-        new_locator = self.api.commit_document_transaction(update_transaction.transaction_id)
-        new_metadata = self.api.get_document_metadata(new_locator)
         
 
     def test_document_upload_encrypted_short_password(self):
