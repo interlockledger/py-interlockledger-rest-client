@@ -54,6 +54,25 @@ class DataFieldEnumerationTest(TestCase):
             self.assertEqual(df_enum[i].name, expected[i][1])
             self.assertEqual(df_enum[i].description, expected[i][2])
     
+    def test_to_string(self):
+        df = apps.DataFieldEnumeration(
+            id=1,
+            name='name',
+            description='description'
+        )
+        df_str = df.to_il2_string()
+        self.assertEqual(df_str, '#1|name|description|')
+    
+    def test_to_string_no_description(self):
+        df = apps.DataFieldEnumeration(
+            id=1,
+            name='name',
+        )
+        df_str = df.to_il2_string()
+        self.assertEqual(df_str, '#1|name|')
+    
+    
+    
 
 class InterlockAppTraitsModelTest(TestCase):
     def test_from_dict(self):

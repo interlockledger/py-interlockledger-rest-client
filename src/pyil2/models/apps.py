@@ -50,6 +50,16 @@ class DataFieldEnumeration(BaseCamelModel):
                 )
             )
         return ret
+    
+    def to_il2_string(self) -> str:
+        """
+        :obj:`str`: IL2 string representation of the DataFieldEnumeration: #<int>|<str>|[<str>|]. 
+        """
+        ret = f'#{self.id}|{self.name}|'
+        if self.description is not None:
+            ret += f'{self.description}|'
+        return ret
+    
 
 
 
