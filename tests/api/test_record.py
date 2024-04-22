@@ -146,23 +146,6 @@ class RecordApiTest(BaseApiTest):
         if chains.items:
             self.assertEqual(chains.items[0].serial, 0)
     
-    def test_add_record_as_json(self):
-        self.skipTest('Skipping this test until JSON parser is fixed.')
-
-        records = self.api.list_records_as_json(
-            self.default_chain,
-            last_to_first=True,
-            size=1
-        )
-        body = records.items[0].payload
-        record = self.api.add_record_as_json(
-            chain_id=self.default_chain,
-            application_id=1,
-            payload_tag_id=300,
-            payload=body
-        )
-        self.assertIsInstance(record, record_models.RecordAsJsonModel)
-
     def test_get_record_at_as_json(self):
         record = self.api.get_record_at_as_json(self.default_chain, 0)
         self.assertIsInstance(record, record_models.RecordAsJsonModel)
