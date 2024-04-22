@@ -6,6 +6,53 @@ from .base import BaseCamelModel
 from ..utils.range import LimitedRange
 from ..enum import DataFieldCast
 
+class DataFieldEnumeration(BaseCamelModel):
+    id: int
+    """
+    Data field enumeration ID.
+    """
+    name: str
+    """
+    Name of the data field enumeration.
+    """
+    description: Optional[str] = None
+    """
+    Description of the data field enumeration.
+    """
+
+    @classmethod
+    def from_concatenated_string(cls, value: str) -> List[Self]:
+        """
+        Parse a string with concatenated DataFieldEnumeration in the format: #<int>|<str>|[<str>|].
+
+        Args:
+            value (:obj:`str`): A string with concatenated DataFieldEnumerations in string format.
+        
+        Returns:
+            [DataFieldEnumeration]: List of data field enumerations.
+        """
+        ret = []
+
+        items = value.split('#')
+        for item in items:
+            if not item:
+                continue
+            v = item.split('|')
+            cur_id = int(v[0])
+            cur_name = v[1]
+            cur_description = None
+            if len(v) >= 3 and v[2]:
+                cur_description = v[2]
+            ret.append(DataFieldEnumeration(
+                    id=cur_id,
+                    name=cur_name,
+                    description=cur_description,
+                )
+            )
+        return ret
+
+
+
 class DataFieldModel(BaseCamelModel):
     """
     Data field model.
