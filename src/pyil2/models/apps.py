@@ -198,17 +198,52 @@ class DataModel(BaseCamelModel):
 
 
 class InterlockAppTraitsModel(BaseCamelModel):
+    """
+    Interlock App details model.
+    """
+    
     app_version: str
+    """
+    Application semantic version, with four numeric parts.
+    """
     data_models: List[DataModel]
+    """
+    The list of data models for the payloads of the records stored in the chains.
+    """
     description: str
+    """
+    Description of the application.
+    """
     id: int = 0
+    """
+    Unique ID for the application.
+    """
     name: str
+    """
+    Application name.
+    """
     publisher_id: str
+    """
+    Publisher ID, which is the identifier for the key the publisher uses to sign the workflow requests in its own chain. 
+    It should match the publisher_name
+    """
     publisher_name: str
+    """
+    Publisher name as registered in the Genesis chain of the network.
+    """
     reserved_il_tag_ids: List[LimitedRange] = Field(alias='reservedILTagIds')
+    """
+    The list of ranges of ILTagIds to reserve for the application.
+    """
     start: datetime.datetime
+    """
+    The start date for the validity of the app, but if prior to the effective publication of the app will be overridden with the publication date and time.
+    """
     version: int = 0
-
+    """
+    Version of the application.
+    """
+    
     @field_validator('reserved_il_tag_ids', mode='before')
     @classmethod
     def pre_process_reserved_tags(cls, raw: List[str]) -> List[LimitedRange]:
