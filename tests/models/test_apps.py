@@ -70,9 +70,7 @@ class DataFieldEnumerationTest(TestCase):
         )
         df_str = df.to_il2_string()
         self.assertEqual(df_str, '#1|name|')
-    
-    
-    
+
 
 class InterlockAppTraitsModelTest(TestCase):
     def test_from_dict(self):
@@ -83,6 +81,7 @@ class InterlockAppTraitsModelTest(TestCase):
                 "dataFields": [
                     {
                     "name": "Version",
+                    "enumeration": "#0|AES256|AES256|#65535|None|In plaintext|",
                     "subDataFields": [
                         {
                             "name": "Version",
@@ -138,9 +137,13 @@ class InterlockAppTraitsModelTest(TestCase):
             self.assertIsInstance(tag, LimitedRange)
         
         self.assertIsInstance(app_trait.data_models, list)
-        for tag in app_trait.data_models:
-            self.assertIsInstance(tag, apps.DataModel)
+        for model in app_trait.data_models:
+            self.assertIsInstance(model, apps.DataModel)
+            self.assertIsInstance(model.data_fields[0].enumeration, list)
+            if model.data_fields[0].enumeration:
+                self.assertIsInstance(model.data_fields[0].enumeration[0], apps.DataFieldEnumeration)
         
             
         dump = app_trait.model_dump_json()
         self.assertIsInstance(dump, str)
+        self.assertTrue('"enumeration":"#0|AES256|AES256|#65535|None|In plaintext|"' in dump)

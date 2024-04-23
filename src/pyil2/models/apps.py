@@ -80,9 +80,9 @@ class DataFieldModel(BaseCamelModel):
     """
     The type of the field in case it is an array.
     """
-    enumeration: Optional[str] = None
+    enumeration: List[DataFieldEnumeration] = Field(default_factory=list)
     """
-    A string containing all enumerations concatenated in the format "#<number>|<name>|<description>|".
+    A list of data field enumerations.
     """
     enumeration_as_flags: Optional[bool] = None
     """
@@ -112,6 +112,22 @@ class DataFieldModel(BaseCamelModel):
     """
     Version of the data field.
     """
+
+    @field_validator('enumeration', mode='before')
+    @classmethod
+    def pre_process_enumeration(cls, raw: str) -> List[DataFieldEnumeration]:
+        if not raw:
+            return raw
+        ret = DataFieldEnumeration.from_concatenated_string(raw)
+        return ret
+    
+    @field_serializer('enumeration', when_used='json')
+    @classmethod
+    def serialize_enumeration(cls, value: List[DataFieldEnumeration]):
+        ret = ""
+        for item in value:
+            ret += item.to_il2_string()
+        return ret
     
 class DataIndexElementModel(BaseCamelModel):
     """
