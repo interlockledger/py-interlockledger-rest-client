@@ -1,0 +1,24 @@
+IL2Client
+=========
+
+The main class to connect to an IL2 node.
+The IL2Client will store the IL2 node host address and the PFX certificate to access the node.
+To instantiate an IL2Client:
+
+.. code-block:: python3
+    :linenos:
+
+    from pyil2 import IL2Client
+    
+    client = IL2Client(
+        host='https://il2.node:32032/',
+        cert_filepath='rest.api.pfx',
+        cert_password='Str0ngPassword'
+    )
+    print(client.api_list)
+
+The details about the IL2Client are as follows:
+
+.. autoclass:: pyil2.IL2Client
+    :members:
+    :show-inheritance:
