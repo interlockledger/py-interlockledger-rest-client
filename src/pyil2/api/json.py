@@ -45,7 +45,7 @@ class JsonApi(BaseApi):
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-            payload ({:obj:`str`: Any}): A valid JSON in dictionary format.
+            payload (:obj:`dict`): A valid JSON in dictionary format.
         
         Returns:
             :obj:`models.json.JsonDocumentModel`: Added JSON document details.
@@ -70,7 +70,7 @@ class JsonApi(BaseApi):
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-            payload ({:obj:`str`: Any}): A valid JSON in dictionary format.
+            payload (:obj:`dict`): A valid JSON in dictionary format.
             public_key (:obj:`str`): IL2 text representation of a public key to encrypt the content for.
             public_key_id (:obj:`str`): IL2 text representation of the key ID.
         
@@ -101,7 +101,7 @@ class JsonApi(BaseApi):
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-            payload ({:obj:`str`: Any}): A valid JSON in dictionary format.
+            payload (:obj:`dict`): A valid JSON in dictionary format.
             keys_references ([:obj:`str`]): List of references on the format 'chainId@serial' to records on local chains containing 'allowed readers' lists.
         
         Returns:
@@ -130,7 +130,7 @@ class JsonApi(BaseApi):
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-            payload ({:obj:`str`: Any}): A valid JSON in dictionary format.
+            payload (:obj:`dict`): A valid JSON in dictionary format.
             keys_chain_id ([:obj:`str`]): List of IDs of a local chain from which the 'allowed readers' list of public keys will be used to encrypt the content.
         
         Returns:
