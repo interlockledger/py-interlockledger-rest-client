@@ -37,6 +37,7 @@ How to use
 
     0-installation
     1-quickstart
+    2-apis
 
 Indices and tables
 ==================
