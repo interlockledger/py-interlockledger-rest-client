@@ -28,11 +28,15 @@ A chain is a sequential list of records, back chained with signatures/hashes to 
 A record is tied to some enabled InterlockLedgerApplication (IL2App), that defines the metadata associate with it.
 The IL2App defines the constraints of a record as a public metadata, stored in the network genesis chain.
 
+How to use
+----------
 
 .. toctree::
     :maxdepth: 2
     :caption: Contents:
 
+    0-installation
+    1-quickstart
 
 Indices and tables
 ==================
