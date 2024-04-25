@@ -1,9 +1,12 @@
 NodeApi
 =======
 
-.. code-block:: python3
-    :linenos:
+The NodeApi is responsible to make the requests regarding details about the node.
+You can check the detailed information about an IL2 node, list the peers and more.
+The following example shows how to get an instance of the NodeApi:
 
+.. code-block:: python3
+    
     from pyil2 import IL2Client
     
     client = IL2Client(
@@ -11,7 +14,11 @@ NodeApi
         cert_filepath='rest.api.pfx',
         cert_password='Str0ngPassword'
     )
-    chain_api = client.api('node')
+    node_api = client.api('node')
+    
+    print(node_api.details.name)
+
+The list of methods are described as follows:
 
 .. autoclass:: pyil2.api.NodeApi
     :members:
