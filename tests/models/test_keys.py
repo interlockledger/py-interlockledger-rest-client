@@ -112,4 +112,15 @@ class CertificatePermitModelTest(TestCase):
             self.assertIsInstance(item, str)
         self.assertEqual(dump['certificateInX509'], data['certificateInX509'])
         
-    
+class KeyDetailsModelTest(TestCase):
+    def test_init_app_permission_from_string(self):
+        key = keys.KeyDetailsModel(
+            name='key.name',
+            permissions=['#2,500,501'],
+            purposes=['Action'],
+            id='Key!id',
+            public_key='PubKey!test'
+        )
+        self.assertIsInstance(key.permissions, list)
+        for item in key.permissions:
+            self.assertIsInstance(item, keys.AppPermissions)
