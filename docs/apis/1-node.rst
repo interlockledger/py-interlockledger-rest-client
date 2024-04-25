@@ -14,9 +14,9 @@ The following example shows how to get an instance of the NodeApi:
         cert_filepath='rest.api.pfx',
         cert_password='Str0ngPassword'
     )
-    node_api = client.api('node')
+    api = client.api('node')
     
-    print(node_api.details.name)
+    print(api.details.name)
 
 The list of methods are described as follows:
 

@@ -6,7 +6,7 @@ The IL2Client will store the IL2 node host address and the PFX certificate to ac
 To instantiate an IL2Client:
 
 .. code-block:: python3
-    :linenos:
+    
 
     from pyil2 import IL2Client
     

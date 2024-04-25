@@ -21,7 +21,7 @@ Each operation will depend on the API requests set.
 The following example shows how to instantiate the IL2Client and see the list of available APIs:
 
 .. code-block:: python3
-    :linenos:
+    
 
     from pyil2 import IL2Client
     
@@ -36,7 +36,7 @@ With IL2Client, we can indicate which API we want to use.
 Let's get the list of chains in this node and store the ID of the first chain:
 
 .. code-block:: python3
-    :linenos:
+    
 
     chain_api = client.api('chain')
     chains = chain_api.list_chains()
@@ -46,7 +46,7 @@ Let's get the list of chains in this node and store the ID of the first chain:
 Since we have a chain ID, let's store an encrypted JSON in this chain:
 
 .. code-block:: python3
-    :linenos:
+    
     
     json_api = client.api('json')
     encrypted_json = json_api.add_json_document(

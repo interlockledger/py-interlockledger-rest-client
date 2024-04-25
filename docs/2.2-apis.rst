@@ -5,7 +5,7 @@ This section shows the list of available APIs in the IL2Client.
 To get an instance of an API, you will need to indicate in the IL2Client:
 
 .. code-block:: python3
-    :linenos:
+    
 
     from pyil2 import IL2Client
     
