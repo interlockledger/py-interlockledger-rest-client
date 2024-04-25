@@ -27,7 +27,7 @@ It is also possible to make some queries using  the InterlockQL:
 
     # Query records that use the app 8 (JSON Documents)
     records = api.list_records(
-        chain_id='UHtr...REDACTED...vXRY'
+        chain_id='UHtr...REDACTED...vXRY',
         query="USE APP #8\nEVERYTHING"
     )
 
