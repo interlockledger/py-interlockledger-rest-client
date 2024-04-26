@@ -22,7 +22,7 @@ class NodeApiTest(BaseApiTest):
         self.assertIsInstance(details.color, str)
         self.assertIsInstance(details.chains, list)
         self.assertIsInstance(details.extensions, dict)
-        self.assertIsInstance(details.software_versions, node.SoftwerVersionModel)
+        self.assertIsInstance(details.software_versions, node.SoftwareVersionModel)
     
     def test_peers(self):
         peers = self.api.list_peers()
@@ -35,7 +35,7 @@ class NodeApiTest(BaseApiTest):
             self.assertIsInstance(item.owner_name, str)
             self.assertIsInstance(item.color, str)
             self.assertIsInstance(item.extensions, dict)
-            self.assertIsInstance(item.software_versions, node.SoftwerVersionModel)
+            self.assertIsInstance(item.software_versions, node.SoftwareVersionModel)
             self.assertIsInstance(item.address, str)
             self.assertIsInstance(item.port, int)
     

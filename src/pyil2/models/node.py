@@ -3,11 +3,28 @@ from typing import Dict, List
 from pydantic import Field
 from .base import BaseCamelModel
 
-class SoftwerVersionModel(BaseCamelModel):
+class SoftwareVersionModel(BaseCamelModel):
+    """
+    Version of the IL2 node.
+    """
+    
     core_libs: str
+    """
+    Version of the core libs.
+    """
     main: str
+    """
+    Version of the node.
+    """
     peer2peer: str
+    """
+    Version of the P2P.
+    """
     tags: str
+    """
+    Version of the IL2 tags.
+    """
+    
 
 class BaseNodeModel(BaseCamelModel):
     id: str
@@ -38,7 +55,7 @@ class BaseNodeModel(BaseCamelModel):
     """
     Mapping color.
     """
-    software_versions: SoftwerVersionModel
+    software_versions: SoftwareVersionModel
     """
     Version of software running the node.
     """
