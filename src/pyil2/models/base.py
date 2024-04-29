@@ -9,6 +9,10 @@ from pydantic.alias_generators import to_camel
 T = TypeVar('T')
 
 class BaseCamelModel(BaseModel):
+    """
+    Base model able to serializes/deserialize JSON data with camelCase field names.
+    """
+    
     model_config = ConfigDict(
         alias_generator=to_camel,
         populate_by_name=True,
