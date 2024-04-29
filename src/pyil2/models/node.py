@@ -27,6 +27,10 @@ class SoftwareVersionModel(BaseCamelModel):
     
 
 class BaseNodeModel(BaseCamelModel):
+    """
+    Base node details model.
+    """
+
     id: str
     """
     Unique node ID.
@@ -65,6 +69,10 @@ class BaseNodeModel(BaseCamelModel):
     """
 
 class NodeDetailsModel(BaseNodeModel):
+    """
+    Node details model.
+    """
+
     chains: List[str] = Field(default_factory=list)
     """
     List of chains (only the IDs) in the node.
@@ -75,6 +83,10 @@ class NodeDetailsModel(BaseNodeModel):
     """
 
 class PeerNodeModel(BaseNodeModel):
+    """
+    Peer node details model.
+    """
+    
     address: str
     """
     Network address to contact the peer.
