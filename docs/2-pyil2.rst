@@ -10,3 +10,4 @@ This section will describe the pyil2 package and its components.
     2.2-apis
     2.3-models
     2.4-enum
+    2.5-utils
