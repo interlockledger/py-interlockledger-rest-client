@@ -22,6 +22,7 @@ release = '0.0.1'
 
 extensions = [
     'sphinx.ext.napoleon',
+    'sphinxcontrib.autodoc_pydantic',
 ]
 
 # Napoleon settings
@@ -36,6 +37,11 @@ napoleon_use_admonition_for_references = False
 napoleon_use_ivar = False
 napoleon_use_param = True
 napoleon_use_rtype = True
+
+autodoc_pydantic_model_show_json = False
+autodoc_pydantic_settings_show_json = False
+autodoc_pydantic_model_show_config_summary = False
+autodoc_pydantic_model_show_field_summary = False
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
