@@ -39,9 +39,9 @@ How to use
     1-quickstart
     2-pyil2
 
+
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`

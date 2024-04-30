@@ -23,6 +23,7 @@ release = '0.0.1'
 extensions = [
     'sphinx.ext.napoleon',
     'sphinxcontrib.autodoc_pydantic',
+    'sphinx_copybutton',
 ]
 
 # Napoleon settings
