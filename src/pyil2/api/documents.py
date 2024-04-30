@@ -14,7 +14,7 @@ class DocumentsApi(BaseApi):
     API class for the Multi-Documents requests.
 
     Args:
-        client (`:obj:`IL2Client`): IL2Client to be used to send requests.
+        client (:obj:`pyil2.IL2Client`): IL2Client to be used to send requests.
     
     Attributes:
         base_url (`str`): Base path of the requests.
@@ -24,7 +24,7 @@ class DocumentsApi(BaseApi):
     @property
     def documents_configuration(self) -> documents_models.DocumentUploadConfigurationModel | ErrorDetailsModel:
         """
-        :obj:`models.documents.DocumentUploadConfigurationModel`: Documents upload configuration.
+        :obj:`pyil2.models.documents.DocumentUploadConfigurationModel`: Documents upload configuration.
         """
         resp = self._client._request(
             f'{self.base_url}/configuration',
@@ -43,10 +43,10 @@ class DocumentsApi(BaseApi):
         The transaction will rollback on timeout or errors.
 
         Args:
-            new_transaction (:obj:`models.documents.BeginDocumentTransactionModel`): Begin transaction details.
+            new_transaction (:obj:`pyil2.models.documents.BeginDocumentTransactionModel`): Begin transaction details.
         
         Returns:
-            :obj:`models.documents.BeginDocumentTransactionModel`: Document upload transaction status.
+            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
         """
         if not isinstance(new_transaction, documents_models.BeginDocumentTransactionModel):
             raise ValueError("'new_transaction' must be a BeginDocumentTransactionModel.")
@@ -70,7 +70,7 @@ class DocumentsApi(BaseApi):
             transaction_id (:obj:`str`): Document upload transaction ID.
         
         Returns:
-            :obj:`models.documents.BeginDocumentTransactionModel`: Document upload transaction status.
+            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
         """
         resp = self._client._request(
             f'{self.base_url}/transaction/{transaction_id}',
@@ -100,7 +100,7 @@ class DocumentsApi(BaseApi):
             relative_path (:obj:`str`): Relative path of the file inside the record.
         
         Returns:
-            :obj:`models.documents.BeginDocumentTransactionModel`: Document upload transaction status.
+            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
         """
         params = {
             "name": filename,
@@ -143,7 +143,7 @@ class DocumentsApi(BaseApi):
                 If None, it will try to guess the mime-type based on the file extension.
         
         Returns:
-            :obj:`models.documents.BeginDocumentTransactionModel`: Document upload transaction status.
+            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
         """
         if not filename:
             filename = os.path.basename(filepath)
@@ -197,7 +197,7 @@ class DocumentsApi(BaseApi):
             locator (:obj:`str`): Document locator.
         
         Returns:
-            :obj:`models.documents.DocumentMetadataModel`: Documents metadata.
+            :obj:`pyil2.models.documents.DocumentMetadataModel`: Documents metadata.
         """
         resp = self._client._request(
             f'{self.base_url}/{locator}/metadata',

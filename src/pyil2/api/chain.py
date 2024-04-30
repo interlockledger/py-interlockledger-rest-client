@@ -18,7 +18,7 @@ class ChainApi(BaseApi):
     API class for the chain requests.
 
     Args:
-        client (`:obj:`IL2Client`): IL2Client to be used to send requests.
+        client (:obj:`pyil2.IL2Client`): IL2Client to be used to send requests.
     
     Attributes:
         base_url (`str`): Base path of the requests.
@@ -31,7 +31,7 @@ class ChainApi(BaseApi):
         Get a list of chains in the node.
 
         Returns:
-            [:obj:`models.chain.NodeDetailsModel`]: List of chains in the node.
+            [:obj:`pyil2.models.chain.ChainIdModel`]: List of chains in the node.
         """
         resp = self._client._request(
             url=f'{self.base_url}',
@@ -46,10 +46,10 @@ class ChainApi(BaseApi):
         Create a new chain.
 
         Args:
-            model (:obj:`models.chain.ChainCreationModel`): Model with the new chain attrbutes.
+            model (:obj:`pyil2.models.chain.ChainCreationModel`): Model with the new chain attrbutes.
 
         Returns:
-            :obj:`models.chain.ChainCreatedModel`: Chain created model.
+            :obj:`pyil2.models.chain.ChainCreatedModel`: Chain created model.
         """
         if not isinstance(new_chain, chain_models.ChainCreationModel):
             raise ValueError("'new_chain' must be a ChainCreationModel.")
@@ -71,7 +71,7 @@ class ChainApi(BaseApi):
             chain_id (:obj:`str`): Chain ID.
         
         Returns:
-            :obj:`models.chain.ChainSummaryModel`: Chain details.
+            :obj:`pyil2.models.chain.ChainSummaryModel`: Chain details.
         """
         resp = self._client._request(
             url=f'{self.base_url}/{chain_id}',
@@ -134,7 +134,7 @@ class ChainApi(BaseApi):
             how_many_from_last (:obj:`int`): How many interlocking records to return. If ommited or 0 returns all.
 
         Returns:
-            :obj:`models.ListModel[models.records.InterlockingRecordModel]`: List of interlocking records.
+            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.InterlockingRecordModel`]: List of interlocking records.
         """
         params = {
             "howManyFromLast": how_many_from_last,
@@ -156,10 +156,10 @@ class ChainApi(BaseApi):
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-            interlock (:obj:`models.records.ForceInterlockModel`): Force interlock details.
+            interlock (:obj:`pyil2.models.record.ForceInterlockModel`): Force interlock details.
 
         Returns:
-            :obj:`models.records.InterlockingRecordModel`: Interlocking details.
+            :obj:`pyil2.models.record.InterlockingRecordModel`: Interlocking details.
         """
         if not isinstance(interlock, ForceInterlockModel):
             raise ValueError("'interlock' must be a ForceInterlockModel.")
@@ -181,7 +181,7 @@ class ChainApi(BaseApi):
             chain_id (:obj:`str`): Chain ID.
         
         Returns:
-            [:obj:`models.keys.KeyDetailsModel`]: List of key details.
+            [:obj:`pyil2.models.keys.KeyDetailsModel`]: List of key details.
         """
         resp = self._client._request(
             url=f'{self.base_url}/{chain_id}/key',
@@ -200,10 +200,10 @@ class ChainApi(BaseApi):
         
         Args:
             chain_id (:obj:`str`): Chain ID.
-            keys_to_permit ([:obj:`models.keys.KeyPermitModel`]): List of keys to permitted.
+            keys_to_permit ([:obj:`pyil2.models.keys.KeyDetailsModel`]): List of keys to permitted.
         
         Returns:
-            [:obj:`models.keys.KeyDetailsModel`]: List of key details.
+            [:obj:`pyil2.models.keys.KeyDetailsModel`]: List of key details.
         """
         if not isinstance(keys_to_permit, list):
             raise ValueError("'keys_to_permit' must be a list of KeyDetailsModel.")

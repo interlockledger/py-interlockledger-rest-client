@@ -9,7 +9,7 @@ class OpaqueApi(BaseApi):
     API class for the opaque requests.
 
     Args:
-        client (`:obj:`IL2Client`): IL2Client to be used to send requests.
+        client (:obj:`pyil2.IL2Client`): IL2Client to be used to send requests.
     
     Attributes:
         base_url (`str`): Base path of the requests.
@@ -38,7 +38,7 @@ class OpaqueApi(BaseApi):
             last_changed_serial (:obj:`int`): The serial number that the last record in the chain must be equal.
 
         Returns:
-            :obj:`models.record.OpaqueRecordModel`: Opaque record details.
+            :obj:`pyil2.models.record.OpaqueRecordModel`: Opaque record details.
         """
         params = {
             "appId": application_id,
@@ -67,7 +67,7 @@ class OpaqueApi(BaseApi):
             serial (`int`): Record serial number.
             
         Returns:
-            :obj:`models.record.OpaqueRecordModel`: Opaque record details.
+            :obj:`pyil2.models.record.OpaqueRecordModel`: Opaque record details.
         """
         resp = self._client._request(
             f'{self.base_url}{chain_id}@{serial}',
@@ -109,7 +109,7 @@ class OpaqueApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`models.ListModel[models.records.OpaqueRecordModel]`: List of opaque records in a chain.
+            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.OpaqueRecordModel`]: List of opaque records in a chain.
         """
         params = {
             "appId": application_id,

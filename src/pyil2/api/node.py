@@ -14,7 +14,7 @@ class NodeApi(BaseApi):
     API class for the node requests.
 
     Args:
-        client (`:obj:`IL2Client`): IL2Client to be used to send requests.
+        client (:obj:`pyil2.IL2Client`): IL2Client to be used to send requests.
     
     Attributes:
         base_url (`str`): Base path of the requests.
@@ -24,7 +24,7 @@ class NodeApi(BaseApi):
     @property
     def details(self) -> node.NodeDetailsModel | ErrorDetailsModel:
         """
-        :obj:`models.node.NodeDetailsModel`: Details about the node.
+        :obj:`pyil2.models.node.NodeDetailsModel`: Details about the node.
         """
         resp = self._client._request(
             url=f'{self.base_url}',
@@ -52,7 +52,7 @@ class NodeApi(BaseApi):
         Get the list of valid apps in the network.
 
         Returns:
-            :obj:`models.apps.AppsModel`: Valid apps in the network.
+            :obj:`pyil2.models.apps.AppsModel`: Valid apps in the network.
         """
         resp = self._client._request(
             url=f'{self.base_url}/apps',
@@ -80,7 +80,7 @@ class NodeApi(BaseApi):
             size  (:obj:`int`): Number of elements in the page.
 
         Returns:
-            :obj:`models.ListModel[models.records.InterlockingRecordModel]`: List of interlocking records.
+            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.InterlockingRecordModel`]: List of interlocking records.
         """
         params = {
             "page": page,
@@ -103,7 +103,7 @@ class NodeApi(BaseApi):
         Get the list of known peer nodes.
 
         Returns:
-            [:obj:`models.node.PeerNodeModel`]: List of peers.
+            [:obj:`pyil2.models.node.PeerNodeModel`]: List of peers.
         """
         resp = self._client._request(
             url=f'{self.base_url}/peers',
@@ -118,7 +118,7 @@ class NodeApi(BaseApi):
         List of mirror instances.
 
         Returns:
-            [:obj:`models.chains.ChainIdModel`]: List of mirrors.
+            [:obj:`pyil2.models.chain.ChainIdModel`]: List of mirrors.
         """
         resp = self._client._request(
             url=f'{self.base_url}/mirrors',

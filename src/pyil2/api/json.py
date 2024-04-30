@@ -13,7 +13,7 @@ class JsonApi(BaseApi):
     API class for the JSON documents requests.
 
     Args:
-        client (`:obj:`IL2Client`): IL2Client to be used to send requests.
+        client (:obj:`pyil2.IL2Client`): IL2Client to be used to send requests.
     
     Attributes:
         base_url (`str`): Base path of the requests.
@@ -29,7 +29,7 @@ class JsonApi(BaseApi):
             serial (`int`): Record serial number.
         
         Returns:
-            :obj:`models.json.JsonDocumentModel`: JSON document details.
+            :obj:`pyil2.models.json.JsonDocumentModel`: JSON document details.
         """
         resp = self._client._request(
             f'{self.base_url}{chain_id}/{serial}',
@@ -48,7 +48,7 @@ class JsonApi(BaseApi):
             payload (:obj:`dict`): A valid JSON in dictionary format.
         
         Returns:
-            :obj:`models.json.JsonDocumentModel`: Added JSON document details.
+            :obj:`pyil2.models.json.JsonDocumentModel`: Added JSON document details.
         """
         resp = self._client._request(
             f'{self.base_url}{chain_id}',
@@ -75,7 +75,7 @@ class JsonApi(BaseApi):
             public_key_id (:obj:`str`): IL2 text representation of the key ID.
         
         Returns:
-            :obj:`models.json.JsonDocumentModel`: Added JSON document details.
+            :obj:`pyil2.models.json.JsonDocumentModel`: Added JSON document details.
         """
         headers = {
             'X-PubKey': public_key,
@@ -105,7 +105,7 @@ class JsonApi(BaseApi):
             keys_references ([:obj:`str`]): List of references on the format 'chainId@serial' to records on local chains containing 'allowed readers' lists.
         
         Returns:
-            :obj:`models.json.JsonDocumentModel`: Added JSON document details.
+            :obj:`pyil2.models.json.JsonDocumentModel`: Added JSON document details.
         """
         headers = {
             'X-PubKeyReferences': ','.join(keys_references),
@@ -134,7 +134,7 @@ class JsonApi(BaseApi):
             keys_chain_id ([:obj:`str`]): List of IDs of a local chain from which the 'allowed readers' list of public keys will be used to encrypt the content.
         
         Returns:
-            :obj:`models.json.JsonDocumentModel`: Added JSON document details.
+            :obj:`pyil2.models.json.JsonDocumentModel`: Added JSON document details.
         """
         headers = {
             'X-PubKeyChains': ','.join(keys_chain_id),
@@ -167,7 +167,7 @@ class JsonApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`models.ListModel[models.json.AllowedReadersDetailsModel]`: List of allowed reader keys.
+            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.json.AllowedReadersDetailsModel`]: List of allowed reader keys.
         """
         params = {
             "page": page,
@@ -195,7 +195,7 @@ class JsonApi(BaseApi):
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-            allowed_readers (:obj:`models.json.AllowedReadersModel`): List of reader keys to be allowed.
+            allowed_readers (:obj:`pyil2.models.json.AllowedReadersModel`): List of reader keys to be allowed.
 
         Returns:
             :obj:`str`: A record reference in the format chainId@recordSerial

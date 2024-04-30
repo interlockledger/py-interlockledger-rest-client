@@ -19,7 +19,7 @@ class RecordApi(BaseApi):
     API class for the record requests.
 
     Args:
-        client (`:obj:`IL2Client`): IL2Client to be used to send requests.
+        client (:obj:`pyil2.IL2Client`): IL2Client to be used to send requests.
     
     Attributes:
         base_url (`str`): Base path of the requests.
@@ -49,7 +49,7 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`models.ListModel[models.records.RecordModel]`: List of records in a chain.
+            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.RecordModel`]: List of records in a chain.
         """
         params = {
             "page": page,
@@ -84,10 +84,10 @@ class RecordApi(BaseApi):
 
         Args:
             chain_id (`str`): Chain ID.
-            new_record (:obj:`models.record.NewRecordModel`): Model with the description of the new record.
+            new_record (:obj:`pyil2.models.record.NewRecordModel`): Model with the description of the new record.
         
         Returns:
-            :obj:`models.record.RecordModel`: Added record model.
+            :obj:`pyil2.models.record.RecordModel`: Added record model.
         """
         if not isinstance(new_record, record_models.NewRecordModel):
             raise ValueError("'new_record' must be a NewRecordModel.")
@@ -112,7 +112,7 @@ class RecordApi(BaseApi):
             serial (`int`): Record serial number.
 
         Returns:
-            [:obj:`models.record.RecordModel`]: Record in a chain.
+            :obj:`pyil2.models.record.RecordModel`: Record in a chain.
         """
         resp = self._client._request(
             url=f'{self.base_url}{chain_id}/{serial}',
@@ -144,7 +144,7 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`models.ListModel[models.records.RecordModel]`: List of records in a chain.
+            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.RecordModel`]: List of records in a chain.
         """
         params = {
             "queryAsInterlockQL": query,
@@ -185,7 +185,7 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`models.ListModel[models.records.RecordAsJsonModel]`: List of records in a chain with the payload as JSON.
+            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.RecordAsJsonModel`]: List of records in a chain with the payload as JSON.
         """
         params = {
             "page": page,
@@ -218,7 +218,7 @@ class RecordApi(BaseApi):
             serial (`int`): Record serial number.
 
         Returns:
-            [:obj:`models.record.RecordAsJsonModel`]: Record in a chain with the payload as JSON.
+            :obj:`pyil2.models.record.RecordAsJsonModel`: Record in a chain with the payload as JSON.
         """
         resp = self._client._request(
             url=f'{self.base_url}{chain_id}/asJson/{serial}',
@@ -249,7 +249,7 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`models.ListModel[models.records.RecordAsJsonModel]`: List of records in a chain with the payload as JSON.
+            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.RecordAsJsonModel`]: List of records in a chain with the payload as JSON.
         """
         params = {
             "queryAsInterlockQL": query,
