@@ -29,72 +29,62 @@ from enum import Enum
 from enum import IntEnum
 from enum import auto
 
-
-class AutoName(Enum):
-    """
-    Base Enum class to automatically generate the enumerations values based on the enumeration name.
-    """
-    @staticmethod
-    def _generate_next_value_(name, start, count, last_values):
-        return name
-
-
-class Algorithms(AutoName):
+class Algorithms(Enum):
     """
     Enumeration of the digital signature algorithms available in IL2.
     """
-    RSA = auto()        # PKCS#1 RSASSA-PSS
+    RSA = 'RSA'        # PKCS#1 RSASSA-PSS
     """
     PKCS#1 RSASSA-PSS
     """
-    RSA15 = auto()      # RSASSA-PKCS1-v1_5
+    RSA15 = 'RSA15'      # RSASSA-PKCS1-v1_5
     """
     RSASSA-PKCS1-v1_5
     """
-    DSA = auto()
+    DSA = 'DSA'
     """
     DSA
     """
-    ElGamal = auto()
+    ElGamal = 'ElGamal'
     """
     ElGamal signature
     """
-    EcDSA = auto()
+    EcDSA = 'EcDSA'
     """
     Elliptic Curve Digital Signature Algorithm
     """
-    EdDSA = auto()
+    EdDSA = 'EdDSA'
     """
     Edwards-curve Digital Signature Algorithm
     """
 
 
-class DataFieldCast(AutoName):
+class DataFieldCast(Enum):
     """
     Enumeration of casting options for DataField
     """
     NONE = 'None'
     """
     """
-    DateTime = auto()
+    DateTime = 'DateTime'
     """
     """
-    Integer = auto()
+    Integer = 'Integer'
     """
     """
-    TimeSpan = auto()
+    TimeSpan = 'TimeSpan'
     """
     """
 
 
-class CipherAlgorithms(AutoName):
+class CipherAlgorithms(Enum):
     """
     Enumeration of the cipher algorithms available in IL2.
     """
     NONE = 'None'
     """
     """
-    AES256 = auto()  # default
+    AES256 = 'AES256'  # default
     """
     """
 
@@ -103,61 +93,61 @@ class CipherAlgorithms(AutoName):
         return CipherAlgorithms.AES256
 
 
-class HashAlgorithms(AutoName):
+class HashAlgorithms(Enum):
     """
     Enumeration of the hash algorithms available in IL2.
     """
-    SHA256 = auto()   # default
+    SHA256 = 'SHA256'   # default
     """
     """
-    SHA1 = auto()
+    SHA1 = 'SHA1'
     """
     """
-    SHA512 = auto()
+    SHA512 = 'SHA512'
     """
     """
-    SHA3_256 = auto()
+    SHA3_256 = 'SHA3_256'
     """
     """
-    SHA3_512 = auto()
+    SHA3_512 = 'SHA3_512'
     """
     """
-    Copy = auto()
+    Copy = 'Copy'
     """
     """
 
 
-class KeyPurpose(AutoName):
+class KeyPurpose(Enum):
     """
     Enumeration of the purpose of keys in IL2.
     """
-    Action = auto()
+    Action = 'Action'
     """
     """
-    ChainOperation = auto()
+    ChainOperation = 'ChainOperation'
     """
     """
-    Encryption = auto()
+    Encryption = 'Encryption'
     """
     """
-    ForceInterlock = auto()
+    ForceInterlock = 'ForceInterlock'
     """
     """
-    KeyManagement = auto()
+    KeyManagement = 'KeyManagement'
     """
     """
-    Protocol = auto()
+    Protocol = 'Protocol'
     """
     """
-    InvalidKey = auto()
+    InvalidKey = 'InvalidKey'
     """
     """
-    ClaimSigner = auto()
+    ClaimSigner = 'ClaimSigner'
     """
     """
 
 
-class KeyStrength(AutoName):
+class KeyStrength(Enum):
     """
     Enumeration of the strength of keys.
     """
@@ -170,50 +160,50 @@ class KeyStrength(AutoName):
     #    HyperStrong : RSA 7172
     #    UltraStrong : RSA 8192
 
-    Normal = auto()        # RSA 2048
+    Normal = 'Normal'        # RSA 2048
     """
     RSA 2048
     """
-    Strong = auto()        # RSA 3072
+    Strong = 'Strong'        # RSA 3072
     """
     RSA 3072
     """
-    ExtraStrong = auto()   # RSA 4096
+    ExtraStrong = 'ExtraStrong'   # RSA 4096
     """
     RSA 4096
     """
-    MegaStrong = auto()    # RSA 5120
+    MegaStrong = 'MegaStrong'    # RSA 5120
     """
     RSA 5120
     """
-    SuperStrong = auto()   # RSA 6144
+    SuperStrong = 'SuperStrong'   # RSA 6144
     """
     RSA 6144
     """
-    HyperStrong = auto()   # RSA 7172
+    HyperStrong = 'HyperStrong'   # RSA 7172
     """
     RSA 7172
     """
-    UltraStrong = auto()   # RSA 8192
+    UltraStrong = 'UltraStrong'   # RSA 8192
     """
     RSA 8192
     """
 
 
-class NetworkProtocol(AutoName):
+class NetworkProtocol(Enum):
     """
     Enumeration of the network protocols.
     """
-    TCP_Direct = auto()
+    TCP_Direct = 'TCP_Direct'
     """
     """
-    TCP_Proxied = auto()
+    TCP_Proxied = 'TCP_Proxied'
     """
     """
-    HTTPS_Proxied = auto()
+    HTTPS_Proxied = 'HTTPS_Proxied'
     """
     """
-    Originator_Only = auto()
+    Originator_Only = 'Originator_Only'
     """
     """
 
@@ -251,40 +241,40 @@ class NetworkPredefinedPorts(IntEnum):
     """
 
 
-class RecordType(AutoName):
+class RecordType(Enum):
     """
     Enumeration of the types of Records available in IL2.
     """
-    Data = auto()
+    Data = 'Data'
     """
     """
-    Root = auto()
+    Root = 'Root'
     """
     """
-    Closing = auto()
+    Closing = 'Closing'
     """
     """
-    EmergencyClosing = auto()
+    EmergencyClosing = 'EmergencyClosing'
     """
     """
-    Corrupted = auto()
+    Corrupted = 'Corrupted'
     """
     """
 
 
-class DocumentsCompression(AutoName):
+class DocumentsCompression(Enum):
     """
     Enumeration of the compression algorithm.
     """
-    NONE = auto()
+    NONE = 'NONE'
     """
     """
-    GZIP = auto()
+    GZIP = 'GZIP'
     """
     """
-    BROTLI = auto()
+    BROTLI = 'BROTLI'
     """
     """
-    ZSTD = auto()
+    ZSTD = 'ZSTD'
     """
     """
