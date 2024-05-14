@@ -84,7 +84,7 @@ class RecordApi(BaseApi):
         if last_serial is not None:
             params['lastSerial'] = last_serial
 
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}{chain_id}',
             method='get',
             params=params,
@@ -115,7 +115,7 @@ class RecordApi(BaseApi):
         """
         if not isinstance(new_record, record_models.NewRecordModel):
             raise ValueError("'new_record' must be a NewRecordModel.")
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}{chain_id}',
             method='post',
             body=new_record.model_dump(exclude_none=True, by_alias=True)
@@ -139,7 +139,7 @@ class RecordApi(BaseApi):
         Returns:
             :obj:`pyil2.models.record.RecordModel`: Record in a chain.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}{chain_id}/{serial}',
             method='get',
         )
@@ -183,7 +183,7 @@ class RecordApi(BaseApi):
         if how_many is not None:
             params['howMany'] = how_many
 
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}{chain_id}/query',
             method='get',
             params=params,
@@ -228,7 +228,7 @@ class RecordApi(BaseApi):
         if last_serial is not None:
             params['lastSerial'] = last_serial
 
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}{chain_id}/asJson',
             method='get',
             params=params,
@@ -253,7 +253,7 @@ class RecordApi(BaseApi):
             :obj:`pyil2.models.record.RecordAsJsonModel`: \
                 Record in a chain with the payload as JSON.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}{chain_id}/asJson/{serial}',
             method='get',
         )
@@ -295,7 +295,7 @@ class RecordApi(BaseApi):
         if how_many is not None:
             params['howMany'] = how_many
 
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}{chain_id}/asJson/query',
             method='get',
             params=params,

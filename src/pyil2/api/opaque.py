@@ -77,7 +77,7 @@ class OpaqueApi(BaseApi):
         if last_changed_serial is not None:
             params['lastChangedRecordSerial'] = last_changed_serial
 
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}{chain_id}',
             method='post',
             content_type='application/octet-stream',
@@ -103,7 +103,7 @@ class OpaqueApi(BaseApi):
         Returns:
             :obj:`pyil2.models.record.OpaqueRecordModel`: Opaque record details.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}{chain_id}@{serial}',
             method='get',
             accept='application/octet-stream',
@@ -159,7 +159,7 @@ class OpaqueApi(BaseApi):
         if how_many is not None:
             params['howMany'] = how_many
 
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}{chain_id}/asJson/query',
             method='get',
             params=params,

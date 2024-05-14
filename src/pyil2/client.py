@@ -175,7 +175,7 @@ class IL2Client:
             raise exc
         return response
 
-    def _request(
+    def request(
             self,
             url: str,
             method: str,
@@ -186,6 +186,10 @@ class IL2Client:
             data: bytes=None,
             headers: Dict[str, str]=None,
         ) -> requests.Response:
+        '''
+        This method is used to wrap IL2 requests.
+        We do not recommend using this method directly.
+        '''
         method = method.upper()
         match method:
             case 'GET':
@@ -354,11 +358,16 @@ class IL2Client:
         )
         return response
 
-    def _download_file(
+    def download_file(
             self,
             url: str,
             dst_path: str = './'
         ) -> str:
+        """
+        Method to download a file to a destination path.
+
+        We do not recommend using this method directly.
+        """
         cur_uri = self._join_uri(url)
         s = self._get_session()
         with s.get(cur_uri, stream=True, timeout=self.timeout) as r:
@@ -372,7 +381,12 @@ class IL2Client:
                 shutil.copyfileobj(r.raw, f)
         return filepath
 
-    def _download_response(self, url: str) -> requests.Response:
+    def download_response(self, url: str) -> requests.Response:
+        """
+        Method to retrieve an stream GET response directly.
+
+        We do not recommend using this method directly.
+        """
         cur_uri = self._join_uri(url)
         s = self._get_session()
         resp = s.get(cur_uri, stream=True, timeout=self.timeout)

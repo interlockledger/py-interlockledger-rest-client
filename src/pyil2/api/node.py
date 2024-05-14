@@ -54,7 +54,7 @@ class NodeApi(BaseApi):
         """
         :obj:`pyil2.models.node.NodeDetailsModel`: Details about the node.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}',
             method='get',
         )
@@ -67,7 +67,7 @@ class NodeApi(BaseApi):
         """
         :obj:`str`: REST API version.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/apiVersion',
             method='get',
         )
@@ -82,7 +82,7 @@ class NodeApi(BaseApi):
         Returns:
             :obj:`pyil2.models.apps.AppsModel`: Valid apps in the network.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/apps',
             method='get'
         )
@@ -120,7 +120,7 @@ class NodeApi(BaseApi):
         }
         if last_known_block is not None:
             params['lastKnownBlock'] = last_known_block
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/interlockings/{chain_id}',
             method='get',
             params=params,
@@ -136,7 +136,7 @@ class NodeApi(BaseApi):
         Returns:
             [:obj:`pyil2.models.node.PeerNodeModel`]: List of peers.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/peers',
             method='get',
         )
@@ -151,7 +151,7 @@ class NodeApi(BaseApi):
         Returns:
             [:obj:`pyil2.models.chain.ChainIdModel`]: List of mirrors.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/mirrors',
             method='get',
         )
@@ -169,7 +169,7 @@ class NodeApi(BaseApi):
         Returns:
             [:obj:`bool`]: Returns `True` if success.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/mirrors',
             method='post',
             body=chains

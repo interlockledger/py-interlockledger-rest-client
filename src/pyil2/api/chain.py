@@ -61,7 +61,7 @@ class ChainApi(BaseApi):
         Returns:
             [:obj:`pyil2.models.chain.ChainIdModel`]: List of chains in the node.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}',
             method='get',
         )
@@ -86,7 +86,7 @@ class ChainApi(BaseApi):
         if not isinstance(new_chain, chain_models.ChainCreationModel):
             raise ValueError("'new_chain' must be a ChainCreationModel.")
 
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}',
             method='post',
             body=new_chain.model_dump(exclude_none=True, by_alias=True)
@@ -105,7 +105,7 @@ class ChainApi(BaseApi):
         Returns:
             :obj:`pyil2.models.chain.ChainSummaryModel`: Chain details.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/{chain_id}',
             method='get',
         )
@@ -123,7 +123,7 @@ class ChainApi(BaseApi):
         Returns:
             [:obj:`int`]: Enumerate apps that are currently permitted in this chain.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/{chain_id}/activeApps',
             method='get',
         )
@@ -145,7 +145,7 @@ class ChainApi(BaseApi):
         Returns:
             [:obj:`int`]: Enumerate apps that are currently permitted in this chain.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/{chain_id}/activeApps',
             method='post',
             body=apps_to_permit
@@ -181,7 +181,7 @@ class ChainApi(BaseApi):
             "page": page,
             "pageSize": size
         }
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/{chain_id}/interlockings',
             method='get',
             params=params
@@ -208,7 +208,7 @@ class ChainApi(BaseApi):
         if not isinstance(interlock, ForceInterlockModel):
             raise ValueError("'interlock' must be a ForceInterlockModel.")
 
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/{chain_id}/interlockings',
             method='post',
             body=interlock.model_dump(exclude_none=True, by_alias=True)
@@ -227,7 +227,7 @@ class ChainApi(BaseApi):
         Returns:
             [:obj:`pyil2.models.keys.KeyDetailsModel`]: List of key details.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/{chain_id}/key',
             method='get',
         )
@@ -259,7 +259,7 @@ class ChainApi(BaseApi):
                 raise ValueError(
                     "'keys_to_permit' must be a list of KeyDetailsModel.")
             body.append(item.model_dump(exclude_none=True, by_alias=True))
-        resp = self._client._request(
+        resp = self._client.request(
             url=f'{self.base_url}/{chain_id}/key',
             method='post',
             body=body,

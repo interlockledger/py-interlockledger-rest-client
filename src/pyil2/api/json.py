@@ -63,7 +63,7 @@ class JsonApi(BaseApi):
         Returns:
             :obj:`pyil2.models.json.JsonDocumentModel`: JSON document details.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}{chain_id}/{serial}',
             method='get',
         )
@@ -86,7 +86,7 @@ class JsonApi(BaseApi):
         Returns:
             :obj:`pyil2.models.json.JsonDocumentModel`: Added JSON document details.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}{chain_id}',
             method='post',
             body=payload,
@@ -119,7 +119,7 @@ class JsonApi(BaseApi):
             'X-PubKey': public_key,
             'X-PubKeyId': public_key_id,
         }
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}{chain_id}/withKey',
             method='post',
             body=payload,
@@ -150,7 +150,7 @@ class JsonApi(BaseApi):
         headers = {
             'X-PubKeyReferences': ','.join(keys_references),
         }
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}{chain_id}/withIndirectKeys',
             method='post',
             body=payload,
@@ -181,7 +181,7 @@ class JsonApi(BaseApi):
         headers = {
             'X-PubKeyChains': ','.join(keys_chain_id),
         }
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}{chain_id}/withChainKeys',
             method='post',
             body=payload,
@@ -222,7 +222,7 @@ class JsonApi(BaseApi):
         if context_id is not None:
             params['contextId'] = context_id
 
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}{chain_id}/allow',
             method='get',
             params=params,
@@ -247,7 +247,7 @@ class JsonApi(BaseApi):
         Returns:
             :obj:`str`: A record reference in the format chainId@recordSerial
         """
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}{chain_id}/allow',
             method='post',
             body=allowed_readers.model_dump(by_alias=True, exclude_none=True),

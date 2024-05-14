@@ -53,7 +53,7 @@ class DocumentsApi(BaseApi):
         :obj:`pyil2.models.documents.DocumentUploadConfigurationModel`: \
             Documents upload configuration.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}/configuration',
             method='get'
         )
@@ -82,7 +82,7 @@ class DocumentsApi(BaseApi):
             raise ValueError(
                 "'new_transaction' must be a BeginDocumentTransactionModel.")
 
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}/transaction',
             method='post',
             body=new_transaction.model_dump(by_alias=True, exclude_none=True)
@@ -105,7 +105,7 @@ class DocumentsApi(BaseApi):
             :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload \
                 transaction status.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}/transaction/{transaction_id}',
             method='get',
         )
@@ -143,7 +143,7 @@ class DocumentsApi(BaseApi):
         }
         if comment:
             params['comment'] = comment
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}/transaction/{transaction_id}',
             method='post',
             params=params,
@@ -194,7 +194,7 @@ class DocumentsApi(BaseApi):
         if comment:
             params['comment'] = comment
         with open(filepath, 'rb') as f:
-            resp = self._client._request(
+            resp = self._client.request(
                 f'{self.base_url}/transaction/{transaction_id}',
                 method='post',
                 params=params,
@@ -215,7 +215,7 @@ class DocumentsApi(BaseApi):
         Returns:
             :obj:`str`: Document locator.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}/transaction/{transaction_id}/commit',
             method='post',
         )
@@ -236,7 +236,7 @@ class DocumentsApi(BaseApi):
         Returns:
             :obj:`pyil2.models.documents.DocumentMetadataModel`: Documents metadata.
         """
-        resp = self._client._request(
+        resp = self._client.request(
             f'{self.base_url}/{locator}/metadata',
             method='get',
         )
@@ -262,7 +262,7 @@ class DocumentsApi(BaseApi):
         Returns:
             :obj:`str`: Downloaded file full path.
         """
-        resp = self._client._download_file(
+        resp = self._client.download_file(
             f'{self.base_url}/{locator}/{index}',
             dst_path=dst_path
         )
@@ -285,7 +285,7 @@ class DocumentsApi(BaseApi):
         Returns:
             :obj:`str`: Downloaded file full path.
         """
-        resp = self._client._download_file(
+        resp = self._client.download_file(
             f'{self.base_url}/{locator}/zip',
             dst_path=dst_path
         )
@@ -311,7 +311,7 @@ class DocumentsApi(BaseApi):
         Returns:
             :obj:`requests.Response`: Request response.
         """
-        resp = self._client._download_response(
+        resp = self._client.download_response(
             f'{self.base_url}/{locator}/{index}'
         )
         return resp
@@ -331,7 +331,7 @@ class DocumentsApi(BaseApi):
         Returns:
             :obj:`requests.Response`: Request response.
         """
-        resp = self._client._download_response(
+        resp = self._client.download_response(
             f'{self.base_url}/{locator}/zip',
         )
         return resp

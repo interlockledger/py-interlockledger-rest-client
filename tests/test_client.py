@@ -47,5 +47,5 @@ class IL2ClientTest(TestCase):
             cert_password=self.password,
             verify_ca=False,
         )
-        resp = client._request('/', 'GET')
+        resp = client.request('/', 'GET')
         self.assertEqual(resp.status_code, 200)
