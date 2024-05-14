@@ -1,6 +1,31 @@
+# Copyright (c) 2024, InterlockLedger Network
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import os
-import re
-import shutil
 import requests
 import mimetypes
 from .base import BaseApi
@@ -15,11 +40,11 @@ class DocumentsApi(BaseApi):
 
     Args:
         client (:obj:`pyil2.IL2Client`): IL2Client to be used to send requests.
-    
+
     Attributes:
         base_url (`str`): Base path of the requests.
     '''
-    base_url='documents'
+    base_url = 'documents'
 
     @property
     def documents_configuration(self) -> documents_models.DocumentUploadConfigurationModel | ErrorDetailsModel:
@@ -35,8 +60,8 @@ class DocumentsApi(BaseApi):
         return documents_models.DocumentUploadConfigurationModel(**resp.json())
 
     def begin_document_transaction(self,
-            new_transaction: documents_models.BeginDocumentTransactionModel
-        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
+                                   new_transaction: documents_models.BeginDocumentTransactionModel
+                                   ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Begin a document upload transaction.
 
@@ -44,13 +69,14 @@ class DocumentsApi(BaseApi):
 
         Args:
             new_transaction (:obj:`pyil2.models.documents.BeginDocumentTransactionModel`): Begin transaction details.
-        
+
         Returns:
             :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
         """
         if not isinstance(new_transaction, documents_models.BeginDocumentTransactionModel):
-            raise ValueError("'new_transaction' must be a BeginDocumentTransactionModel.")
-        
+            raise ValueError(
+                "'new_transaction' must be a BeginDocumentTransactionModel.")
+
         resp = self._client._request(
             f'{self.base_url}/transaction',
             method='post',
@@ -61,14 +87,14 @@ class DocumentsApi(BaseApi):
         return documents_models.DocumentTransactionModel(**resp.json())
 
     def get_document_transaction_status(self,
-            transaction_id: str
-        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel :
+                                        transaction_id: str
+                                        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Get a document upload transaction status.
 
         Args:
             transaction_id (:obj:`str`): Document upload transaction ID.
-        
+
         Returns:
             :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
         """
@@ -80,14 +106,14 @@ class DocumentsApi(BaseApi):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
 
-    def upload_document(self, 
-            transaction_id: str,
-            filename: str,
-            content_type: str,
-            file_bytes: bytes,
-            comment: str=None,
-            relative_path: str="/",
-        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
+    def upload_document(self,
+                        transaction_id: str,
+                        filename: str,
+                        content_type: str,
+                        file_bytes: bytes,
+                        comment: str = None,
+                        relative_path: str = "/",
+                        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Add a file to a document upload transaction using bytes.
 
@@ -98,7 +124,7 @@ class DocumentsApi(BaseApi):
             file_bytes (:obj:`bytes`): File bytes.
             comment (:obj:`str`): Additional comment.
             relative_path (:obj:`str`): Relative path of the file inside the record.
-        
+
         Returns:
             :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
         """
@@ -119,14 +145,14 @@ class DocumentsApi(BaseApi):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
 
-    def upload_document_file(self, 
-            transaction_id: str,
-            filepath: str,
-            comment: str=None,
-            relative_path: str="/",
-            filename: str=None,
-            content_type: str=None,
-        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
+    def upload_document_file(self,
+                             transaction_id: str,
+                             filepath: str,
+                             comment: str = None,
+                             relative_path: str = "/",
+                             filename: str = None,
+                             content_type: str = None,
+                             ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Add a file to a document upload transaction using file path.
         This method will try to get the filename and the MIME-type from the filepath.
@@ -141,7 +167,7 @@ class DocumentsApi(BaseApi):
                 If None, it will try to use the filename in the filepath.
             content_type (:obj:`str`): File mime-type. \
                 If None, it will try to guess the mime-type based on the file extension.
-        
+
         Returns:
             :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
         """
@@ -149,7 +175,7 @@ class DocumentsApi(BaseApi):
             filename = os.path.basename(filepath)
         if not content_type:
             content_type = mimetypes.MimeTypes().guess_type(filepath)[0]
-        
+
         params = {
             "name": filename,
             "path": relative_path,
@@ -167,7 +193,6 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
-    
 
     def commit_document_transaction(self, transaction_id: str) -> str | ErrorDetailsModel:
         """
@@ -175,7 +200,7 @@ class DocumentsApi(BaseApi):
 
         Args:
             transaction_id (:obj:`str`): Document upload transaction ID.
-        
+
         Returns:
             :obj:`str`: Document locator.
         """
@@ -187,15 +212,15 @@ class DocumentsApi(BaseApi):
             return resp
         return resp.json()
 
-    def get_document_metadata(self, 
-            locator: str
-        ) -> documents_models.DocumentMetadataModel | ErrorDetailsModel:
+    def get_document_metadata(self,
+                              locator: str
+                              ) -> documents_models.DocumentMetadataModel | ErrorDetailsModel:
         """
         Get the documents metadata by the locator.
 
         Args:
             locator (:obj:`str`): Document locator.
-        
+
         Returns:
             :obj:`pyil2.models.documents.DocumentMetadataModel`: Documents metadata.
         """
@@ -207,11 +232,11 @@ class DocumentsApi(BaseApi):
             return resp
         return documents_models.DocumentMetadataModel(**resp.json())
 
-    def download_single_document_at(self, 
-        locator: str,
-        index: int,
-        dst_path: str='./',
-    ) -> str | ErrorDetailsModel:
+    def download_single_document_at(self,
+                                    locator: str,
+                                    index: int,
+                                    dst_path: str = './',
+                                    ) -> str | ErrorDetailsModel:
         """
         Download a single document by position from the set of documents to a folder (default: current folder).
 
@@ -219,7 +244,7 @@ class DocumentsApi(BaseApi):
             locator (:obj:`str`): A Documents Storage Locator.
             index (:obj:`int`): Index of the file.
             dst_path (:obj:`str`): Download the file to this folder.
-        
+
         Returns:
             :obj:`str`: Downloaded file full path.
         """
@@ -230,18 +255,18 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return resp
-    
-    def download_documents_as_zip(self, 
-        locator: str,
-        dst_path: str='./',
-    ) -> str | ErrorDetailsModel:
+
+    def download_documents_as_zip(self,
+                                  locator: str,
+                                  dst_path: str = './',
+                                  ) -> str | ErrorDetailsModel:
         """
         Download documents in a compressed file to a folder (default: current folder).
 
         Args:
             locator (:obj:`str`): A Documents Storage Locator.
             dst_path (:obj:`str`): Download the file to this folder.
-        
+
         Returns:
             :obj:`str`: Downloaded file full path.
         """
@@ -252,12 +277,12 @@ class DocumentsApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return resp
-    
-    def download_single_document_at_as_response(self, 
-        locator: str,
-        index: int,
-        dst_path: str='./',
-    ) -> requests.Response | ErrorDetailsModel:
+
+    def download_single_document_at_as_response(self,
+                                                locator: str,
+                                                index: int,
+                                                dst_path: str = './',
+                                                ) -> requests.Response | ErrorDetailsModel:
         """
         Get the request response to download a single document by position from the set of documents.
 
@@ -266,7 +291,7 @@ class DocumentsApi(BaseApi):
         Args:
             locator (:obj:`str`): A Documents Storage Locator.
             index (:obj:`int`): Index of the file.
-        
+
         Returns:
             :obj:`requests.Response`: Request response.
         """
@@ -274,10 +299,10 @@ class DocumentsApi(BaseApi):
             f'{self.base_url}/{locator}/{index}'
         )
         return resp
-    
-    def download_documents_as_zip_as_response(self, 
-        locator: str,
-    ) -> requests.Response | ErrorDetailsModel:
+
+    def download_documents_as_zip_as_response(self,
+                                              locator: str,
+                                              ) -> requests.Response | ErrorDetailsModel:
         """
         Get the request response to download documents in a compressed file.
 
@@ -285,7 +310,7 @@ class DocumentsApi(BaseApi):
 
         Args:
             locator (:obj:`str`): A Documents Storage Locator.
-        
+
         Returns:
             :obj:`requests.Response`: Request response.
         """
@@ -293,5 +318,3 @@ class DocumentsApi(BaseApi):
             f'{self.base_url}/{locator}/zip',
         )
         return resp
-    
-    

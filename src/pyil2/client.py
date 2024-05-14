@@ -1,3 +1,30 @@
+# Copyright (c) 2024, InterlockLedger Network
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import contextlib
 import os
 import re
@@ -10,6 +37,7 @@ from base64 import b64encode
 from .utils.certificates import PKCS12Certificate
 from . import api
 from .models.errors import ErrorDetailsModel
+
 
 class IL2Client:
     """
@@ -29,7 +57,7 @@ class IL2Client:
         connect_timeout (:obj:`int`): Connect timeout in seconds (default: 5s).
         read_timeout (:obj:`int`): Read timeout in seconds (default 30s).
     """
-    
+
     _available_apis = [
         'node',
         'chain',
@@ -38,14 +66,14 @@ class IL2Client:
         'json',
         'documents',
     ]
-    
-    def __init__(self, 
-            host: str,
-            cert_filepath: str,
-            cert_password: str,
-            verify_ca: bool=True,
-            timeout:int = 30,
-        ):
+
+    def __init__(self,
+                 host: str,
+                 cert_filepath: str,
+                 cert_password: str,
+                 verify_ca: bool = True,
+                 timeout: int = 30,
+                 ):
         self.host = host
         if self.host[-1] != '/':
             self.host += '/'
@@ -54,7 +82,7 @@ class IL2Client:
         self._session = None
         self._pem_file = None
         self.certificate = PKCS12Certificate(cert_filepath, cert_password)
-        
+
     @property
     def public_certificate_in_x509(self):
         """:obj:`str`: Public certificate in X509 format."""
@@ -65,7 +93,7 @@ class IL2Client:
                 .replace(b'\n', b'')
         )
         return x509
-    
+
     @property
     def api_list(self) -> List[str]:
         """
@@ -79,7 +107,7 @@ class IL2Client:
 
         Args:
             name (:obj:`str`): API name.
-        
+
         Returns:
             `BaseApi`: Instance of an API.
         """
@@ -98,8 +126,9 @@ class IL2Client:
             case 'documents':
                 return api.DocumentsApi(self)
             case _:
-                raise ValueError(f'No API with name {name} found. Must be in {self._available_apis}')
-    
+                raise ValueError(f'No API with name {name} found. Must be in {
+                                 self._available_apis}')
+
     def _get_session(self) -> requests.Session:
         if not self._session:
             self._pfx_to_pem()
@@ -125,7 +154,7 @@ class IL2Client:
     def _join_uri(self, url: str):
         return urllib.parse.urljoin(self.host, url)
 
-    def _prepare_headers(self, accept: str, content_type: str=None, auth: bool=True, headers: Dict[str, str]={}):
+    def _prepare_headers(self, accept: str, content_type: str = None, auth: bool = True, headers: Dict[str, str] = {}):
         if not headers:
             headers = {}
         headers['Accept'] = accept
@@ -141,37 +170,43 @@ class IL2Client:
             raise exc
         return response
 
-    def _request(self, 
-            url: str,
-            method: str,
-            accept: str='application/json',
-            content_type: str='application/json',
-            body: Dict[str, Any]=None, 
-            params: Dict[str, str]={},
-            auth: bool=True,
-            data: bytes=None,
-            headers: Dict[str, str]={},
-        ) -> requests.Response:
+    def _request(self,
+                 url: str,
+                 method: str,
+                 accept: str = 'application/json',
+                 content_type: str = 'application/json',
+                 body: Dict[str, Any] = None,
+                 params: Dict[str, str] = {},
+                 auth: bool = True,
+                 data: bytes = None,
+                 headers: Dict[str, str] = {},
+                 ) -> requests.Response:
         method = method.upper()
 
         match method:
             case 'GET':
-                resp = self._get(url=url, accept=accept, params=params, auth=auth, headers=headers)
+                resp = self._get(url=url, accept=accept,
+                                 params=params, auth=auth, headers=headers)
             case 'DELETE':
-                resp = self._delete(url=url, accept=accept, params=params, auth=auth, headers=headers)
+                resp = self._delete(url=url, accept=accept,
+                                    params=params, auth=auth, headers=headers)
             case 'POST':
                 if data:
-                    resp = self._post_data(url=url, accept=accept, content_type=content_type, data=data, auth=auth, params=params, headers=headers)
+                    resp = self._post_data(url=url, accept=accept, content_type=content_type,
+                                           data=data, auth=auth, params=params, headers=headers)
                 else:
-                    resp = self._post(url=url, accept=accept, content_type=content_type, body=body, auth=auth, params=params, headers=headers)
+                    resp = self._post(url=url, accept=accept, content_type=content_type,
+                                      body=body, auth=auth, params=params, headers=headers)
             case 'PATCH':
-                resp = self._patch(url=url, accept=accept, content_type=content_type, body=body, auth=auth, headers=headers)
+                resp = self._patch(
+                    url=url, accept=accept, content_type=content_type, body=body, auth=auth, headers=headers)
             case 'PUT':
-                resp = self._put(url=url, accept=accept, content_type=content_type, body=body, auth=auth, headers=headers)
-        
+                resp = self._put(
+                    url=url, accept=accept, content_type=content_type, body=body, auth=auth, headers=headers)
+
         return self._handle_error_response(resp)
-    
-    def _get(self, url: str, accept: str, params: Dict[str, str], auth: bool=True, headers: Dict[str, str]={}):
+
+    def _get(self, url: str, accept: str, params: Dict[str, str], auth: bool = True, headers: Dict[str, str] = {}):
         cur_uri = self._join_uri(url)
         headers = self._prepare_headers(accept, auth=auth, headers=headers)
         response = self._get_session().get(
@@ -182,7 +217,7 @@ class IL2Client:
         )
         return response
 
-    def _delete(self, url: str, accept: str, params: Dict[str, str], auth: bool=True, headers: Dict[str, str]={}):
+    def _delete(self, url: str, accept: str, params: Dict[str, str], auth: bool = True, headers: Dict[str, str] = {}):
         cur_uri = self._join_uri(url)
         headers = self._prepare_headers(accept, auth=auth, headers=headers)
         response = self._get_session().delete(
@@ -193,9 +228,10 @@ class IL2Client:
         )
         return response
 
-    def _patch(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool=True, headers: Dict[str, str]={}):
+    def _patch(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool = True, headers: Dict[str, str] = {}):
         cur_uri = self._join_uri(url)
-        headers = self._prepare_headers(accept, content_type, auth=auth, headers=headers)
+        headers = self._prepare_headers(
+            accept, content_type, auth=auth, headers=headers)
         response = self._get_session().patch(
             url=cur_uri,
             headers=headers,
@@ -203,10 +239,11 @@ class IL2Client:
             timeout=self.timeout,
         )
         return response
-    
-    def _put(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool=True, headers: Dict[str, str]={}):
+
+    def _put(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool = True, headers: Dict[str, str] = {}):
         cur_uri = self._join_uri(url)
-        headers = self._prepare_headers(accept, content_type, auth=auth, headers=headers)
+        headers = self._prepare_headers(
+            accept, content_type, auth=auth, headers=headers)
         response = self._get_session().put(
             url=cur_uri,
             headers=headers,
@@ -215,9 +252,10 @@ class IL2Client:
         )
         return response
 
-    def _post(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool=True, params: Dict[str, str]={}, headers: Dict[str, str]={}):
+    def _post(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool = True, params: Dict[str, str] = {}, headers: Dict[str, str] = {}):
         cur_uri = self._join_uri(url)
-        headers = self._prepare_headers(accept, content_type, auth=auth, headers=headers)
+        headers = self._prepare_headers(
+            accept, content_type, auth=auth, headers=headers)
         response = self._get_session().post(
             url=cur_uri,
             headers=headers,
@@ -227,9 +265,10 @@ class IL2Client:
         )
         return response
 
-    def _post_data(self, url: str, accept: str, content_type: str, data: bytes, auth: bool=True, params: Dict[str, str]={}, headers: Dict[str, str]={}):
+    def _post_data(self, url: str, accept: str, content_type: str, data: bytes, auth: bool = True, params: Dict[str, str] = {}, headers: Dict[str, str] = {}):
         cur_uri = self._join_uri(url)
-        headers = self._prepare_headers(accept, content_type, auth=auth, headers=headers)
+        headers = self._prepare_headers(
+            accept, content_type, auth=auth, headers=headers)
         response = self._get_session().post(
             url=cur_uri,
             headers=headers,
@@ -239,7 +278,7 @@ class IL2Client:
         )
         return response
 
-    def _download_file(self, url: str, dst_path: str='./') -> str:
+    def _download_file(self, url: str, dst_path: str = './') -> str:
         cur_uri = self._join_uri(url)
         s = self._get_session()
         with s.get(cur_uri, stream=True, timeout=self.timeout) as r:
@@ -249,15 +288,12 @@ class IL2Client:
             d = r.headers['content-disposition']
             filename = re.findall("filename=(.+);", d)[0]
             filepath = os.path.expanduser(os.path.join(dst_path, filename))
-            with open(filepath, 'wb') as f :
-                shutil.copyfileobj(r.raw, f) 
+            with open(filepath, 'wb') as f:
+                shutil.copyfileobj(r.raw, f)
         return filepath
-    
+
     def _download_response(self, url: str) -> requests.Response:
         cur_uri = self._join_uri(url)
         s = self._get_session()
         resp = s.get(cur_uri, stream=True, timeout=self.timeout)
         return self._handle_error_response(resp)
-
-
-

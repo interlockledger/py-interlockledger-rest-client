@@ -1,15 +1,44 @@
+# Copyright (c) 2024, InterlockLedger Network
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 from enum import Enum
 from enum import IntEnum
 from enum import auto
 
-class AutoName(Enum) :
+
+class AutoName(Enum):
     """
     Base Enum class to automatically generate the enumerations values based on the enumeration name.
     """
     def _generate_next_value_(name, start, count, last_values):
         return name
 
-class Algorithms(AutoName) :
+
+class Algorithms(AutoName):
     """
     Enumeration of the digital signature algorithms available in IL2.
     """
@@ -21,11 +50,11 @@ class Algorithms(AutoName) :
     """
     RSASSA-PKCS1-v1_5
     """
-    DSA = auto()        
+    DSA = auto()
     """
     DSA
     """
-    ElGamal = auto()   
+    ElGamal = auto()
     """
     ElGamal signature
     """
@@ -37,10 +66,9 @@ class Algorithms(AutoName) :
     """
     Edwards-curve Digital Signature Algorithm
     """
-    
 
 
-class DataFieldCast(AutoName) :
+class DataFieldCast(AutoName):
     """
     Enumeration of casting options for DataField
     """
@@ -56,24 +84,25 @@ class DataFieldCast(AutoName) :
     TimeSpan = auto()
     """
     """
-    
 
-class CipherAlgorithms(AutoName) :
+
+class CipherAlgorithms(AutoName):
     """
     Enumeration of the cipher algorithms available in IL2.
     """
-    NONE = 'None'   
+    NONE = 'None'
     """
     """
-    AES256 = auto() # default
+    AES256 = auto()  # default
     """
     """
-    
+
     @classmethod
     def _missing_(cls, value):
-        return CipherAlgorithms.AES256   
+        return CipherAlgorithms.AES256
 
-class HashAlgorithms(AutoName) :
+
+class HashAlgorithms(AutoName):
     """
     Enumeration of the hash algorithms available in IL2.
     """
@@ -95,9 +124,9 @@ class HashAlgorithms(AutoName) :
     Copy = auto()
     """
     """
-    
 
-class KeyPurpose(AutoName) :
+
+class KeyPurpose(AutoName):
     """
     Enumeration of the purpose of keys in IL2.
     """
@@ -125,13 +154,13 @@ class KeyPurpose(AutoName) :
     ClaimSigner = auto()
     """
     """
-    
 
-class KeyStrength(AutoName) :
+
+class KeyStrength(AutoName):
     """
     Enumeration of the strength of keys.
     """
-    #Attributes:
+    # Attributes:
     #    Normal : RSA 2048
     #    Strong : RSA 3072
     #    ExtraStrong : RSA 4096
@@ -139,7 +168,7 @@ class KeyStrength(AutoName) :
     #    SuperStrong : RSA 6144
     #    HyperStrong : RSA 7172
     #    UltraStrong : RSA 8192
-    
+
     Normal = auto()        # RSA 2048
     """
     RSA 2048
@@ -170,7 +199,7 @@ class KeyStrength(AutoName) :
     """
 
 
-class NetworkProtocol(AutoName) :
+class NetworkProtocol(AutoName):
     """
     Enumeration of the network protocols.
     """
@@ -186,9 +215,9 @@ class NetworkProtocol(AutoName) :
     Originator_Only = auto()
     """
     """
-    
 
-class NetworkPredefinedPorts(IntEnum) :
+
+class NetworkPredefinedPorts(IntEnum):
     """
     Enumeration of the default ports of the IL2 networks.
     """
@@ -219,10 +248,9 @@ class NetworkPredefinedPorts(IntEnum) :
     TestNet_Liber = 32018
     """
     """
-    
 
 
-class RecordType(AutoName) :
+class RecordType(AutoName):
     """
     Enumeration of the types of Records available in IL2.
     """
@@ -241,8 +269,9 @@ class RecordType(AutoName) :
     Corrupted = auto()
     """
     """
-    
-class DocumentsCompression(AutoName) :
+
+
+class DocumentsCompression(AutoName):
     """
     Enumeration of the compression algorithm.
     """
@@ -258,4 +287,3 @@ class DocumentsCompression(AutoName) :
     ZSTD = auto()
     """
     """
-    

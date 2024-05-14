@@ -1,3 +1,30 @@
+# Copyright (c) 2024, InterlockLedger Network
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 from typing import List
 
 from ..models.base import ListModel
@@ -13,18 +40,19 @@ from ..models import (
 
 from .base import BaseApi
 
+
 class ChainApi(BaseApi):
     '''
     API class for the chain requests.
 
     Args:
         client (:obj:`pyil2.IL2Client`): IL2Client to be used to send requests.
-    
+
     Attributes:
         base_url (`str`): Base path of the requests.
     '''
 
-    base_url='chain'
+    base_url = 'chain'
 
     def list_chains(self) -> List[chain_models.ChainIdModel] | ErrorDetailsModel:
         """
@@ -53,7 +81,7 @@ class ChainApi(BaseApi):
         """
         if not isinstance(new_chain, chain_models.ChainCreationModel):
             raise ValueError("'new_chain' must be a ChainCreationModel.")
-        
+
         resp = self._client._request(
             url=f'{self.base_url}',
             method='post',
@@ -69,7 +97,7 @@ class ChainApi(BaseApi):
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-        
+
         Returns:
             :obj:`pyil2.models.chain.ChainSummaryModel`: Chain details.
         """
@@ -80,14 +108,14 @@ class ChainApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return chain_models.ChainSummaryModel(**resp.json())
-    
+
     def list_active_apps(self, chain_id: str) -> List[int] | ErrorDetailsModel:
         """
         Get the list os active apps in the chain.
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-        
+
         Returns:
             [:obj:`int`]: Enumerate apps that are currently permitted in this chain.
         """
@@ -105,7 +133,7 @@ class ChainApi(BaseApi):
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-        
+
         Returns:
             [:obj:`int`]: Enumerate apps that are currently permitted in this chain.
         """
@@ -117,13 +145,13 @@ class ChainApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return resp.json()
-    
+
     def list_interlockings(self,
-            chain_id: str,
-            page: int=0,
-            size: int=10,
-            how_many_from_last: int=0,
-        ) -> ListModel[InterlockingRecordModel] | ErrorDetailsModel:
+                           chain_id: str,
+                           page: int = 0,
+                           size: int = 10,
+                           how_many_from_last: int = 0,
+                           ) -> ListModel[InterlockingRecordModel] | ErrorDetailsModel:
         """
         Get list of interlocks registered in the chain.
 
@@ -149,7 +177,7 @@ class ChainApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return ListModel[InterlockingRecordModel](**resp.json())
-    
+
     def force_interlocking(self, chain_id: str, interlock: ForceInterlockModel) -> InterlockingRecordModel | ErrorDetailsModel:
         """
         Forces an interlock on a target chain.
@@ -163,7 +191,7 @@ class ChainApi(BaseApi):
         """
         if not isinstance(interlock, ForceInterlockModel):
             raise ValueError("'interlock' must be a ForceInterlockModel.")
-        
+
         resp = self._client._request(
             url=f'{self.base_url}/{chain_id}/interlockings',
             method='post',
@@ -172,14 +200,14 @@ class ChainApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return InterlockingRecordModel(**resp.json())
-    
+
     def list_keys(self, chain_id: str) -> List[keys_models.KeyDetailsModel] | ErrorDetailsModel:
         """
         List keys that are currently permitted in the chain.
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-        
+
         Returns:
             [:obj:`pyil2.models.keys.KeyDetailsModel`]: List of key details.
         """
@@ -190,27 +218,29 @@ class ChainApi(BaseApi):
         if isinstance(resp, ErrorDetailsModel):
             return resp
         return keys_models.KeyDetailsModel.validate_list_python(resp.json())
-    
-    def add_keys(self, 
-            chain_id: str,
-            keys_to_permit: List[keys_models.KeyDetailsModel]
-        ) -> List[keys_models.KeyDetailsModel] | ErrorDetailsModel:
+
+    def add_keys(self,
+                 chain_id: str,
+                 keys_to_permit: List[keys_models.KeyDetailsModel]
+                 ) -> List[keys_models.KeyDetailsModel] | ErrorDetailsModel:
         """
         Add keys to the permitted list for the chain.
-        
+
         Args:
             chain_id (:obj:`str`): Chain ID.
             keys_to_permit ([:obj:`pyil2.models.keys.KeyDetailsModel`]): List of keys to permitted.
-        
+
         Returns:
             [:obj:`pyil2.models.keys.KeyDetailsModel`]: List of key details.
         """
         if not isinstance(keys_to_permit, list):
-            raise ValueError("'keys_to_permit' must be a list of KeyDetailsModel.")
+            raise ValueError(
+                "'keys_to_permit' must be a list of KeyDetailsModel.")
         body = []
         for item in keys_to_permit:
             if not isinstance(item, keys_models.KeyDetailsModel):
-                raise ValueError("'keys_to_permit' must be a list of KeyDetailsModel.")
+                raise ValueError(
+                    "'keys_to_permit' must be a list of KeyDetailsModel.")
             body.append(item.model_dump(exclude_none=True, by_alias=True))
         resp = self._client._request(
             url=f'{self.base_url}/{chain_id}/key',

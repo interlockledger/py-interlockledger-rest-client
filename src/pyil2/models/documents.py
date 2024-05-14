@@ -1,3 +1,30 @@
+# Copyright (c) 2024, InterlockLedger Network
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 from typing import (
     Optional,
     List,
@@ -36,10 +63,11 @@ class DocumentUploadConfigurationModel(BaseCamelModel):
     """
     List of content types mime-type concatenated with acceptable filename extensions.
     """
-    timeout_in_minutes: int = Field(alias='timeOutInMinutes', default=0) 
+    timeout_in_minutes: int = Field(alias='timeOutInMinutes', default=0)
     """
     Timeout in minutes.
     """
+
 
 class BaseDocumentTransactionModel(BaseCamelModel):
     """
@@ -73,14 +101,13 @@ class BaseDocumentTransactionModel(BaseCamelModel):
     """
     Reference to a previous document locator.
     """
-    
 
 
 class BeginDocumentTransactionModel(BaseDocumentTransactionModel):
     """
     Begin document transaction model.
     """
-    
+
     iterations: Optional[int] = None
     """
     Override for the number of PBE iterations to generate the key.
@@ -102,7 +129,7 @@ class BeginDocumentTransactionModel(BaseDocumentTransactionModel):
     """
     Comment added for children records.
     """
-    
+
     @model_validator(mode='after')
     def validate_encrypted_password(self):
         if self.encryption and not self.password:
@@ -114,7 +141,7 @@ class DocumentTransactionModel(BaseDocumentTransactionModel):
     """
     Document transaction status model.
     """
-    
+
     can_commit_now: bool = False
     """
     If `True`, the transaction is able to be committed.
@@ -136,6 +163,7 @@ class DocumentTransactionModel(BaseDocumentTransactionModel):
     ID of the transaction to use when uploading each file and committing the transaction.
     """
 
+
 class EncryptionParameterModel(BaseCamelModel):
     """
     The parameters used to make the encryption of the set of documents.
@@ -149,7 +177,7 @@ class EncryptionParameterModel(BaseCamelModel):
     """
     Salt value to feed the cypher engine.
     """
-    
+
 
 class DirectoryEntryModel(BaseCamelModel):
     """
@@ -180,7 +208,7 @@ class DirectoryEntryModel(BaseCamelModel):
     """
     File size in bytes.
     """
-    
+
 
 class DocumentMetadataModel(BaseCamelModel):
     record_reference: Optional[str] = None
@@ -211,4 +239,3 @@ class DocumentMetadataModel(BaseCamelModel):
     """
     List of stored documents.
     """
-    

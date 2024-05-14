@@ -1,3 +1,30 @@
+# Copyright (c) 2024, InterlockLedger Network
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 from typing import Dict, List, Optional, Self
 from pydantic import Field, field_serializer, field_validator
 import datetime
@@ -5,6 +32,7 @@ import datetime
 from .base import BaseCamelModel
 from ..utils.range import LimitedRange
 from ..enum import DataFieldCast
+
 
 class DataFieldEnumeration(BaseCamelModel):
     id: int
@@ -27,7 +55,7 @@ class DataFieldEnumeration(BaseCamelModel):
 
         Args:
             value (:obj:`str`): A string with concatenated DataFieldEnumerations in string format.
-        
+
         Returns:
             [DataFieldEnumeration]: List of data field enumerations.
         """
@@ -44,13 +72,13 @@ class DataFieldEnumeration(BaseCamelModel):
             if len(v) >= 3 and v[2]:
                 cur_description = v[2]
             ret.append(DataFieldEnumeration(
-                    id=cur_id,
-                    name=cur_name,
-                    description=cur_description,
-                )
+                id=cur_id,
+                name=cur_name,
+                description=cur_description,
+            )
             )
         return ret
-    
+
     def to_il2_string(self) -> str:
         """
         :obj:`str`: IL2 string representation of the DataFieldEnumeration: #<int>|<str>|[<str>|]. 
@@ -59,15 +87,13 @@ class DataFieldEnumeration(BaseCamelModel):
         if self.description is not None:
             ret += f'{self.description}|'
         return ret
-    
-
 
 
 class DataFieldModel(BaseCamelModel):
     """
     Data field model.
     """
-    
+
     cast: Optional[DataFieldCast] = None
     """
     Type of the data field.
@@ -120,7 +146,7 @@ class DataFieldModel(BaseCamelModel):
             return raw
         ret = DataFieldEnumeration.from_concatenated_string(raw)
         return ret
-    
+
     @field_serializer('enumeration', when_used='json')
     @classmethod
     def serialize_enumeration(cls, value: List[DataFieldEnumeration]):
@@ -128,12 +154,13 @@ class DataFieldModel(BaseCamelModel):
         for item in value:
             ret += item.to_il2_string()
         return ret
-    
+
+
 class DataIndexElementModel(BaseCamelModel):
     """
     Data index element.
     """
-    
+
     descending_order: Optional[bool] = None
     """
     Indicate if the field is ordered in descending order.
@@ -146,12 +173,13 @@ class DataIndexElementModel(BaseCamelModel):
     """
     To be defined.
     """
-    
+
+
 class DataIndexModel(BaseCamelModel):
     """
     Index of the data model.
     """
-    
+
     elements: List[DataIndexElementModel] = Field(default_factory=list)
     """
     Elements of the index.
@@ -164,7 +192,8 @@ class DataIndexModel(BaseCamelModel):
     """
     Name of the index.
     """
-    
+
+
 class DataModel(BaseCamelModel):
     """
     Data model for the payloads and actions for the records the application stores in the chains.
@@ -194,14 +223,13 @@ class DataModel(BaseCamelModel):
     """
     Version of this data model, should start from 1.
     """
-    
 
 
 class InterlockAppTraitsModel(BaseCamelModel):
     """
     Interlock App details model.
     """
-    
+
     app_version: str
     """
     Application semantic version, with four numeric parts.
@@ -243,7 +271,7 @@ class InterlockAppTraitsModel(BaseCamelModel):
     """
     Version of the application.
     """
-    
+
     @field_validator('reserved_il_tag_ids', mode='before')
     @classmethod
     def pre_process_reserved_tags(cls, raw: List[str]) -> List[LimitedRange]:
@@ -251,7 +279,7 @@ class InterlockAppTraitsModel(BaseCamelModel):
         for item in raw:
             ret.append(LimitedRange.resolve(item))
         return ret
-    
+
     @field_serializer('reserved_il_tag_ids', when_used='json')
     @classmethod
     def serialize_reserved_tags(cls, value: List[LimitedRange]):
@@ -260,11 +288,12 @@ class InterlockAppTraitsModel(BaseCamelModel):
             ret.append(str(item))
         return ret
 
+
 class AppsModel(BaseCamelModel):
     """
     List of valid apps in the network.
     """
-    
+
     network: Optional[str] = None
     """
     Network name.
@@ -273,4 +302,3 @@ class AppsModel(BaseCamelModel):
     """
     Currently valid apps for this network.
     """
-    

@@ -49,3 +49,7 @@ encrypted_json = json_api.add_json_document(
     }
 )
 ```
+
+## License
+
+This program is licensed under the BSD 3-Clause License.

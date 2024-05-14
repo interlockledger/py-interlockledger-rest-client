@@ -1,3 +1,30 @@
+# Copyright (c) 2024, InterlockLedger Network
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 from .base import BaseApiTest
 from src.pyil2.models.base import ListModel
 from src.pyil2.models import (
@@ -7,11 +34,12 @@ from src.pyil2.models import (
     record as record_models,
 )
 
+
 class RecordApiTest(BaseApiTest):
     def setUp(self):
         super().setUp()
         self.api = self.client.api('record')
-    
+
     def test_list_records(self):
         chains = self.api.list_records(self.default_chain)
         self.assertIsInstance(chains, ListModel)
@@ -21,7 +49,7 @@ class RecordApiTest(BaseApiTest):
             self.assertIsInstance(item.payload_bytes, bytes)
         if chains.items:
             self.assertEqual(chains.items[0].serial, 0)
-    
+
     def test_list_records_last_to_first(self):
         chains = self.api.list_records(self.default_chain, last_to_first=True)
         self.assertIsInstance(chains, ListModel)
@@ -30,7 +58,7 @@ class RecordApiTest(BaseApiTest):
         if chains.items:
             self.assertNotEqual(chains.items[0].serial, 0)
         self.assertTrue(chains.last_to_first)
-    
+
     def test_list_records_page_params(self):
         chains = self.api.list_records(self.default_chain, page=1, size=1)
         self.assertIsInstance(chains, ListModel)
@@ -40,7 +68,7 @@ class RecordApiTest(BaseApiTest):
             self.assertNotEqual(chains.items[0].serial, 0)
         self.assertEqual(chains.page_size, 1)
         self.assertEqual(chains.page, 1)
-    
+
     def test_list_records_first_serial(self):
         chains = self.api.list_records(self.default_chain, first_serial=1)
         self.assertIsInstance(chains, ListModel)
@@ -50,20 +78,21 @@ class RecordApiTest(BaseApiTest):
             self.assertEqual(chains.items[0].serial, 1)
 
     def test_list_records_last_serial(self):
-        chains = self.api.list_records(self.default_chain, last_serial=1, last_to_first=True)
+        chains = self.api.list_records(
+            self.default_chain, last_serial=1, last_to_first=True)
         self.assertIsInstance(chains, ListModel)
         for item in chains.items:
             self.assertIsInstance(item, record_models.RecordModel)
         if chains.items:
             self.assertEqual(chains.items[0].serial, 1)
-    
+
     def test_list_records_ommit_payload(self):
         chains = self.api.list_records(self.default_chain, ommit_payload=True)
         self.assertIsInstance(chains, ListModel)
         for item in chains.items:
             self.assertIsInstance(item, record_models.RecordModel)
             self.assertIsNone(item.payload_bytes)
-    
+
     def test_add_record(self):
         new_record = record_models.NewRecordModel(
             application_id=3,
@@ -71,7 +100,7 @@ class RecordApiTest(BaseApiTest):
         )
         record = self.api.add_record(self.default_chain, new_record)
         self.assertIsInstance(record, record_models.RecordModel)
-    
+
     def test_add_record_invalid_payload(self):
         new_record = record_models.NewRecordModel(
             application_id=3,
@@ -79,25 +108,26 @@ class RecordApiTest(BaseApiTest):
         )
         record = self.api.add_record(self.default_chain, new_record)
         self.assertIsInstance(record, errors.ErrorDetailsModel)
-    
+
     def test_get_record_at(self):
         record = self.api.get_record_at(self.default_chain, 0)
         self.assertIsInstance(record, record_models.RecordModel)
         self.assertEqual(record.serial, 0)
-    
+
     def test_record_query(self):
-        chains = self.api.query_records(self.default_chain, query="USE APP #3\nEVERYTHING")
+        chains = self.api.query_records(
+            self.default_chain, query="USE APP #3\nEVERYTHING")
         self.assertIsInstance(chains, ListModel)
         self.assertFalse(chains.last_to_first)
         for item in chains.items:
             self.assertIsInstance(item, record_models.RecordModel)
             self.assertIsInstance(item.payload_bytes, bytes)
             self.assertEqual(chains.items[0].application_id, 3)
-    
+
     def test_record_query_how_many(self):
         chains = self.api.query_records(
-            self.default_chain, 
-            query="USE APP #3\nEVERYTHING", 
+            self.default_chain,
+            query="USE APP #3\nEVERYTHING",
             how_many=1
         )
         self.assertIsInstance(chains, ListModel)
@@ -107,7 +137,7 @@ class RecordApiTest(BaseApiTest):
             self.assertIsInstance(item, record_models.RecordModel)
             self.assertIsInstance(item.payload_bytes, bytes)
             self.assertEqual(chains.items[0].application_id, 3)
-    
+
     def test_record_query_from_last_ommit(self):
         chains = self.api.query_records(
             self.default_chain,
@@ -123,11 +153,11 @@ class RecordApiTest(BaseApiTest):
             self.assertEqual(chains.items[0].application_id, 3)
         if len(chains.items) > 1:
             self.assertGreater(chains.items[0].serial, chains.items[1].serial)
-    
+
     def test_record_query_page(self):
         chains = self.api.query_records(
-            self.default_chain, 
-            query="USE APP #3\nEVERYTHING", 
+            self.default_chain,
+            query="USE APP #3\nEVERYTHING",
             page=1,
             size=2
         )
@@ -135,7 +165,7 @@ class RecordApiTest(BaseApiTest):
         self.assertFalse(chains.last_to_first)
         self.assertLessEqual(len(chains.items), 2)
         self.assertEqual(chains.page, 1)
-    
+
     def test_list_records_as_json(self):
         chains = self.api.list_records_as_json(self.default_chain)
         self.assertIsInstance(chains, ListModel)
@@ -145,18 +175,18 @@ class RecordApiTest(BaseApiTest):
             self.assertIsInstance(item.payload, dict)
         if chains.items:
             self.assertEqual(chains.items[0].serial, 0)
-    
+
     def test_get_record_at_as_json(self):
         record = self.api.get_record_at_as_json(self.default_chain, 0)
         self.assertIsInstance(record, record_models.RecordAsJsonModel)
         self.assertEqual(record.serial, 0)
-    
+
     def test_record_query_as_json(self):
-        chains = self.api.query_records_as_json(self.default_chain, query="USE APP #3\nEVERYTHING")
+        chains = self.api.query_records_as_json(
+            self.default_chain, query="USE APP #3\nEVERYTHING")
         self.assertIsInstance(chains, ListModel)
         self.assertFalse(chains.last_to_first)
         for item in chains.items:
             self.assertIsInstance(item, record_models.RecordAsJsonModel)
             self.assertIsInstance(item.payload, dict)
             self.assertEqual(chains.items[0].application_id, 3)
-    
