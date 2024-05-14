@@ -57,7 +57,7 @@ class NewRecordModel(BaseCamelModel):
     """
     Payload bytes.
     """
-    type: RecordType = Field(default=RecordType.Data)
+    type: RecordType = Field(default=RecordType.DATA)
     """
     Block type. Most records are of the type 'Data'.
     """
@@ -103,7 +103,7 @@ class BaseRecordModel(BaseCamelModel):
     """
     Block serial number. For the first record this value is zero (0).
     """
-    type: RecordType = Field(default=RecordType.Root)
+    type: RecordType = Field(default=RecordType.ROOT)
     """
     Block type. Most records are of the type 'Data'.
     """
@@ -167,7 +167,7 @@ class ForceInterlockModel(BaseCamelModel):
     Force interlock parameter details.
     """
 
-    hash_algorithm: HashAlgorithms = Field(default=HashAlgorithms.Copy)
+    hash_algorithm: HashAlgorithms = Field(default=HashAlgorithms.COPY)
     """
     Hash algorithm to use.
     """

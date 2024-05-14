@@ -129,7 +129,7 @@ class ChainCreationModel(BaseCamelModel):
     Emergency closing key password.
     """
     emergency_closing_key_strength: KeyStrength = Field(
-        default=KeyStrength.ExtraStrong)
+        default=KeyStrength.EXTRA_STRONG)
     """
     Emergency closing key strength of key.
     """
@@ -141,7 +141,7 @@ class ChainCreationModel(BaseCamelModel):
     """
     Key management key password.
     """
-    management_key_strength: KeyStrength = Field(default=KeyStrength.Strong)
+    management_key_strength: KeyStrength = Field(default=KeyStrength.STRONG)
     """
     Key management strength of key.
     """
@@ -149,7 +149,7 @@ class ChainCreationModel(BaseCamelModel):
     """
     Name of the chain.
     """
-    operating_key_strength: KeyStrength = Field(default=KeyStrength.Normal)
+    operating_key_strength: KeyStrength = Field(default=KeyStrength.NORMAL)
     """
     Operating key strength of key.
     """

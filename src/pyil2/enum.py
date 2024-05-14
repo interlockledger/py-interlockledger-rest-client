@@ -45,15 +45,15 @@ class Algorithms(Enum):
     """
     DSA
     """
-    ElGamal = 'ElGamal'
+    EL_GAMMAL = 'ElGamal'
     """
     ElGamal signature
     """
-    EcDSA = 'EcDSA'
+    ECDSA = 'EcDSA'
     """
     Elliptic Curve Digital Signature Algorithm
     """
-    EdDSA = 'EdDSA'
+    EDDSA = 'EdDSA'
     """
     Edwards-curve Digital Signature Algorithm
     """
@@ -66,13 +66,13 @@ class DataFieldCast(Enum):
     NONE = 'None'
     """
     """
-    DateTime = 'DateTime'
+    DATETIME = 'DateTime'
     """
     """
-    Integer = 'Integer'
+    INTEGER = 'Integer'
     """
     """
-    TimeSpan = 'TimeSpan'
+    TIMESPAN = 'TimeSpan'
     """
     """
 
@@ -112,7 +112,7 @@ class HashAlgorithms(Enum):
     SHA3_512 = 'SHA3_512'
     """
     """
-    Copy = 'Copy'
+    COPY = 'Copy'
     """
     """
 
@@ -121,28 +121,28 @@ class KeyPurpose(Enum):
     """
     Enumeration of the purpose of keys in IL2.
     """
-    Action = 'Action'
+    ACTION = 'Action'
     """
     """
-    ChainOperation = 'ChainOperation'
+    CHAIN_OPERATION = 'ChainOperation'
     """
     """
-    Encryption = 'Encryption'
+    ENCRYPTION = 'Encryption'
     """
     """
-    ForceInterlock = 'ForceInterlock'
+    FORCE_INTERLOCK = 'ForceInterlock'
     """
     """
-    KeyManagement = 'KeyManagement'
+    KEY_MANAGEMENT = 'KeyManagement'
     """
     """
-    Protocol = 'Protocol'
+    PROTOCOL = 'Protocol'
     """
     """
-    InvalidKey = 'InvalidKey'
+    INVALID_KEY = 'InvalidKey'
     """
     """
-    ClaimSigner = 'ClaimSigner'
+    CLAIM_SIGNER = 'ClaimSigner'
     """
     """
 
@@ -160,31 +160,31 @@ class KeyStrength(Enum):
     #    HyperStrong : RSA 7172
     #    UltraStrong : RSA 8192
 
-    Normal = 'Normal'        # RSA 2048
+    NORMAL = 'Normal'        # RSA 2048
     """
     RSA 2048
     """
-    Strong = 'Strong'        # RSA 3072
+    STRONG = 'Strong'        # RSA 3072
     """
     RSA 3072
     """
-    ExtraStrong = 'ExtraStrong'   # RSA 4096
+    EXTRA_STRONG = 'ExtraStrong'   # RSA 4096
     """
     RSA 4096
     """
-    MegaStrong = 'MegaStrong'    # RSA 5120
+    MEGA_STRONG = 'MegaStrong'    # RSA 5120
     """
     RSA 5120
     """
-    SuperStrong = 'SuperStrong'   # RSA 6144
+    SUPER_STRONG = 'SuperStrong'   # RSA 6144
     """
     RSA 6144
     """
-    HyperStrong = 'HyperStrong'   # RSA 7172
+    HYPER_STRONG = 'HyperStrong'   # RSA 7172
     """
     RSA 7172
     """
-    UltraStrong = 'UltraStrong'   # RSA 8192
+    ULTRA_STRONG = 'UltraStrong'   # RSA 8192
     """
     RSA 8192
     """
@@ -194,16 +194,16 @@ class NetworkProtocol(Enum):
     """
     Enumeration of the network protocols.
     """
-    TCP_Direct = 'TCP_Direct'
+    TCP_DIRECT = 'TCP_Direct'
     """
     """
-    TCP_Proxied = 'TCP_Proxied'
+    TCP_PROXIED = 'TCP_Proxied'
     """
     """
-    HTTPS_Proxied = 'HTTPS_Proxied'
+    HTTPS_PROXIED = 'HTTPS_Proxied'
     """
     """
-    Originator_Only = 'Originator_Only'
+    ORIGINATOR_ONLY = 'Originator_Only'
     """
     """
 
@@ -212,31 +212,31 @@ class NetworkPredefinedPorts(IntEnum):
     """
     Enumeration of the default ports of the IL2 networks.
     """
-    MainNet = 32032
+    MAINNET = 32032
     """
     """
-    MetaNet = 32036
+    METANET = 32036
     """
     """
-    TestNet_Jupiter = 32030
+    TESTNET_JUPITER = 32030
     """
     """
-    TestNet_Saturn = 32028
+    TESTNET_SATURN = 32028
     """
     """
-    TestNet_Neptune = 32026
+    TESTNET_NEPTUNE = 32026
     """
     """
-    TestNet_Minerva = 32024
+    TESTNET_MINERVA = 32024
     """
     """
-    TestNet_Janus = 32022
+    TESTNET_JANUS = 32022
     """
     """
-    TestNet_Apollo = 32020
+    TESTNET_APOLLO = 32020
     """
     """
-    TestNet_Liber = 32018
+    TESTNET_LIBER = 32018
     """
     """
 
@@ -245,19 +245,19 @@ class RecordType(Enum):
     """
     Enumeration of the types of Records available in IL2.
     """
-    Data = 'Data'
+    DATA = 'Data'
     """
     """
-    Root = 'Root'
+    ROOT = 'Root'
     """
     """
-    Closing = 'Closing'
+    CLOSING = 'Closing'
     """
     """
-    EmergencyClosing = 'EmergencyClosing'
+    EMERGENCY_CLOSING = 'EmergencyClosing'
     """
     """
-    Corrupted = 'Corrupted'
+    CORRUPTED = 'Corrupted'
     """
     """
 

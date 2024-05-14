@@ -47,7 +47,7 @@ class CertificatePermitModelTest(TestCase):
                 "#8,2100"
             ],
             "purposes": [
-                KeyPurpose.Protocol,
+                KeyPurpose.PROTOCOL,
                 "Action",
                 "KeyManagement"
             ],
@@ -86,7 +86,7 @@ class CertificatePermitModelTest(TestCase):
                 "#8,2100"
             ],
             "purposes": [
-                KeyPurpose.Protocol,
+                KeyPurpose.PROTOCOL,
                 "Action",
                 "KeyManagement"
             ],
@@ -113,7 +113,7 @@ class CertificatePermitModelTest(TestCase):
                 AppPermissions.resolve("#1,300,301")
             ],
             "purposes": [
-                KeyPurpose.Protocol,
+                KeyPurpose.PROTOCOL,
                 "Action",
                 "KeyManagement"
             ],
