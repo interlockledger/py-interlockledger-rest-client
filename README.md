@@ -2,6 +2,10 @@
 
 This package is a python client to the InterlockLedger Node REST API. It connects to InterlockLedger nodes, allowing the creation of chains, interlocks, and storage of records and documents.
 
+This library replaces the original client, 
+[interlockledger-rest-client-python](https://github.com/interlockledger/interlockledger-rest-client-python),
+that is now deprecated.
+
 ## The InterlockLedger
 
 An InterlockLedger network is a peer-to-peer network of nodes. Each node runs the InterlockLedger software. All communication between nodes is point-to-point and digitally signed, but not mandatorily encrypted. This means that data is shared either publicly or on a need-to-know basis, depending on the application.
