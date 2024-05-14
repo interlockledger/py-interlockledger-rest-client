@@ -28,6 +28,10 @@ importantly, any external logic can validate the multiple dimensions of validity
 -   InterlockLedger:
     -   API 14.0.0
 
+## Documentation
+
+The documentation for this library can be found at [here](https://interlockledger.github.io/py-interlockledger-rest-client/).
+
 ## Example
 
 How to use the interlockledger rest client. This example will show how to list the chains in a node and store an encrypted JSON document in the first chain:
