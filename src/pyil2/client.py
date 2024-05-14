@@ -126,8 +126,7 @@ class IL2Client:
             case 'documents':
                 return api.DocumentsApi(self)
             case _:
-                raise ValueError(f'No API with name {name} found. Must be in {
-                                 self._available_apis}')
+                raise ValueError(f'No API with name {name} found. Must be in {self._available_apis}')
 
     def _get_session(self) -> requests.Session:
         if not self._session:
