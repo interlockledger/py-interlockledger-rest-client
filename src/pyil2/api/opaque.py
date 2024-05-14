@@ -118,7 +118,7 @@ class OpaqueApi(BaseApi):
     def query_opaque(self,
                      chain_id: str,
                      application_id: int,
-                     payload_type_ids: List[int] = [],
+                     payload_type_ids: List[int] = None,
                      how_many: int = None,
                      last_to_first: bool = False,
                      page: int = 0,
