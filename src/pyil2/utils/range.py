@@ -49,7 +49,7 @@ class LimitedRange:
 
     def __init__(self, start: int, count: int = 1, end: int = None) -> None:
         if count == 0:
-            raise ValueError(f'count is out of range')
+            raise ValueError('Count is out of range')
 
         self.start = start
         if end is None:
@@ -96,7 +96,7 @@ class LimitedRange:
         Returns:
             :obj:`bool`: Return item in self.
         """
-        if type(item) is LimitedRange:
+        if isinstance(item, LimitedRange):
             return self.__contains__(item.start) and self.__contains__(item.end)
         else:
             return (self.start <= item) and (item <= self.end)

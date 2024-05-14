@@ -26,14 +26,13 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import contextlib
+import urllib.parse
 import os
 import re
 import shutil
 import tempfile
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List
 import requests
-import urllib.parse
-from base64 import b64encode
 from .utils.certificates import PKCS12Certificate
 from . import api
 from .models.errors import ErrorDetailsModel
@@ -155,7 +154,7 @@ class IL2Client:
     def _join_uri(self, url: str):
         return urllib.parse.urljoin(self.host, url)
 
-    def _prepare_headers(self, accept: str, content_type: str = None, auth: bool = True, headers: Dict[str, str] = None):
+    def _prepare_headers(self, accept: str, content_type: str = None, headers: Dict[str, str] = None):
         if not headers:
             headers = {}
         headers['Accept'] = accept
@@ -179,7 +178,6 @@ class IL2Client:
             content_type: str = 'application/json',
             body: Dict[str, Any] = None,
             params: Dict[str, str] = None,
-            auth: bool = True,
             data: bytes = None,
             headers: Dict[str, str] = None,
         ) -> requests.Response:
@@ -187,29 +185,29 @@ class IL2Client:
         match method:
             case 'GET':
                 resp = self._get(url=url, accept=accept,
-                                 params=params, auth=auth, headers=headers)
+                                 params=params, headers=headers)
             case 'DELETE':
                 resp = self._delete(url=url, accept=accept,
-                                    params=params, auth=auth, headers=headers)
+                                    params=params, headers=headers)
             case 'POST':
                 if data:
                     resp = self._post_data(url=url, accept=accept, content_type=content_type,
-                                           data=data, auth=auth, params=params, headers=headers)
+                                           data=data, params=params, headers=headers)
                 else:
                     resp = self._post(url=url, accept=accept, content_type=content_type,
-                                      body=body, auth=auth, params=params, headers=headers)
+                                      body=body, params=params, headers=headers)
             case 'PATCH':
                 resp = self._patch(
-                    url=url, accept=accept, content_type=content_type, body=body, auth=auth, headers=headers)
+                    url=url, accept=accept, content_type=content_type, body=body, headers=headers)
             case 'PUT':
                 resp = self._put(
-                    url=url, accept=accept, content_type=content_type, body=body, auth=auth, headers=headers)
+                    url=url, accept=accept, content_type=content_type, body=body, headers=headers)
 
         return self._handle_error_response(resp)
 
-    def _get(self, url: str, accept: str, params: Dict[str, str], auth: bool = True, headers: Dict[str, str] = None):
+    def _get(self, url: str, accept: str, params: Dict[str, str], headers: Dict[str, str] = None):
         cur_uri = self._join_uri(url)
-        headers = self._prepare_headers(accept, auth=auth, headers=headers)
+        headers = self._prepare_headers(accept, headers=headers)
         response = self._get_session().get(
             cur_uri,
             headers=headers,
@@ -218,9 +216,9 @@ class IL2Client:
         )
         return response
 
-    def _delete(self, url: str, accept: str, params: Dict[str, str], auth: bool = True, headers: Dict[str, str] = None):
+    def _delete(self, url: str, accept: str, params: Dict[str, str], headers: Dict[str, str] = None):
         cur_uri = self._join_uri(url)
-        headers = self._prepare_headers(accept, auth=auth, headers=headers)
+        headers = self._prepare_headers(accept, headers=headers)
         response = self._get_session().delete(
             cur_uri,
             headers=headers,
@@ -229,10 +227,10 @@ class IL2Client:
         )
         return response
 
-    def _patch(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool = True, headers: Dict[str, str] = None):
+    def _patch(self, url: str, accept: str, content_type: str, body: Dict[str, Any], headers: Dict[str, str] = None):
         cur_uri = self._join_uri(url)
         headers = self._prepare_headers(
-            accept, content_type, auth=auth, headers=headers)
+            accept, content_type, headers=headers)
         response = self._get_session().patch(
             url=cur_uri,
             headers=headers,
@@ -241,10 +239,10 @@ class IL2Client:
         )
         return response
 
-    def _put(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool = True, headers: Dict[str, str] = None):
+    def _put(self, url: str, accept: str, content_type: str, body: Dict[str, Any], headers: Dict[str, str] = None):
         cur_uri = self._join_uri(url)
         headers = self._prepare_headers(
-            accept, content_type, auth=auth, headers=headers)
+            accept, content_type, headers=headers)
         response = self._get_session().put(
             url=cur_uri,
             headers=headers,
@@ -253,11 +251,11 @@ class IL2Client:
         )
         return response
 
-    def _post(self, url: str, accept: str, content_type: str, body: Dict[str, Any], auth: bool = True, params: Dict[str, str] = None,
+    def _post(self, url: str, accept: str, content_type: str, body: Dict[str, Any], params: Dict[str, str] = None,
               headers: Dict[str, str] = None):
         cur_uri = self._join_uri(url)
         headers = self._prepare_headers(
-            accept, content_type, auth=auth, headers=headers)
+            accept, content_type, headers=headers)
         response = self._get_session().post(
             url=cur_uri,
             headers=headers,
@@ -267,11 +265,11 @@ class IL2Client:
         )
         return response
 
-    def _post_data(self, url: str, accept: str, content_type: str, data: bytes, auth: bool = True,
+    def _post_data(self, url: str, accept: str, content_type: str, data: bytes, 
                    params: Dict[str, str] = None, headers: Dict[str, str] = None):
         cur_uri = self._join_uri(url)
         headers = self._prepare_headers(
-            accept, content_type, auth=auth, headers=headers)
+            accept, content_type, headers=headers)
         response = self._get_session().post(
             url=cur_uri,
             headers=headers,

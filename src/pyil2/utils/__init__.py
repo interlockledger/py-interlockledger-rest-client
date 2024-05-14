@@ -47,6 +47,9 @@ def aes_decrypt(msg: bytes, key: bytes, iv: bytes) -> bytes:
 
 
 class AppPermissions:
+    """
+    Apps permissions.
+    """
     def __init__(self, app_id: int, action_ids: List[int] = list):
         self.app_id = app_id
         self.action_ids = action_ids
@@ -69,7 +72,10 @@ class AppPermissions:
         return cls(app_id=app_id, action_ids=action_ids)
 
     def __str__(self):
-        """ :obj:`str`: String representation of app permissions in the JSON format ('#<appId>[,<actionId_1>,...,<actionId_n>]')."""
+        """ 
+        :obj:`str`: String representation of app permissions 
+            in the JSON format ('#<appId>[,<actionId_1>,...,<actionId_n>]').
+        """
         if self.action_ids:
             return f"#{self.app_id},{','.join([str(item) for item in self.action_ids])}"
         return f"#{self.app_id}"

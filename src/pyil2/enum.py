@@ -34,6 +34,7 @@ class AutoName(Enum):
     """
     Base Enum class to automatically generate the enumerations values based on the enumeration name.
     """
+    @staticmethod
     def _generate_next_value_(name, start, count, last_values):
         return name
 
