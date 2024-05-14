@@ -76,8 +76,7 @@ class LimitedRange:
         parts = text.replace('[', '').replace(']', '').split('-')
         if len(parts) == 1:
             return cls(int(parts[0]))
-        else:
-            return cls(int(parts[0]), end=int(parts[1]))
+        return cls(int(parts[0]), end=int(parts[1]))
 
     def __str__(self) -> str:
         """ :obj:`str`: String representation of self. """
@@ -99,8 +98,7 @@ class LimitedRange:
         """
         if isinstance(item, LimitedRange):
             return self.__contains__(item.start) and self.__contains__(item.end)
-        else:
-            return (self.start <= item) and (item <= self.end)
+        return self.start <= item <= self.end
 
     def overlaps_with(self, other: Self) -> bool:
         """
