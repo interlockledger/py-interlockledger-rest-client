@@ -52,4 +52,10 @@ encrypted_json = json_api.add_json_document(
 
 ## License
 
-This program is licensed under the BSD 3-Clause License.
+This program is licensed under the **BSD 3-Clause License**.
+
+## Contributions
+
+We are not actively looking for contributions but if you want to help, feel free
+to do so via the [project's gitHub page](https://github.com/interlockledger/py-interlockledger-rest-client).
+
