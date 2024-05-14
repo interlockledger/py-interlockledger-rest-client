@@ -47,10 +47,14 @@ def aes_decrypt(msg: bytes, key: bytes, iv: bytes) -> bytes:
 
 
 class AppPermissions:
-    """
-    Apps permissions.
-    """
     def __init__(self, app_id: int, action_ids: List[int] = list):
+        """
+        Apps permissions model.
+
+        Args:
+            app_id (:obj:`int`): App identifier.
+            actions_ids ([:obj:`int`]): List of actions.
+        """
         self.app_id = app_id
         self.action_ids = action_ids
 
@@ -60,7 +64,8 @@ class AppPermissions:
         Parse a string into an :obj:`AppPermissions` object.
 
         Args:
-            permissions (:obj:`str`): App permissions in the format used by the JSON response ('#<appId>,<actionId_1>,...,<actionId_n>').
+            permissions (:obj:`str`): App permissions in the format used by \
+                the JSON response ('#<appId>,<actionId_1>,...,<actionId_n>').
 
         Returns:
             :obj:`AppPermissions`: return an :obj:`AppPermissions` instance.

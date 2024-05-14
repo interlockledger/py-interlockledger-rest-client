@@ -162,7 +162,8 @@ class EncryptedTextModel(BaseCamelModel):
             {:obj:`str`: Any}: Decoded JSON.
 
         Raises:
-            `ValueError`: If there is no encrypted text or the certificate is not in the reading keys.
+            `ValueError`: If there is no encrypted text or the certificate is not \
+                in the reading keys.
 
         """
         if not self.cipher:

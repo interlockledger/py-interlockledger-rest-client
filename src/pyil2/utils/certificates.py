@@ -68,9 +68,11 @@ class PKCS12Certificate:
     def private_key(self) -> bytes:
         """:obj:`bytes`: Certificate private key."""
         # return crypto.dump_privatekey(crypto.FILETYPE_PEM, self._pkcs12_cert.get_privatekey())
-        return self._pkcs12_cert[0].private_bytes(encoding=serialization.Encoding.PEM,
-                                                  format=serialization.PrivateFormat.PKCS8,
-                                                  encryption_algorithm=serialization.NoEncryption())
+        return self._pkcs12_cert[0].private_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.PKCS8,
+            encryption_algorithm=serialization.NoEncryption()
+        )
 
     @property
     def public_certificate(self) -> bytes:

@@ -44,13 +44,14 @@ class OpaqueApi(BaseApi):
     '''
     base_url = 'opaque/'
 
-    def add_opaque(self,
-                   chain_id: str,
-                   application_id: int,
-                   payload_type_id: int,
-                   payload: bytes,
-                   last_changed_serial: int = None,
-                   ) -> OpaqueRecordModel | ErrorDetailsModel:
+    def add_opaque(
+            self,
+            chain_id: str,
+            application_id: int,
+            payload_type_id: int,
+            payload: bytes,
+            last_changed_serial: int = None,
+        ) -> OpaqueRecordModel | ErrorDetailsModel:
         """
         Add an opaque record in a chain.
 
@@ -63,7 +64,8 @@ class OpaqueApi(BaseApi):
             application_id (`int`): Application ID for the block.
             payload_type_id (`int`): The payload's Type ID.
             payload (`bytes`): Payload bytes.
-            last_changed_serial (:obj:`int`): The serial number that the last record in the chain must be equal.
+            last_changed_serial (:obj:`int`): The serial number that the last record \
+                in the chain must be equal.
 
         Returns:
             :obj:`pyil2.models.record.OpaqueRecordModel`: Opaque record details.
@@ -86,7 +88,11 @@ class OpaqueApi(BaseApi):
             return resp
         return OpaqueRecordModel(**resp.json())
 
-    def get_opaque(self, chain_id: str, serial: int) -> OpaqueRecordModel | ErrorDetailsModel:
+    def get_opaque(
+            self,
+            chain_id: str,
+            serial: int
+        ) -> OpaqueRecordModel | ErrorDetailsModel:
         """
         Get an opaque record in a chain by serial number.
 
@@ -115,15 +121,16 @@ class OpaqueApi(BaseApi):
         )
         return model
 
-    def query_opaque(self,
-                     chain_id: str,
-                     application_id: int,
-                     payload_type_ids: List[int] = None,
-                     how_many: int = None,
-                     last_to_first: bool = False,
-                     page: int = 0,
-                     size: int = 10,
-                     ) -> ListModel[OpaqueRecordModel] | ErrorDetailsModel:
+    def query_opaque(
+            self,
+            chain_id: str,
+            application_id: int,
+            payload_type_ids: List[int] = None,
+            how_many: int = None,
+            last_to_first: bool = False,
+            page: int = 0,
+            size: int = 10,
+        ) -> ListModel[OpaqueRecordModel] | ErrorDetailsModel:
         """
         Query opaque records in a chain.
 
@@ -137,7 +144,9 @@ class OpaqueApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.OpaqueRecordModel`]: List of opaque records in a chain.
+            :obj:`pyil2.models.base.ListModel` \
+                [:obj:`pyil2.models.record.OpaqueRecordModel`]: \
+                List of opaque records in a chain.
         """
         params = {
             "appId": application_id,

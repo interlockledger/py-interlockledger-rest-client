@@ -45,29 +45,33 @@ class RecordApi(BaseApi):
 
     base_url = 'records@'
 
-    def list_records(self,
-                     chain_id: str,
-                     first_serial: int = None,
-                     last_serial: int = None,
-                     last_to_first: bool = False,
-                     ommit_payload: bool = False,
-                     page: int = 0,
-                     size: int = 10,
-                     ) -> ListModel[record_models.RecordModel] | ErrorDetailsModel:
+    def list_records(
+            self,
+            chain_id: str,
+            first_serial: int = None,
+            last_serial: int = None,
+            last_to_first: bool = False,
+            ommit_payload: bool = False,
+            page: int = 0,
+            size: int = 10,
+        ) -> ListModel[record_models.RecordModel] | ErrorDetailsModel:
         """
         Get a list of records in a chain.
 
         Args:
             chain_id (`str`): Chain ID.
-            first_serial (`int`): Serial number of first record to read. Default: First in whole chain.
-            last_serial (`int`): Serial number of last record to read. Default: Last in whole chain.
+            first_serial (`int`): Serial number of first record to read. \
+                Default: First in whole chain.
+            last_serial (`int`): Serial number of last record to read. \
+                Default: Last in whole chain.
             last_to_first (`bool`): If `True`, return the items in reverse order.
             ommit_payload (`bool`): If `True`, ommits the payload in the response.
             page (:obj:`int`): Page to return.
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.RecordModel`]: List of records in a chain.
+            :obj:`pyil2.models.base.ListModel` \
+                [:obj:`pyil2.models.record.RecordModel`]: List of records in a chain.
         """
         params = {
             "page": page,
@@ -89,10 +93,11 @@ class RecordApi(BaseApi):
             return resp
         return ListModel[record_models.RecordModel](**resp.json())
 
-    def add_record(self,
-                   chain_id: str,
-                   new_record: record_models.NewRecordModel
-                   ) -> record_models.RecordModel | ErrorDetailsModel:
+    def add_record(
+            self,
+            chain_id: str,
+            new_record: record_models.NewRecordModel
+        ) -> record_models.RecordModel | ErrorDetailsModel:
         """
         Add a new record using raw bytes. 
         The payload must be in the correct application ID format in Base64.
@@ -102,7 +107,8 @@ class RecordApi(BaseApi):
 
         Args:
             chain_id (`str`): Chain ID.
-            new_record (:obj:`pyil2.models.record.NewRecordModel`): Model with the description of the new record.
+            new_record (:obj:`pyil2.models.record.NewRecordModel`): \
+                Model with the description of the new record.
 
         Returns:
             :obj:`pyil2.models.record.RecordModel`: Added record model.
@@ -118,10 +124,11 @@ class RecordApi(BaseApi):
             return resp
         return record_models.RecordModel(**resp.json())
 
-    def get_record_at(self,
-                      chain_id: str,
-                      serial: int,
-                      ) -> record_models.RecordModel | ErrorDetailsModel:
+    def get_record_at(
+            self,
+            chain_id: str,
+            serial: int,
+        ) -> record_models.RecordModel | ErrorDetailsModel:
         """
         Get a record by serial number.
 
@@ -140,15 +147,16 @@ class RecordApi(BaseApi):
             return resp
         return record_models.RecordModel(**resp.json())
 
-    def query_records(self,
-                      chain_id: str,
-                      query: str,
-                      how_many: int = None,
-                      last_to_first: bool = False,
-                      ommit_payload: bool = False,
-                      page: int = 0,
-                      size: int = 10,
-                      ) -> ListModel[record_models.RecordModel] | ErrorDetailsModel:
+    def query_records(
+            self,
+            chain_id: str,
+            query: str,
+            how_many: int = None,
+            last_to_first: bool = False,
+            ommit_payload: bool = False,
+            page: int = 0,
+            size: int = 10,
+        ) -> ListModel[record_models.RecordModel] | ErrorDetailsModel:
         """
         Query records in a chain using the InterlockQL language.
 
@@ -162,7 +170,8 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.RecordModel`]: List of records in a chain.
+            :obj:`pyil2.models.base.ListModel` \
+                [:obj:`pyil2.models.record.RecordModel`]: List of records in a chain.
         """
         params = {
             "queryAsInterlockQL": query,
@@ -183,27 +192,31 @@ class RecordApi(BaseApi):
             return resp
         return ListModel[record_models.RecordModel](**resp.json())
 
-    def list_records_as_json(self,
-                             chain_id: str,
-                             first_serial: int = None,
-                             last_serial: int = None,
-                             last_to_first: bool = False,
-                             page: int = 0,
-                             size: int = 10,
-                             ) -> ListModel[record_models.RecordAsJsonModel] | ErrorDetailsModel:
+    def list_records_as_json(
+            self,
+            chain_id: str,
+            first_serial: int = None,
+            last_serial: int = None,
+            last_to_first: bool = False,
+            page: int = 0,
+            size: int = 10,
+        ) -> ListModel[record_models.RecordAsJsonModel] | ErrorDetailsModel:
         """
         Get a list of records in a chain with the payload mapped to a JSON format.
 
         Args:
             chain_id (`str`): Chain ID.
-            first_serial (`int`): Serial number of first record to read. Default: First in whole chain.
+            first_serial (`int`): Serial number of first record to read. \
+                Default: First in whole chain.
             last_serial (`int`): Serial number of last record to read. Default: Last in whole chain.
             last_to_first (`bool`): If `True`, return the items in reverse order.
             page (:obj:`int`): Page to return.
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.RecordAsJsonModel`]: List of records in a chain with the payload as JSON.
+            :obj:`pyil2.models.base.ListModel` \
+                [:obj:`pyil2.models.record.RecordAsJsonModel`]: \
+                List of records in a chain with the payload as JSON.
         """
         params = {
             "page": page,
@@ -224,10 +237,11 @@ class RecordApi(BaseApi):
             return resp
         return ListModel[record_models.RecordAsJsonModel](**resp.json())
 
-    def get_record_at_as_json(self,
-                              chain_id: str,
-                              serial: int,
-                              ) -> record_models.RecordAsJsonModel | ErrorDetailsModel:
+    def get_record_at_as_json(
+            self,
+            chain_id: str,
+            serial: int,
+        ) -> record_models.RecordAsJsonModel | ErrorDetailsModel:
         """
         Get a record with the payload as JSON by serial number.
 
@@ -236,7 +250,8 @@ class RecordApi(BaseApi):
             serial (`int`): Record serial number.
 
         Returns:
-            :obj:`pyil2.models.record.RecordAsJsonModel`: Record in a chain with the payload as JSON.
+            :obj:`pyil2.models.record.RecordAsJsonModel`: \
+                Record in a chain with the payload as JSON.
         """
         resp = self._client._request(
             url=f'{self.base_url}{chain_id}/asJson/{serial}',
@@ -267,7 +282,9 @@ class RecordApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.RecordAsJsonModel`]: List of records in a chain with the payload as JSON.
+            :obj:`pyil2.models.base.ListModel` \
+                [:obj:`pyil2.models.record.RecordAsJsonModel`]: \
+                List of records in a chain with the payload as JSON.
         """
         params = {
             "queryAsInterlockQL": query,

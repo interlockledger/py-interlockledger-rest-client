@@ -77,7 +77,8 @@ class ChainApi(BaseApi):
         Create a new chain.
 
         Args:
-            model (:obj:`pyil2.models.chain.ChainCreationModel`): Model with the new chain attrbutes.
+            model (:obj:`pyil2.models.chain.ChainCreationModel`): Model with the \
+                new chain attrbutes.
 
         Returns:
             :obj:`pyil2.models.chain.ChainCreatedModel`: Chain created model.
@@ -167,10 +168,13 @@ class ChainApi(BaseApi):
             chain_id (:obj:`str`): Chain ID.
             page (:obj:`int`): Page to return.
             size (:obj:`int`): Number of items per page.
-            how_many_from_last (:obj:`int`): How many interlocking records to return. If ommited or 0 returns all.
+            how_many_from_last (:obj:`int`): How many interlocking records to return. \
+                If ommited or 0 returns all.
 
         Returns:
-            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.InterlockingRecordModel`]: List of interlocking records.
+            :obj:`pyil2.models.base.ListModel` \
+                [:obj:`pyil2.models.record.InterlockingRecordModel`]: \
+                List of interlocking records.
         """
         params = {
             "howManyFromLast": how_many_from_last,
@@ -187,8 +191,8 @@ class ChainApi(BaseApi):
         return ListModel[InterlockingRecordModel](**resp.json())
 
     def force_interlocking(
-            self, 
-            chain_id: str, 
+            self,
+            chain_id: str,
             interlock: ForceInterlockModel
         ) -> InterlockingRecordModel | ErrorDetailsModel:
         """
@@ -231,10 +235,11 @@ class ChainApi(BaseApi):
             return resp
         return keys_models.KeyDetailsModel.validate_list_python(resp.json())
 
-    def add_keys(self,
-                 chain_id: str,
-                 keys_to_permit: List[keys_models.KeyDetailsModel]
-                 ) -> List[keys_models.KeyDetailsModel] | ErrorDetailsModel:
+    def add_keys(
+            self,
+            chain_id: str,
+            keys_to_permit: List[keys_models.KeyDetailsModel]
+        ) -> List[keys_models.KeyDetailsModel] | ErrorDetailsModel:
         """
         Add keys to the permitted list for the chain.
 

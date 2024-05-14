@@ -47,9 +47,11 @@ class DocumentsApi(BaseApi):
     base_url = 'documents'
 
     @property
-    def documents_configuration(self) -> documents_models.DocumentUploadConfigurationModel | ErrorDetailsModel:
+    def documents_configuration(self) -> documents_models.DocumentUploadConfigurationModel |\
+                                        ErrorDetailsModel:
         """
-        :obj:`pyil2.models.documents.DocumentUploadConfigurationModel`: Documents upload configuration.
+        :obj:`pyil2.models.documents.DocumentUploadConfigurationModel`: \
+            Documents upload configuration.
         """
         resp = self._client._request(
             f'{self.base_url}/configuration',
@@ -69,10 +71,12 @@ class DocumentsApi(BaseApi):
         The transaction will rollback on timeout or errors.
 
         Args:
-            new_transaction (:obj:`pyil2.models.documents.BeginDocumentTransactionModel`): Begin transaction details.
+            new_transaction (:obj:`pyil2.models.documents.BeginDocumentTransactionModel`): \
+                Begin transaction details.
 
         Returns:
-            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
+            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload \
+                transaction status.
         """
         if not isinstance(new_transaction, documents_models.BeginDocumentTransactionModel):
             raise ValueError(
@@ -98,7 +102,8 @@ class DocumentsApi(BaseApi):
             transaction_id (:obj:`str`): Document upload transaction ID.
 
         Returns:
-            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
+            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload \
+                transaction status.
         """
         resp = self._client._request(
             f'{self.base_url}/transaction/{transaction_id}',
@@ -108,14 +113,15 @@ class DocumentsApi(BaseApi):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
 
-    def upload_document(self,
-                        transaction_id: str,
-                        filename: str,
-                        content_type: str,
-                        file_bytes: bytes,
-                        comment: str = None,
-                        relative_path: str = "/",
-                        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
+    def upload_document(
+            self,
+            transaction_id: str,
+            filename: str,
+            content_type: str,
+            file_bytes: bytes,
+            comment: str = None,
+            relative_path: str = "/",
+        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Add a file to a document upload transaction using bytes.
 
@@ -128,7 +134,8 @@ class DocumentsApi(BaseApi):
             relative_path (:obj:`str`): Relative path of the file inside the record.
 
         Returns:
-            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
+            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction \
+                status.
         """
         params = {
             "name": filename,
@@ -147,14 +154,15 @@ class DocumentsApi(BaseApi):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
 
-    def upload_document_file(self,
-                             transaction_id: str,
-                             filepath: str,
-                             comment: str = None,
-                             relative_path: str = "/",
-                             filename: str = None,
-                             content_type: str = None,
-                             ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
+    def upload_document_file(
+            self,
+            transaction_id: str,
+            filepath: str,
+            comment: str = None,
+            relative_path: str = "/",
+            filename: str = None,
+            content_type: str = None,
+        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Add a file to a document upload transaction using file path.
         This method will try to get the filename and the MIME-type from the filepath.
@@ -171,7 +179,8 @@ class DocumentsApi(BaseApi):
                 If None, it will try to guess the mime-type based on the file extension.
 
         Returns:
-            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction status.
+            :obj:`pyil2.models.documents.DocumentTransactionModel`: Document upload transaction \
+                status.
         """
         if not filename:
             filename = os.path.basename(filepath)
@@ -214,9 +223,10 @@ class DocumentsApi(BaseApi):
             return resp
         return resp.json()
 
-    def get_document_metadata(self,
-                              locator: str
-                              ) -> documents_models.DocumentMetadataModel | ErrorDetailsModel:
+    def get_document_metadata(
+            self,
+            locator: str
+        ) -> documents_models.DocumentMetadataModel | ErrorDetailsModel:
         """
         Get the documents metadata by the locator.
 
@@ -234,11 +244,12 @@ class DocumentsApi(BaseApi):
             return resp
         return documents_models.DocumentMetadataModel(**resp.json())
 
-    def download_single_document_at(self,
-                                    locator: str,
-                                    index: int,
-                                    dst_path: str = './',
-                                    ) -> str | ErrorDetailsModel:
+    def download_single_document_at(
+            self,
+            locator: str,
+            index: int,
+            dst_path: str = './',
+        ) -> str | ErrorDetailsModel:
         """
         Download a single document by position from the set of documents 
         to a folder (default: current folder).
@@ -259,10 +270,11 @@ class DocumentsApi(BaseApi):
             return resp
         return resp
 
-    def download_documents_as_zip(self,
-                                  locator: str,
-                                  dst_path: str = './',
-                                  ) -> str | ErrorDetailsModel:
+    def download_documents_as_zip(
+            self,
+            locator: str,
+            dst_path: str = './',
+        ) -> str | ErrorDetailsModel:
         """
         Download documents in a compressed file to a folder (default: current folder).
 
@@ -304,9 +316,10 @@ class DocumentsApi(BaseApi):
         )
         return resp
 
-    def download_documents_as_zip_as_response(self,
-                                              locator: str,
-                                              ) -> requests.Response | ErrorDetailsModel:
+    def download_documents_as_zip_as_response(
+            self,
+            locator: str,
+        ) -> requests.Response | ErrorDetailsModel:
         """
         Get the request response to download documents in a compressed file.
 

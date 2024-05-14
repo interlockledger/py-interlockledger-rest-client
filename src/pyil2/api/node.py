@@ -90,13 +90,14 @@ class NodeApi(BaseApi):
             return resp
         return AppsModel(**resp.json())
 
-    def list_interlockings_to_chain(self,
-                                    chain_id: str,
-                                    last_known_block: int = None,
-                                    last_to_first: bool = False,
-                                    page: int = 0,
-                                    size: int = 10,
-                                    ) -> ListModel[InterlockingRecordModel] | ErrorDetailsModel:
+    def list_interlockings_to_chain(
+            self,
+            chain_id: str,
+            last_known_block: int = None,
+            last_to_first: bool = False,
+            page: int = 0,
+            size: int = 10,
+        ) -> ListModel[InterlockingRecordModel] | ErrorDetailsModel:
         """
         Get the list of interlocking records pointing to a target chain instance.
 
@@ -108,7 +109,9 @@ class NodeApi(BaseApi):
             size  (:obj:`int`): Number of elements in the page.
 
         Returns:
-            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.record.InterlockingRecordModel`]: List of interlocking records.
+            :obj:`pyil2.models.base.ListModel` \
+                [:obj:`pyil2.models.record.InterlockingRecordModel`]: \
+                List of interlocking records.
         """
         params = {
             "page": page,

@@ -173,7 +173,8 @@ class ForceInterlockModel(BaseCamelModel):
     """
     min_serial: int = 0
     """
-    Required minimum of the serial of the last record in target chain whose hash will be pulled.
+    Required minimum of the serial of the last record in target chain whose 
+    hash will be pulled.
     """
     target_chain: str
     """

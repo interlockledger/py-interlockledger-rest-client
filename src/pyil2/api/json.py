@@ -95,19 +95,21 @@ class JsonApi(BaseApi):
             return resp
         return json_models.JsonDocumentModel(**resp.json())
 
-    def add_json_document_with_key(self,
-                                   chain_id: str,
-                                   payload: Dict[str, Any],
-                                   public_key: str,
-                                   public_key_id: str
-                                   ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
+    def add_json_document_with_key(
+            self,
+            chain_id: str,
+            payload: Dict[str, Any],
+            public_key: str,
+            public_key_id: str
+        ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Add a JSON document record encrypted with a given key.
 
         Args:
             chain_id (:obj:`str`): Chain ID.
             payload (:obj:`dict`): A valid JSON in dictionary format.
-            public_key (:obj:`str`): IL2 text representation of a public key to encrypt the content for.
+            public_key (:obj:`str`): IL2 text representation of a public key to \
+                encrypt the content for.
             public_key_id (:obj:`str`): IL2 text representation of the key ID.
 
         Returns:
@@ -127,18 +129,20 @@ class JsonApi(BaseApi):
             return resp
         return json_models.JsonDocumentModel(**resp.json())
 
-    def add_json_document_with_indirect_keys(self,
-                                             chain_id: str,
-                                             payload: Dict[str, Any],
-                                             keys_references: List[str],
-                                             ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
+    def add_json_document_with_indirect_keys(
+            self,
+            chain_id: str,
+            payload: Dict[str, Any],
+            keys_references: List[str],
+        ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Add a JSON document record encrypted with the public keys from a given list of chains.
 
         Args:
             chain_id (:obj:`str`): Chain ID.
             payload (:obj:`dict`): A valid JSON in dictionary format.
-            keys_references ([:obj:`str`]): List of references on the format 'chainId@serial' to records on local chains containing 'allowed readers' lists.
+            keys_references ([:obj:`str`]): List of references on the format 'chainId@serial' \
+                to records on local chains containing 'allowed readers' lists.
 
         Returns:
             :obj:`pyil2.models.json.JsonDocumentModel`: Added JSON document details.
@@ -156,18 +160,20 @@ class JsonApi(BaseApi):
             return resp
         return json_models.JsonDocumentModel(**resp.json())
 
-    def add_json_document_with_chain_keys(self,
-                                          chain_id: str,
-                                          payload: Dict[str, Any],
-                                          keys_chain_id: List[str],
-                                          ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
+    def add_json_document_with_chain_keys(
+            self,
+            chain_id: str,
+            payload: Dict[str, Any],
+            keys_chain_id: List[str],
+        ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Add a JSON document record encrypted with the public keys from a given list of chains.
 
         Args:
             chain_id (:obj:`str`): Chain ID.
             payload (:obj:`dict`): A valid JSON in dictionary format.
-            keys_chain_id ([:obj:`str`]): List of IDs of a local chain from which the 'allowed readers' list of public keys will be used to encrypt the content.
+            keys_chain_id ([:obj:`str`]): List of IDs of a local chain from which the \
+                'allowed readers' list of public keys will be used to encrypt the content.
 
         Returns:
             :obj:`pyil2.models.json.JsonDocumentModel`: Added JSON document details.
@@ -204,7 +210,9 @@ class JsonApi(BaseApi):
             size (:obj:`int`): Number of items per page.
 
         Returns:
-            :obj:`pyil2.models.base.ListModel` [:obj:`pyil2.models.json.AllowedReadersDetailsModel`]: List of allowed reader keys.
+            :obj:`pyil2.models.base.ListModel` \
+                [:obj:`pyil2.models.json.AllowedReadersDetailsModel`]: \
+                List of allowed reader keys.
         """
         params = {
             "page": page,
@@ -223,16 +231,18 @@ class JsonApi(BaseApi):
             return resp
         return ListModel[json_models.AllowedReadersDetailsModel](**resp.json())
 
-    def allow_json_document_readers(self,
-                                    chain_id: str,
-                                    allowed_readers: json_models.AllowedReadersModel
-                                    ) -> str | ErrorDetailsModel:
+    def allow_json_document_readers(
+            self,
+            chain_id: str,
+            allowed_readers: json_models.AllowedReadersModel
+        ) -> str | ErrorDetailsModel:
         """
         Create a new list of allowed readers to encrypt JSON documents.
 
         Args:
             chain_id (:obj:`str`): Chain ID.
-            allowed_readers (:obj:`pyil2.models.json.AllowedReadersModel`): List of reader keys to be allowed.
+            allowed_readers (:obj:`pyil2.models.json.AllowedReadersModel`): \
+                List of reader keys to be allowed.
 
         Returns:
             :obj:`str`: A record reference in the format chainId@recordSerial

@@ -68,7 +68,8 @@ class LimitedRange:
         Parses a string into a :obj:`LimitedRange`.
 
         Args:
-            text (:obj:`str`): String representing the range in the format of '[start]' or '[start-end]'.
+            text (:obj:`str`): String representing the range in the \
+                format of '[start]' or '[start-end]'.
 
         Returns:
             :obj:`LimitedRange`: An instance of the LimitedRange represented by the `text`."""
