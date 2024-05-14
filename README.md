@@ -28,6 +28,15 @@ importantly, any external logic can validate the multiple dimensions of validity
 -   InterlockLedger:
     -   API 14.0.0
 
+## How to install
+
+This library has been published on [pypi.org](https://pypi.org/project/pyil2/),
+thus you can install it using pip directly:
+
+```
+pip install pyil2
+```
+
 ## Documentation
 
 The documentation for this library can be found at [here](https://interlockledger.github.io/py-interlockledger-rest-client/).
