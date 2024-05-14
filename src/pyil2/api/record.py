@@ -25,19 +25,9 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-from typing import (
-    Any,
-    Dict,
-)
-
-from ..enum import RecordType
 from ..models.base import ListModel
 from ..models.errors import ErrorDetailsModel
-from ..models import (
-    chain as chain_models,
-    keys as keys_models,
-    record as record_models,
-)
+from ..models import record as record_models
 
 from .base import BaseApi
 
@@ -256,15 +246,15 @@ class RecordApi(BaseApi):
             return resp
         return record_models.RecordAsJsonModel(**resp.json())
 
-    def query_records_as_json(self,
-                              chain_id: str,
-                              query: str,
-                              how_many: int = None,
-                              last_to_first: bool = False,
-                              ommit_payload: bool = False,
-                              page: int = 0,
-                              size: int = 10,
-                              ) -> ListModel[record_models.RecordAsJsonModel] | ErrorDetailsModel:
+    def query_records_as_json(
+            self,
+            chain_id: str,
+            query: str,
+            how_many: int = None,
+            last_to_first: bool = False,
+            page: int = 0,
+            size: int = 10,
+        ) -> ListModel[record_models.RecordAsJsonModel] | ErrorDetailsModel:
         """
         Query records with the payload as JSON in a chain using the InterlockQL language.
 

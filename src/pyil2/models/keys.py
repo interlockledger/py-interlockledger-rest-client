@@ -27,7 +27,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 from typing import List, Optional
 
-from pydantic import Field, field_serializer, field_validator
+from pydantic import field_serializer, field_validator
 
 from ..utils.certificates import PKCS12Certificate
 
@@ -95,6 +95,9 @@ class KeyDetailsModel(BaseKeyModel):
 
 
 class CertificatePermitModel(BaseKeyModel):
+    """
+    Certificate permit model.
+    """
     certificate_in_X509: str
     """
     The public certificate in PEM encoding in base64.

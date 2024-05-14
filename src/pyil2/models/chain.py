@@ -109,6 +109,9 @@ class ChainSummaryModel(ChainIdModel):
 
 
 class ChainCreationModel(BaseCamelModel):
+    """
+    Chain creation model.
+    """
     addional_apps: List[int] = Field(default_factory=list)
     """
     List of additional apps (only numeric ids).

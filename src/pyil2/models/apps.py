@@ -25,9 +25,9 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-from typing import Dict, List, Optional, Self
-from pydantic import Field, field_serializer, field_validator
+from typing import List, Optional, Self
 import datetime
+from pydantic import Field, field_serializer, field_validator
 
 from .base import BaseCamelModel
 from ..utils.range import LimitedRange
@@ -35,6 +35,9 @@ from ..enum import DataFieldCast
 
 
 class DataFieldEnumeration(BaseCamelModel):
+    """
+    Data field enumeration model.
+    """
     id: int
     """
     Data field enumeration ID.
@@ -112,7 +115,8 @@ class DataFieldModel(BaseCamelModel):
     """
     enumeration_as_flags: Optional[bool] = None
     """
-    If `True`, the enumerations can be combined using bitwise-or. If `False`, only one value can be used.
+    If `True`, the enumerations can be combined using bitwise-or. 
+    If `False`, only one value can be used.
     """
     is_dreprecated: Optional[bool] = None
     """
@@ -142,6 +146,9 @@ class DataFieldModel(BaseCamelModel):
     @field_validator('enumeration', mode='before')
     @classmethod
     def pre_process_enumeration(cls, raw: str) -> List[DataFieldEnumeration]:
+        """
+        Deserialize from string.
+        """
         if not raw:
             return raw
         ret = DataFieldEnumeration.from_concatenated_string(raw)
@@ -150,6 +157,9 @@ class DataFieldModel(BaseCamelModel):
     @field_serializer('enumeration', when_used='json')
     @classmethod
     def serialize_enumeration(cls, value: List[DataFieldEnumeration]):
+        """
+        Serialize DataField enumeration.
+        """
         ret = ""
         for item in value:
             ret += item.to_il2_string()
@@ -252,7 +262,8 @@ class InterlockAppTraitsModel(BaseCamelModel):
     """
     publisher_id: str
     """
-    Publisher ID, which is the identifier for the key the publisher uses to sign the workflow requests in its own chain. 
+    Publisher ID, which is the identifier for the key the publisher uses to 
+    sign the workflow requests in its own chain. 
     It should match the publisher_name
     """
     publisher_name: str
@@ -265,7 +276,8 @@ class InterlockAppTraitsModel(BaseCamelModel):
     """
     start: datetime.datetime
     """
-    The start date for the validity of the app, but if prior to the effective publication of the app will be overridden with the publication date and time.
+    The start date for the validity of the app, but if prior to the effective 
+    publication of the app will be overridden with the publication date and time.
     """
     version: int = 0
     """
@@ -275,6 +287,9 @@ class InterlockAppTraitsModel(BaseCamelModel):
     @field_validator('reserved_il_tag_ids', mode='before')
     @classmethod
     def pre_process_reserved_tags(cls, raw: List[str]) -> List[LimitedRange]:
+        """
+        Deserialize reserved tags from list of strings.
+        """
         ret = []
         for item in raw:
             ret.append(LimitedRange.resolve(item))
@@ -283,6 +298,9 @@ class InterlockAppTraitsModel(BaseCamelModel):
     @field_serializer('reserved_il_tag_ids', when_used='json')
     @classmethod
     def serialize_reserved_tags(cls, value: List[LimitedRange]):
+        """
+        Serialize reseved tags.
+        """
         ret = []
         for item in value:
             ret.append(str(item))

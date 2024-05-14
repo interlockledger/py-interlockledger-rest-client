@@ -69,7 +69,10 @@ class ChainApi(BaseApi):
             return resp
         return chain_models.ChainIdModel.validate_list_python(resp.json())
 
-    def create_chain(self, new_chain: chain_models.ChainCreationModel) -> chain_models.ChainCreatedModel | ErrorDetailsModel:
+    def create_chain(
+            self,
+            new_chain: chain_models.ChainCreationModel
+        ) -> chain_models.ChainCreatedModel | ErrorDetailsModel:
         """
         Create a new chain.
 
@@ -127,7 +130,11 @@ class ChainApi(BaseApi):
             return resp
         return resp.json()
 
-    def add_active_apps(self, chain_id: str, apps_to_permit: List[int]) -> List[int] | ErrorDetailsModel:
+    def add_active_apps(
+            self,
+            chain_id: str,
+            apps_to_permit: List[int]
+        ) -> List[int] | ErrorDetailsModel:
         """
         Get the list os active apps in the chain.
 
@@ -146,12 +153,13 @@ class ChainApi(BaseApi):
             return resp
         return resp.json()
 
-    def list_interlockings(self,
-                           chain_id: str,
-                           page: int = 0,
-                           size: int = 10,
-                           how_many_from_last: int = 0,
-                           ) -> ListModel[InterlockingRecordModel] | ErrorDetailsModel:
+    def list_interlockings(
+            self,
+            chain_id: str,
+            page: int = 0,
+            size: int = 10,
+            how_many_from_last: int = 0,
+        ) -> ListModel[InterlockingRecordModel] | ErrorDetailsModel:
         """
         Get list of interlocks registered in the chain.
 
@@ -178,7 +186,11 @@ class ChainApi(BaseApi):
             return resp
         return ListModel[InterlockingRecordModel](**resp.json())
 
-    def force_interlocking(self, chain_id: str, interlock: ForceInterlockModel) -> InterlockingRecordModel | ErrorDetailsModel:
+    def force_interlocking(
+            self, 
+            chain_id: str, 
+            interlock: ForceInterlockModel
+        ) -> InterlockingRecordModel | ErrorDetailsModel:
         """
         Forces an interlock on a target chain.
 

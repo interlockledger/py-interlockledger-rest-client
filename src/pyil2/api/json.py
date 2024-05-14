@@ -48,7 +48,11 @@ class JsonApi(BaseApi):
     '''
     base_url = 'jsonDocuments@'
 
-    def get_json_document(self, chain_id: str, serial: int) -> json_models.JsonDocumentModel | ErrorDetailsModel:
+    def get_json_document(
+            self,
+            chain_id: str,
+            serial: int
+        ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Get a JSON document record by serial number.
 
@@ -67,7 +71,11 @@ class JsonApi(BaseApi):
             return resp
         return json_models.JsonDocumentModel(**resp.json())
 
-    def add_json_document(self, chain_id: str, payload: Dict[str, Any]) -> json_models.JsonDocumentModel | ErrorDetailsModel:
+    def add_json_document(
+            self,
+            chain_id: str,
+            payload: Dict[str, Any]
+        ) -> json_models.JsonDocumentModel | ErrorDetailsModel:
         """
         Add a JSON document record encrypted with the client certificate used in the request.
 
@@ -177,13 +185,14 @@ class JsonApi(BaseApi):
             return resp
         return json_models.JsonDocumentModel(**resp.json())
 
-    def list_json_document_allowed_readers(self,
-                                           chain_id: str,
-                                           context_id: str = None,
-                                           last_to_first: bool = False,
-                                           page: int = 0,
-                                           size: int = 10,
-                                           ) -> ListModel[json_models.AllowedReadersDetailsModel] | ErrorDetailsModel:
+    def list_json_document_allowed_readers(
+            self,
+            chain_id: str,
+            context_id: str = None,
+            last_to_first: bool = False,
+            page: int = 0,
+            size: int = 10,
+        ) -> ListModel[json_models.AllowedReadersDetailsModel] | ErrorDetailsModel:
         """
         Get a list of JSON document allowed reader keys.
 

@@ -72,6 +72,9 @@ class NewRecordModel(BaseCamelModel):
 
 
 class BaseRecordModel(BaseCamelModel):
+    """
+    Base record model.
+    """
     application_id: int = 0
     """
     Application id this record is associated with.

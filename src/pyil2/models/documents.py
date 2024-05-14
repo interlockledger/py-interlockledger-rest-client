@@ -132,8 +132,11 @@ class BeginDocumentTransactionModel(BaseDocumentTransactionModel):
 
     @model_validator(mode='after')
     def validate_encrypted_password(self):
+        """
+        Validate if password is missing when encryption is defined.
+        """
         if self.encryption and not self.password:
-            raise ValueError(f'Password is required if encryption is defined.')
+            raise ValueError('Password is required if encryption is defined.')
         return self
 
 
@@ -211,6 +214,9 @@ class DirectoryEntryModel(BaseCamelModel):
 
 
 class DocumentMetadataModel(BaseCamelModel):
+    """
+    Documents metadata model.
+    """
     record_reference: Optional[str] = None
     """
     Universal reference of this record.

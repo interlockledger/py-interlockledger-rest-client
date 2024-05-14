@@ -68,12 +68,12 @@ class IL2Client:
     ]
 
     def __init__(self,
-                 host: str,
-                 cert_filepath: str,
-                 cert_password: str,
-                 verify_ca: bool = True,
-                 timeout: int = 30,
-                 ):
+            host: str,
+            cert_filepath: str,
+            cert_password: str,
+            verify_ca: bool = True,
+            timeout: int = 30
+        ):
         self.host = host
         if self.host[-1] != '/':
             self.host += '/'
@@ -127,7 +127,8 @@ class IL2Client:
                 return api.DocumentsApi(self)
             case _:
                 raise ValueError(
-                    f'No API with name {name} found. Must be in {self._available_apis}')
+                    f'No API with name {name} found. Must be in {self._available_apis}'
+                )
 
     def _get_session(self) -> requests.Session:
         if not self._session:
@@ -170,17 +171,18 @@ class IL2Client:
             raise exc
         return response
 
-    def _request(self,
-                 url: str,
-                 method: str,
-                 accept: str = 'application/json',
-                 content_type: str = 'application/json',
-                 body: Dict[str, Any] = None,
-                 params: Dict[str, str] = None,
-                 auth: bool = True,
-                 data: bytes = None,
-                 headers: Dict[str, str] = None,
-                 ) -> requests.Response:
+    def _request(
+            self,
+            url: str,
+            method: str,
+            accept: str = 'application/json',
+            content_type: str = 'application/json',
+            body: Dict[str, Any] = None,
+            params: Dict[str, str] = None,
+            auth: bool = True,
+            data: bytes = None,
+            headers: Dict[str, str] = None,
+        ) -> requests.Response:
         method = method.upper()
         match method:
             case 'GET':

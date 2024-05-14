@@ -26,8 +26,8 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import os
-import requests
 import mimetypes
+import requests
 from .base import BaseApi
 
 from ..models.errors import ErrorDetailsModel
@@ -59,9 +59,10 @@ class DocumentsApi(BaseApi):
             return resp
         return documents_models.DocumentUploadConfigurationModel(**resp.json())
 
-    def begin_document_transaction(self,
-                                   new_transaction: documents_models.BeginDocumentTransactionModel
-                                   ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
+    def begin_document_transaction(
+            self,
+            new_transaction: documents_models.BeginDocumentTransactionModel
+        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Begin a document upload transaction.
 
@@ -86,9 +87,10 @@ class DocumentsApi(BaseApi):
             return resp
         return documents_models.DocumentTransactionModel(**resp.json())
 
-    def get_document_transaction_status(self,
-                                        transaction_id: str
-                                        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
+    def get_document_transaction_status(
+            self,
+            transaction_id: str
+        ) -> documents_models.DocumentTransactionModel | ErrorDetailsModel:
         """
         Get a document upload transaction status.
 
@@ -238,7 +240,8 @@ class DocumentsApi(BaseApi):
                                     dst_path: str = './',
                                     ) -> str | ErrorDetailsModel:
         """
-        Download a single document by position from the set of documents to a folder (default: current folder).
+        Download a single document by position from the set of documents 
+        to a folder (default: current folder).
 
         Args:
             locator (:obj:`str`): A Documents Storage Locator.
@@ -278,13 +281,14 @@ class DocumentsApi(BaseApi):
             return resp
         return resp
 
-    def download_single_document_at_as_response(self,
-                                                locator: str,
-                                                index: int,
-                                                dst_path: str = './',
-                                                ) -> requests.Response | ErrorDetailsModel:
+    def download_single_document_at_as_response(
+            self,
+            locator: str,
+            index: int,
+        ) -> requests.Response | ErrorDetailsModel:
         """
-        Get the request response to download a single document by position from the set of documents.
+        Get the request response to download a single document by position 
+        from the set of documents.
 
         *Note:* For advance use only.
 

@@ -33,15 +33,14 @@ from typing import (
 )
 
 import base64
+from json import loads as json_loads
 from pydantic import Field
 from pyilint import ilint_decode
-from json import loads as json_loads
 
 from ..enum import CipherAlgorithms
 from .base import BaseCamelModel
 from .record import BaseRecordModel
 from ..utils.certificates import PKCS12Certificate
-import datetime
 from ..utils import aes_decrypt
 
 
@@ -167,7 +166,7 @@ class EncryptedTextModel(BaseCamelModel):
 
         """
         if not self.cipher:
-            raise ValueError(f' No cipher detected.')
+            raise ValueError(' No cipher detected.')
         if self.cipher != CipherAlgorithms.AES256.value:
             raise ValueError(
                 f'Cipher {self.cipher} is not currently supported.')
