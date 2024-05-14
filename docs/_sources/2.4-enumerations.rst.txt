@@ -1,0 +1,7 @@
+List of Enumerations
+====================
+
+.. automodule:: pyil2.enum
+    :members:
+    :show-inheritance:
+    :inherited-members: BaseCamelModel

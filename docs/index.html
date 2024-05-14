@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IL2 Python Client &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="0-installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="il2-python-client">
+<h1>IL2 Python Client<a class="headerlink" href="#il2-python-client" title="Link to this heading">¶</a></h1>
+<a class="reference internal image-reference" href="_images/full-logo.svg"><img alt="_images/full-logo.svg" class="align-center" src="_images/full-logo.svg" width="400" /></a>
+<p>This package is a Python client to the InterlockLedger Node REST API.
+It connects to InterlockLedger nodes, allowing the creation of chains, interlocks, and storage of records and documents.</p>
+<section id="the-interlockledger">
+<h2>The InterlockLedger<a class="headerlink" href="#the-interlockledger" title="Link to this heading">¶</a></h2>
+<p>An <a class="reference external" href="https://il2.io/">InterlockLedger</a> network is a peer-to-peer network of nodes.
+Each node runs the InterlockLedger software.
+All communication between nodes is point-to-point and digitally signed, but not mandatorily encrypted.
+This means that data is shared either publicly or on a need-to-know basis, depending on the application.</p>
+<p>In the InterlockLedger, the ledger is composed of myriads of independently permissioned chains, comprised of blockchained records of data, under the control of their owners, but that are tied by Interlockings, that avoid them having their content/history being rewritten even by their owners.
+For each network the ledger is the sum of all chains in the participating nodes.</p>
+<p>A chain is a sequential list of records, back chained with signatures/hashes to the previous records, so that no changes in them can go undetected.
+A record is tied to some enabled InterlockLedgerApplication (IL2App), that defines the metadata associate with it.
+The IL2App defines the constraints of a record as a public metadata, stored in the network genesis chain.</p>
+</section>
+<section id="how-to-use">
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="0-installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="0-installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-installation.html#installation-from-pypi">Installation from PyPi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-installation.html#installation-from-source">Installation From Source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="1-quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1-quickstart.html#the-basics">The Basics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2-pyil2.html">pyil2 package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.3-models.html">List of Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.4-enum.html">List of Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.5-utils.html">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-pyil2.html">pyil2 package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="0-installation.html" title="next chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

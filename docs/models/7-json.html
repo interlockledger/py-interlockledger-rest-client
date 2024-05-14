@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>JSON Models &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Documents Models" href="8-documents.html" />
+    <link rel="prev" title="Record Models" href="6-record.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-pyil2.models.json">
+<span id="json-models"></span><h1>JSON Models<a class="headerlink" href="#module-pyil2.models.json" title="Link to this heading">¶</a></h1>
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.json.AllowedReadersDetailsModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.json.</span></span><span class="sig-name descname"><span class="pre">AllowedReadersDetailsModel</span></span><a class="headerlink" href="#pyil2.models.json.AllowedReadersDetailsModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyil2.models.json.AllowedReadersModel" title="pyil2.models.json.AllowedReadersModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">AllowedReadersModel</span></code></a></p>
+<p>Allowed readers details model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.AllowedReadersDetailsModel.contextId">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">contextId</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'contextid')</span></em><a class="headerlink" href="#pyil2.models.json.AllowedReadersDetailsModel.contextId" title="Link to this definition">¶</a></dt>
+<dd><p>Allowed readers list name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.AllowedReadersDetailsModel.readers">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">readers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.json.ReaderKeyModel" title="pyil2.models.json.ReaderKeyModel"><span class="pre">ReaderKeyModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.json.AllowedReadersDetailsModel.readers" title="Link to this definition">¶</a></dt>
+<dd><p>List of reader keys.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.AllowedReadersDetailsModel.record_reference">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">record_reference</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'recordReference')</span></em><a class="headerlink" href="#pyil2.models.json.AllowedReadersDetailsModel.record_reference" title="Link to this definition">¶</a></dt>
+<dd><p>A record reference in the form <a class="reference external" href="mailto:chainId&#37;&#52;&#48;recordSerial">chainId<span>&#64;</span>recordSerial</a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.json.AllowedReadersModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.json.</span></span><span class="sig-name descname"><span class="pre">AllowedReadersModel</span></span><a class="headerlink" href="#pyil2.models.json.AllowedReadersModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>List of allow readers model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.AllowedReadersModel.contextId">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">contextId</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'contextid')</span></em><a class="headerlink" href="#pyil2.models.json.AllowedReadersModel.contextId" title="Link to this definition">¶</a></dt>
+<dd><p>Allowed readers list name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.AllowedReadersModel.readers">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">readers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.json.ReaderKeyModel" title="pyil2.models.json.ReaderKeyModel"><span class="pre">ReaderKeyModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.json.AllowedReadersModel.readers" title="Link to this definition">¶</a></dt>
+<dd><p>List of reader keys.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.json.EncryptedTextModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.json.</span></span><span class="sig-name descname"><span class="pre">EncryptedTextModel</span></span><a class="headerlink" href="#pyil2.models.json.EncryptedTextModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>JSON Documents encrypted text.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.EncryptedTextModel.cipher">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cipher</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.CipherAlgorithms" title="pyil2.enum.CipherAlgorithms"><span class="pre">CipherAlgorithms</span></a></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.json.EncryptedTextModel.cipher" title="Link to this definition">¶</a></dt>
+<dd><p>Cipher algorithm used to cipher the text.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.EncryptedTextModel.cipher_text">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cipher_text</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'cipherText')</span></em><a class="headerlink" href="#pyil2.models.json.EncryptedTextModel.cipher_text" title="Link to this definition">¶</a></dt>
+<dd><p>Encrypted text.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.EncryptedTextModel.reading_keys">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reading_keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.json.ReadingKeyModel" title="pyil2.models.json.ReadingKeyModel"><span class="pre">ReadingKeyModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'readingKeys')</span></em><a class="headerlink" href="#pyil2.models.json.EncryptedTextModel.reading_keys" title="Link to this definition">¶</a></dt>
+<dd><p>List of keys able to read this encrypted text.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.models.json.EncryptedTextModel.decode">
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../2.5-utils.html#pyil2.utils.certificates.PKCS12Certificate" title="pyil2.utils.certificates.PKCS12Certificate"><span class="pre">PKCS12Certificate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyil2.models.json.EncryptedTextModel.decode" title="Link to this definition">¶</a></dt>
+<dd><p>Decodes the encrypted JSON text to a dictionary using a given certificate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>certificate</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.certificate.PKCS12Certificate</span></code>) – PKCS12 certificate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any}: Decoded JSON.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>{<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If there is no encrypted text or the certificate is not                 in the reading keys.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.json.</span></span><span class="sig-name descname"><span class="pre">JsonDocumentModel</span></span><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="6-record.html#pyil2.models.record.BaseRecordModel" title="pyil2.models.record.BaseRecordModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRecordModel</span></code></a></p>
+<p>Record to store JSON documents.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.application_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">application_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'applicationId')</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.application_id" title="Link to this definition">¶</a></dt>
+<dd><p>Application id this record is associated with.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'chainId')</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Chain id that owns this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.created_at">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.datetime</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'createdAt')</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.created_at" title="Link to this definition">¶</a></dt>
+<dd><p>Time of record creation.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.encrypted_json">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encrypted_json</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyil2.models.json.EncryptedTextModel" title="pyil2.models.json.EncryptedTextModel"><span class="pre">EncryptedTextModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'encryptedJson')</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.encrypted_json" title="Link to this definition">¶</a></dt>
+<dd><p>JSON Documents encrypted text.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.json_text">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">json_text</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'jsonText')</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.json_text" title="Link to this definition">¶</a></dt>
+<dd><p>JSON document as string.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network name this chain is part.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.payload_tag_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadTagId')</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.payload_tag_id" title="Link to this definition">¶</a></dt>
+<dd><p>The payload’s TagId.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.reference">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reference</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.reference" title="Link to this definition">¶</a></dt>
+<dd><p>Universal reference of this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.serial">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.serial" title="Link to this definition">¶</a></dt>
+<dd><p>Block serial number. For the first record this value is zero (0).</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.type">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.RecordType" title="pyil2.enum.RecordType"><span class="pre">RecordType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">RecordType.ROOT</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.type" title="Link to this definition">¶</a></dt>
+<dd><p>Block type. Most records are of the type ‘Data’.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.JsonDocumentModel.version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.json.JsonDocumentModel.version" title="Link to this definition">¶</a></dt>
+<dd><p>Version of this record structure.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.json.ReaderKeyModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.json.</span></span><span class="sig-name descname"><span class="pre">ReaderKeyModel</span></span><a class="headerlink" href="#pyil2.models.json.ReaderKeyModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Reader key model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.ReaderKeyModel.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.json.ReaderKeyModel.name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the reader key</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.ReaderKeyModel.public_key">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">public_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'publicKey')</span></em><a class="headerlink" href="#pyil2.models.json.ReaderKeyModel.public_key" title="Link to this definition">¶</a></dt>
+<dd><p>IL2 text representation of a public key to encrypt the content for.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.json.ReadingKeyModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.json.</span></span><span class="sig-name descname"><span class="pre">ReadingKeyModel</span></span><a class="headerlink" href="#pyil2.models.json.ReadingKeyModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Keys able to read an encrypted JSON Document record.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.ReadingKeyModel.encrypted_iv">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encrypted_iv</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'encryptedIV')</span></em><a class="headerlink" href="#pyil2.models.json.ReadingKeyModel.encrypted_iv" title="Link to this definition">¶</a></dt>
+<dd><p>Encrypted AES256 IV.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.ReadingKeyModel.encrypted_key">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encrypted_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'encryptedKey')</span></em><a class="headerlink" href="#pyil2.models.json.ReadingKeyModel.encrypted_key" title="Link to this definition">¶</a></dt>
+<dd><p>Encrypted AES256 key.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.ReadingKeyModel.public_key_hash">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">public_key_hash</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'publicKeyHash')</span></em><a class="headerlink" href="#pyil2.models.json.ReadingKeyModel.public_key_hash" title="Link to this definition">¶</a></dt>
+<dd><p>Public key hash in IL2 text representation.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.json.ReadingKeyModel.reader_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reader_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'readerId')</span></em><a class="headerlink" href="#pyil2.models.json.ReadingKeyModel.reader_id" title="Link to this definition">¶</a></dt>
+<dd><p>Id of the key.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.models.json.ReadingKeyModel.check_certificate">
+<span class="sig-name descname"><span class="pre">check_certificate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../2.5-utils.html#pyil2.utils.certificates.PKCS12Certificate" title="pyil2.utils.certificates.PKCS12Certificate"><span class="pre">PKCS12Certificate</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyil2.models.json.ReadingKeyModel.check_certificate" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if a PKCS12 certificate corresponds to this reading key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>certificate</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.certificate.PKCS12Certificate</span></code>) – PKCS12 certificate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns <cite>True</cite> if the certificate corresponds to this reading key.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>bool</cite></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the certificate has no private key or are a Non-RSA certificate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../2-pyil2.html">pyil2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../2.3-models.html">List of Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.4-enum.html">List of Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.5-utils.html">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../2-pyil2.html">pyil2 package</a><ul>
+  <li><a href="../2.3-models.html">List of Models</a><ul>
+      <li>Previous: <a href="6-record.html" title="previous chapter">Record Models</a></li>
+      <li>Next: <a href="8-documents.html" title="next chapter">Documents Models</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/models/7-json.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

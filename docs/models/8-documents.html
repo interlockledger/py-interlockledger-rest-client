@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Documents Models &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Errors Models" href="9-errors.html" />
+    <link rel="prev" title="JSON Models" href="7-json.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-pyil2.models.documents">
+<span id="documents-models"></span><h1>Documents Models<a class="headerlink" href="#module-pyil2.models.documents" title="Link to this heading">¶</a></h1>
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.documents.BaseDocumentTransactionModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.documents.</span></span><span class="sig-name descname"><span class="pre">BaseDocumentTransactionModel</span></span><a class="headerlink" href="#pyil2.models.documents.BaseDocumentTransactionModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Base document transaction model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BaseDocumentTransactionModel.chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'chain')</span></em><a class="headerlink" href="#pyil2.models.documents.BaseDocumentTransactionModel.chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Id of the chain where the set of documents should be stored.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BaseDocumentTransactionModel.comment">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">comment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BaseDocumentTransactionModel.comment" title="Link to this definition">¶</a></dt>
+<dd><p>Any additional information about the set of documents to be stored.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BaseDocumentTransactionModel.compression">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compression</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.DocumentsCompression" title="pyil2.enum.DocumentsCompression"><span class="pre">DocumentsCompression</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BaseDocumentTransactionModel.compression" title="Link to this definition">¶</a></dt>
+<dd><p>Compression algorithm.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BaseDocumentTransactionModel.encryption">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encryption</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BaseDocumentTransactionModel.encryption" title="Link to this definition">¶</a></dt>
+<dd><p>The encryption descriptor in the &lt;pbe&gt;-&lt;hash&gt;-&lt;cipher&gt;-&lt;level&gt; format. Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“PBKDF2-SHA256-AES256-LOW”</p></li>
+<li><p>“PBKDF2-SHA512-AES256-MID”</p></li>
+<li><p>“PBKDF2-SHA256-AES128-HIGH”</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BaseDocumentTransactionModel.generate_public_directory">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_public_directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'generatePublicDirectory')</span></em><a class="headerlink" href="#pyil2.models.documents.BaseDocumentTransactionModel.generate_public_directory" title="Link to this definition">¶</a></dt>
+<dd><p>If the publically viewable PublicDirectory field should be created.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BaseDocumentTransactionModel.previous">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">previous</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BaseDocumentTransactionModel.previous" title="Link to this definition">¶</a></dt>
+<dd><p>Reference to a previous document locator.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.documents.</span></span><span class="sig-name descname"><span class="pre">BeginDocumentTransactionModel</span></span><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyil2.models.documents.BaseDocumentTransactionModel" title="pyil2.models.documents.BaseDocumentTransactionModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDocumentTransactionModel</span></code></a></p>
+<p>Begin document transaction model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validators<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a> » <code class="xref py py-obj docutils literal notranslate"><span class="pre">all</span> <span class="pre">fields</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.allow_children">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allow_children</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'allowChildren')</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.allow_children" title="Link to this definition">¶</a></dt>
+<dd><p>If <cite>True</cite>, allows this document record to be updated by children records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'chain')</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Id of the chain where the set of documents should be stored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.comment">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">comment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.comment" title="Link to this definition">¶</a></dt>
+<dd><p>Any additional information about the set of documents to be stored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.compression">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compression</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.DocumentsCompression" title="pyil2.enum.DocumentsCompression"><span class="pre">DocumentsCompression</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.compression" title="Link to this definition">¶</a></dt>
+<dd><p>Compression algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.encryption">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encryption</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.encryption" title="Link to this definition">¶</a></dt>
+<dd><p>The encryption descriptor in the &lt;pbe&gt;-&lt;hash&gt;-&lt;cipher&gt;-&lt;level&gt; format. Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“PBKDF2-SHA256-AES256-LOW”</p></li>
+<li><p>“PBKDF2-SHA512-AES256-MID”</p></li>
+<li><p>“PBKDF2-SHA256-AES128-HIGH”</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.generate_public_directory">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_public_directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'generatePublicDirectory')</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.generate_public_directory" title="Link to this definition">¶</a></dt>
+<dd><p>If the publically viewable PublicDirectory field should be created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.iterations">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">iterations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.iterations" title="Link to this definition">¶</a></dt>
+<dd><p>Override for the number of PBE iterations to generate the key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.password">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">password</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.password" title="Link to this definition">¶</a></dt>
+<dd><p>Password as bytes if <cite>encryption</cite> is not null.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Constraints<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_length</strong> = 12</p></li>
+</ul>
+</dd>
+<dt class="field-even">Validated by<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.previous">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">previous</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.previous" title="Link to this definition">¶</a></dt>
+<dd><p>Reference to a previous document locator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.previous_documents_not_to_copy">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">previous_documents_not_to_copy</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'previousDocumentsNotToCopy')</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.previous_documents_not_to_copy" title="Link to this definition">¶</a></dt>
+<dd><p>List of documents in the previous record to be excluded in this record.
+If nothing is passed, copy every document from the previous document to this record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.to_children_comment">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_children_comment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'toChildrenComment')</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.to_children_comment" title="Link to this definition">¶</a></dt>
+<dd><p>Comment added for children records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_encrypted_password</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method pydantic_validator">
+<dt class="sig sig-object py" id="pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password">
+<em class="property"><span class="pre">validator</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_encrypted_password</span></span><em class="autodoc_pydantic_validator_arrow property">&#160; <span class="pre">»</span>&#160; </em><em class="xref py py-obj"><span class="pre">all</span> <span class="pre">fields</span></em><a class="headerlink" href="#pyil2.models.documents.BeginDocumentTransactionModel.validate_encrypted_password" title="Link to this definition">¶</a></dt>
+<dd><p>Validate if password is missing when encryption is defined.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.documents.DirectoryEntryModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.documents.</span></span><span class="sig-name descname"><span class="pre">DirectoryEntryModel</span></span><a class="headerlink" href="#pyil2.models.documents.DirectoryEntryModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Entry details for each stored document in this documents record.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DirectoryEntryModel.comment">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">comment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DirectoryEntryModel.comment" title="Link to this definition">¶</a></dt>
+<dd><p>Additional comment for the document entry.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DirectoryEntryModel.hash_sha256">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hash_sha256</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'hashSHA256')</span></em><a class="headerlink" href="#pyil2.models.documents.DirectoryEntryModel.hash_sha256" title="Link to this definition">¶</a></dt>
+<dd><p>SHA256 hash of the file bytes.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DirectoryEntryModel.mime_type">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'mimeType')</span></em><a class="headerlink" href="#pyil2.models.documents.DirectoryEntryModel.mime_type" title="Link to this definition">¶</a></dt>
+<dd><p>Mime Type for the document content.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DirectoryEntryModel.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DirectoryEntryModel.name" title="Link to this definition">¶</a></dt>
+<dd><p>Document file name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DirectoryEntryModel.path">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DirectoryEntryModel.path" title="Link to this definition">¶</a></dt>
+<dd><p>Relative path of the file in the public directory</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DirectoryEntryModel.size">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.documents.DirectoryEntryModel.size" title="Link to this definition">¶</a></dt>
+<dd><p>File size in bytes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentMetadataModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.documents.</span></span><span class="sig-name descname"><span class="pre">DocumentMetadataModel</span></span><a class="headerlink" href="#pyil2.models.documents.DocumentMetadataModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Documents metadata model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentMetadataModel.comment">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">comment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentMetadataModel.comment" title="Link to this definition">¶</a></dt>
+<dd><p>Any additional information about this set of documents.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentMetadataModel.compression">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compression</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentMetadataModel.compression" title="Link to this definition">¶</a></dt>
+<dd><p>Compression algorithm.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentMetadataModel.creation_time">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">creation_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'creationTime')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentMetadataModel.creation_time" title="Link to this definition">¶</a></dt>
+<dd><p>Time of record creation.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentMetadataModel.encryption">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encryption</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentMetadataModel.encryption" title="Link to this definition">¶</a></dt>
+<dd><p>The encryption descriptor in the &lt;pbe&gt;-&lt;hash&gt;-&lt;cipher&gt;-&lt;level&gt; format.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentMetadataModel.encryption_parameters">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encryption_parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyil2.models.documents.EncryptionParameterModel" title="pyil2.models.documents.EncryptionParameterModel"><span class="pre">EncryptionParameterModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'encryptionParameters')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentMetadataModel.encryption_parameters" title="Link to this definition">¶</a></dt>
+<dd><p>The parameters used to make the encryption of the set of documents.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentMetadataModel.public_directory">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">public_directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.documents.DirectoryEntryModel" title="pyil2.models.documents.DirectoryEntryModel"><span class="pre">DirectoryEntryModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'publicDirectory')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentMetadataModel.public_directory" title="Link to this definition">¶</a></dt>
+<dd><p>List of stored documents.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentMetadataModel.record_reference">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">record_reference</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'recordReference')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentMetadataModel.record_reference" title="Link to this definition">¶</a></dt>
+<dd><p>Universal reference of this record.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.documents.</span></span><span class="sig-name descname"><span class="pre">DocumentTransactionModel</span></span><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyil2.models.documents.BaseDocumentTransactionModel" title="pyil2.models.documents.BaseDocumentTransactionModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDocumentTransactionModel</span></code></a></p>
+<p>Document transaction status model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.can_commit_now">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">can_commit_now</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'canCommitNow')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.can_commit_now" title="Link to this definition">¶</a></dt>
+<dd><p>If <cite>True</cite>, the transaction is able to be committed.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'chain')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Id of the chain where the set of documents should be stored.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.comment">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">comment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.comment" title="Link to this definition">¶</a></dt>
+<dd><p>Any additional information about the set of documents to be stored.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.compression">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compression</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.DocumentsCompression" title="pyil2.enum.DocumentsCompression"><span class="pre">DocumentsCompression</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.compression" title="Link to this definition">¶</a></dt>
+<dd><p>Compression algorithm.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.count_of_uploaded_documents">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">count_of_uploaded_documents</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'countOfUploadedDocuments')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.count_of_uploaded_documents" title="Link to this definition">¶</a></dt>
+<dd><p>Total count of uploaded documents for this transaction.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.document_names">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">document_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'documentNames')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.document_names" title="Link to this definition">¶</a></dt>
+<dd><p>List of documents uploaded in the transaction.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.encryption">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encryption</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.encryption" title="Link to this definition">¶</a></dt>
+<dd><p>The encryption descriptor in the &lt;pbe&gt;-&lt;hash&gt;-&lt;cipher&gt;-&lt;level&gt; format. Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“PBKDF2-SHA256-AES256-LOW”</p></li>
+<li><p>“PBKDF2-SHA512-AES256-MID”</p></li>
+<li><p>“PBKDF2-SHA256-AES128-HIGH”</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.generate_public_directory">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_public_directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'generatePublicDirectory')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.generate_public_directory" title="Link to this definition">¶</a></dt>
+<dd><p>If the publically viewable PublicDirectory field should be created.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.previous">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">previous</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.previous" title="Link to this definition">¶</a></dt>
+<dd><p>Reference to a previous document locator.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.timeout_limit">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timeout_limit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'timeOutLimit')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.timeout_limit" title="Link to this definition">¶</a></dt>
+<dd><p>The transaction will be aborted if not completed until this timeout.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentTransactionModel.transaction_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transaction_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'transactionId')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentTransactionModel.transaction_id" title="Link to this definition">¶</a></dt>
+<dd><p>ID of the transaction to use when uploading each file and committing the transaction.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentUploadConfigurationModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.documents.</span></span><span class="sig-name descname"><span class="pre">DocumentUploadConfigurationModel</span></span><a class="headerlink" href="#pyil2.models.documents.DocumentUploadConfigurationModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Node configuration of uploaded documents.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentUploadConfigurationModel.default_compression">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default_compression</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'defaultCompression')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentUploadConfigurationModel.default_compression" title="Link to this definition">¶</a></dt>
+<dd><p>Default compression algorithm.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentUploadConfigurationModel.default_encryption">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default_encryption</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'defaultEncryption')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentUploadConfigurationModel.default_encryption" title="Link to this definition">¶</a></dt>
+<dd><p>Default encryption algorithm.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentUploadConfigurationModel.file_size_limit">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_size_limit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'fileSizeLimit')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentUploadConfigurationModel.file_size_limit" title="Link to this definition">¶</a></dt>
+<dd><p>Maximum file size.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentUploadConfigurationModel.iterations">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">iterations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentUploadConfigurationModel.iterations" title="Link to this definition">¶</a></dt>
+<dd><p>Default number of PBE iterations to generate the key.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentUploadConfigurationModel.permitted_content_types">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">permitted_content_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'permittedContentTypes')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentUploadConfigurationModel.permitted_content_types" title="Link to this definition">¶</a></dt>
+<dd><p>List of content types mime-type concatenated with acceptable filename extensions.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.DocumentUploadConfigurationModel.timeout_in_minutes">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timeout_in_minutes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'timeOutInMinutes')</span></em><a class="headerlink" href="#pyil2.models.documents.DocumentUploadConfigurationModel.timeout_in_minutes" title="Link to this definition">¶</a></dt>
+<dd><p>Timeout in minutes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.documents.EncryptionParameterModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.documents.</span></span><span class="sig-name descname"><span class="pre">EncryptionParameterModel</span></span><a class="headerlink" href="#pyil2.models.documents.EncryptionParameterModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>The parameters used to make the encryption of the set of documents.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.EncryptionParameterModel.iterations">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">iterations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.documents.EncryptionParameterModel.iterations" title="Link to this definition">¶</a></dt>
+<dd><p>Number of iterations to generate the key.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.documents.EncryptionParameterModel.salt">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">salt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.documents.EncryptionParameterModel.salt" title="Link to this definition">¶</a></dt>
+<dd><p>Salt value to feed the cypher engine.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../2-pyil2.html">pyil2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../2.3-models.html">List of Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.4-enum.html">List of Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.5-utils.html">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../2-pyil2.html">pyil2 package</a><ul>
+  <li><a href="../2.3-models.html">List of Models</a><ul>
+      <li>Previous: <a href="7-json.html" title="previous chapter">JSON Models</a></li>
+      <li>Next: <a href="9-errors.html" title="next chapter">Errors Models</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/models/8-documents.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

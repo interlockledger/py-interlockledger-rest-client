@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Record Models &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="JSON Models" href="7-json.html" />
+    <link rel="prev" title="Keys Models" href="5-keys.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-pyil2.models.record">
+<span id="record-models"></span><h1>Record Models<a class="headerlink" href="#module-pyil2.models.record" title="Link to this heading">¶</a></h1>
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.record.</span></span><span class="sig-name descname"><span class="pre">BaseRecordModel</span></span><a class="headerlink" href="#pyil2.models.record.BaseRecordModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Base record model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel.application_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">application_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'applicationId')</span></em><a class="headerlink" href="#pyil2.models.record.BaseRecordModel.application_id" title="Link to this definition">¶</a></dt>
+<dd><p>Application id this record is associated with.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel.chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'chainId')</span></em><a class="headerlink" href="#pyil2.models.record.BaseRecordModel.chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Chain id that owns this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel.created_at">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'createdAt')</span></em><a class="headerlink" href="#pyil2.models.record.BaseRecordModel.created_at" title="Link to this definition">¶</a></dt>
+<dd><p>Time of record creation.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.record.BaseRecordModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network name this chain is part.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel.payload_tag_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadTagId')</span></em><a class="headerlink" href="#pyil2.models.record.BaseRecordModel.payload_tag_id" title="Link to this definition">¶</a></dt>
+<dd><p>The payload’s TagId.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel.reference">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reference</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.record.BaseRecordModel.reference" title="Link to this definition">¶</a></dt>
+<dd><p>Universal reference of this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel.serial">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.record.BaseRecordModel.serial" title="Link to this definition">¶</a></dt>
+<dd><p>Block serial number. For the first record this value is zero (0).</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel.type">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.RecordType" title="pyil2.enum.RecordType"><span class="pre">RecordType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">RecordType.ROOT</span></em><a class="headerlink" href="#pyil2.models.record.BaseRecordModel.type" title="Link to this definition">¶</a></dt>
+<dd><p>Block type. Most records are of the type ‘Data’.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.BaseRecordModel.version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.record.BaseRecordModel.version" title="Link to this definition">¶</a></dt>
+<dd><p>Version of this record structure.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.record.ForceInterlockModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.record.</span></span><span class="sig-name descname"><span class="pre">ForceInterlockModel</span></span><a class="headerlink" href="#pyil2.models.record.ForceInterlockModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Force interlock parameter details.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.ForceInterlockModel.hash_algorithm">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hash_algorithm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.HashAlgorithms" title="pyil2.enum.HashAlgorithms"><span class="pre">HashAlgorithms</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">HashAlgorithms.COPY</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'hashAlgorithm')</span></em><a class="headerlink" href="#pyil2.models.record.ForceInterlockModel.hash_algorithm" title="Link to this definition">¶</a></dt>
+<dd><p>Hash algorithm to use.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.ForceInterlockModel.min_serial">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min_serial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'minSerial')</span></em><a class="headerlink" href="#pyil2.models.record.ForceInterlockModel.min_serial" title="Link to this definition">¶</a></dt>
+<dd><p>Required minimum of the serial of the last record in target chain whose
+hash will be pulled.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.ForceInterlockModel.target_chain">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">target_chain</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'targetChain')</span></em><a class="headerlink" href="#pyil2.models.record.ForceInterlockModel.target_chain" title="Link to this definition">¶</a></dt>
+<dd><p>Id of chain to be interlocked.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.record.</span></span><span class="sig-name descname"><span class="pre">InterlockingRecordModel</span></span><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyil2.models.record.BaseRecordModel" title="pyil2.models.record.BaseRecordModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRecordModel</span></code></a></p>
+<p>Interlocking details.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.application_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">application_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'applicationId')</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.application_id" title="Link to this definition">¶</a></dt>
+<dd><p>Application id this record is associated with.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'chainId')</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Chain id that owns this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.created_at">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.datetime</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'createdAt')</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.created_at" title="Link to this definition">¶</a></dt>
+<dd><p>Time of record creation.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.interlocked_chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interlocked_chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'interlockedChainId')</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.interlocked_chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Interlocked Chain.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.interlocked_record_hash">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interlocked_record_hash</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'interlockedRecordHash')</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.interlocked_record_hash" title="Link to this definition">¶</a></dt>
+<dd><p>Interlock Record Hash.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.interlocked_record_offset">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interlocked_record_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'interlockedRecordOffset')</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.interlocked_record_offset" title="Link to this definition">¶</a></dt>
+<dd><p>Interlocked Record Offset.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.interlocked_record_serial">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interlocked_record_serial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'interlockedRecordSerial')</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.interlocked_record_serial" title="Link to this definition">¶</a></dt>
+<dd><p>Interlocked Record Serial.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network name this chain is part.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.payload_bytes">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_bytes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadBytes')</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.payload_bytes" title="Link to this definition">¶</a></dt>
+<dd><p>Payload bytes.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.payload_tag_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadTagId')</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.payload_tag_id" title="Link to this definition">¶</a></dt>
+<dd><p>The payload’s TagId.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.reference">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reference</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.reference" title="Link to this definition">¶</a></dt>
+<dd><p>Universal reference of this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.serial">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.serial" title="Link to this definition">¶</a></dt>
+<dd><p>Block serial number. For the first record this value is zero (0).</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.type">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.RecordType" title="pyil2.enum.RecordType"><span class="pre">RecordType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">RecordType.ROOT</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.type" title="Link to this definition">¶</a></dt>
+<dd><p>Block type. Most records are of the type ‘Data’.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.InterlockingRecordModel.version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.record.InterlockingRecordModel.version" title="Link to this definition">¶</a></dt>
+<dd><p>Version of this record structure.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.record.NewRecordModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.record.</span></span><span class="sig-name descname"><span class="pre">NewRecordModel</span></span><a class="headerlink" href="#pyil2.models.record.NewRecordModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>New record model to be added to the chain as raw bytes.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.NewRecordModel.application_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">application_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'applicationId')</span></em><a class="headerlink" href="#pyil2.models.record.NewRecordModel.application_id" title="Link to this definition">¶</a></dt>
+<dd><p>Application id this record is associated with.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.NewRecordModel.payload_bytes">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_bytes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadBytes')</span></em><a class="headerlink" href="#pyil2.models.record.NewRecordModel.payload_bytes" title="Link to this definition">¶</a></dt>
+<dd><p>Payload bytes.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.NewRecordModel.type">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.RecordType" title="pyil2.enum.RecordType"><span class="pre">RecordType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">RecordType.DATA</span></em><a class="headerlink" href="#pyil2.models.record.NewRecordModel.type" title="Link to this definition">¶</a></dt>
+<dd><p>Block type. Most records are of the type ‘Data’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.models.record.NewRecordModel.serialize_reserved_tags">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serialize_reserved_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pyil2.models.record.NewRecordModel.serialize_reserved_tags" title="Link to this definition">¶</a></dt>
+<dd><p>Serialize payload_bytes field.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.record.OpaqueRecordModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.record.</span></span><span class="sig-name descname"><span class="pre">OpaqueRecordModel</span></span><a class="headerlink" href="#pyil2.models.record.OpaqueRecordModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Opaque record details.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.OpaqueRecordModel.application_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">application_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'applicationId')</span></em><a class="headerlink" href="#pyil2.models.record.OpaqueRecordModel.application_id" title="Link to this definition">¶</a></dt>
+<dd><p>Application id this record is associated with.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.OpaqueRecordModel.chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'chainId')</span></em><a class="headerlink" href="#pyil2.models.record.OpaqueRecordModel.chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Chain id that owns this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.OpaqueRecordModel.created_at">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'createdAt')</span></em><a class="headerlink" href="#pyil2.models.record.OpaqueRecordModel.created_at" title="Link to this definition">¶</a></dt>
+<dd><p>Time of record creation.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.OpaqueRecordModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.record.OpaqueRecordModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network name this chain is part.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.OpaqueRecordModel.payload">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.record.OpaqueRecordModel.payload" title="Link to this definition">¶</a></dt>
+<dd><p>Opaque payload bytes.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.OpaqueRecordModel.payload_length">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadLength')</span></em><a class="headerlink" href="#pyil2.models.record.OpaqueRecordModel.payload_length" title="Link to this definition">¶</a></dt>
+<dd><p>The opaque payload length in bytes.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.OpaqueRecordModel.payload_type_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_type_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadTypeId')</span></em><a class="headerlink" href="#pyil2.models.record.OpaqueRecordModel.payload_type_id" title="Link to this definition">¶</a></dt>
+<dd><p>The payload’s TypeId.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.OpaqueRecordModel.serial">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.record.OpaqueRecordModel.serial" title="Link to this definition">¶</a></dt>
+<dd><p>Block serial number. For the first record this value is zero (0).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.record.</span></span><span class="sig-name descname"><span class="pre">RecordAsJsonModel</span></span><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyil2.models.record.BaseRecordModel" title="pyil2.models.record.BaseRecordModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRecordModel</span></code></a></p>
+<p>Record model as JSON.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.application_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">application_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'applicationId')</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.application_id" title="Link to this definition">¶</a></dt>
+<dd><p>Application id this record is associated with.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'chainId')</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Chain id that owns this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.created_at">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.datetime</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'createdAt')</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.created_at" title="Link to this definition">¶</a></dt>
+<dd><p>Time of record creation.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network name this chain is part.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.payload">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.payload" title="Link to this definition">¶</a></dt>
+<dd><p>Payload as JSON.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.payload_tag_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadTagId')</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.payload_tag_id" title="Link to this definition">¶</a></dt>
+<dd><p>The payload’s TagId.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.reference">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reference</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.reference" title="Link to this definition">¶</a></dt>
+<dd><p>Universal reference of this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.serial">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.serial" title="Link to this definition">¶</a></dt>
+<dd><p>Block serial number. For the first record this value is zero (0).</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.type">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.RecordType" title="pyil2.enum.RecordType"><span class="pre">RecordType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">RecordType.ROOT</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.type" title="Link to this definition">¶</a></dt>
+<dd><p>Block type. Most records are of the type ‘Data’.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordAsJsonModel.version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.record.RecordAsJsonModel.version" title="Link to this definition">¶</a></dt>
+<dd><p>Version of this record structure.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.record.</span></span><span class="sig-name descname"><span class="pre">RecordModel</span></span><a class="headerlink" href="#pyil2.models.record.RecordModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyil2.models.record.BaseRecordModel" title="pyil2.models.record.BaseRecordModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRecordModel</span></code></a></p>
+<p>Record model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.application_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">application_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'applicationId')</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.application_id" title="Link to this definition">¶</a></dt>
+<dd><p>Application id this record is associated with.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.chain_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chain_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'chainId')</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.chain_id" title="Link to this definition">¶</a></dt>
+<dd><p>Chain id that owns this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.created_at">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.datetime</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'createdAt')</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.created_at" title="Link to this definition">¶</a></dt>
+<dd><p>Time of record creation.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network name this chain is part.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.payload_bytes">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_bytes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadBytes')</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.payload_bytes" title="Link to this definition">¶</a></dt>
+<dd><p>Payload bytes.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.payload_tag_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadTagId')</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.payload_tag_id" title="Link to this definition">¶</a></dt>
+<dd><p>The payload’s TagId.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.reference">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reference</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.reference" title="Link to this definition">¶</a></dt>
+<dd><p>Universal reference of this record.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.serial">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.serial" title="Link to this definition">¶</a></dt>
+<dd><p>Block serial number. For the first record this value is zero (0).</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.type">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.RecordType" title="pyil2.enum.RecordType"><span class="pre">RecordType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">RecordType.ROOT</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.type" title="Link to this definition">¶</a></dt>
+<dd><p>Block type. Most records are of the type ‘Data’.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.record.RecordModel.version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.record.RecordModel.version" title="Link to this definition">¶</a></dt>
+<dd><p>Version of this record structure.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../2-pyil2.html">pyil2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../2.3-models.html">List of Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.4-enum.html">List of Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.5-utils.html">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../2-pyil2.html">pyil2 package</a><ul>
+  <li><a href="../2.3-models.html">List of Models</a><ul>
+      <li>Previous: <a href="5-keys.html" title="previous chapter">Keys Models</a></li>
+      <li>Next: <a href="7-json.html" title="next chapter">JSON Models</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/models/6-record.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

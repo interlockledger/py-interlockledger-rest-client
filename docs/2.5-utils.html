@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>List of Utils &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="List of Enumerations" href="2.4-enum.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="list-of-utils">
+<h1>List of Utils<a class="headerlink" href="#list-of-utils" title="Link to this heading">¶</a></h1>
+<p>This is a list of the utility functions and objects used in the pyil2.</p>
+<section id="module-pyil2.utils">
+<span id="functions"></span><h2>Functions<a class="headerlink" href="#module-pyil2.utils" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyil2.utils.aes_decrypt">
+<span class="sig-prename descclassname"><span class="pre">pyil2.utils.</span></span><span class="sig-name descname"><span class="pre">aes_decrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="headerlink" href="#pyil2.utils.aes_decrypt" title="Link to this definition">¶</a></dt>
+<dd><p>AES decryptor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code>) – Encrypted message.</p></li>
+<li><p><strong>key</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code>) – AES key.</p></li>
+<li><p><strong>iv</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code>) – AES IV.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Decrypted message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.utils.AppPermissions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.utils.</span></span><span class="sig-name descname"><span class="pre">AppPermissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_id:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_ids:</span> <span class="pre">~typing.List[int]</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'list'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.utils.AppPermissions" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.AppPermissions.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_id:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_ids:</span> <span class="pre">~typing.List[int]</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'list'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.utils.AppPermissions.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Apps permissions model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – App identifier.</p></li>
+<li><p><strong>actions_ids</strong> ([<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>]) – List of actions.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.AppPermissions.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.utils.AppPermissions.__str__" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>: String representation of app permissions</dt><dd><p>in the JSON format (‘#&lt;appId&gt;[,&lt;actionId_1&gt;,…,&lt;actionId_n&gt;]’).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.AppPermissions.resolve">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">permissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#pyil2.utils.AppPermissions.resolve" title="Link to this definition">¶</a></dt>
+<dd><p>Parse a string into an <a class="reference internal" href="#pyil2.utils.AppPermissions" title="pyil2.utils.AppPermissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppPermissions</span></code></a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>permissions</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – App permissions in the format used by                 the JSON response (‘#&lt;appId&gt;,&lt;actionId_1&gt;,…,&lt;actionId_n&gt;’).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>return an <a class="reference internal" href="#pyil2.utils.AppPermissions" title="pyil2.utils.AppPermissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppPermissions</span></code></a> instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyil2.utils.AppPermissions" title="pyil2.utils.AppPermissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppPermissions</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-pyil2.utils.certificates">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.utils.certificates.</span></span><span class="sig-name descname"><span class="pre">PKCS12Certificate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate" title="Link to this definition">¶</a></dt>
+<dd><p>A PKCS12 certificate interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Path to the .pfx certificate.</p></li>
+<li><p><strong>password</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Password of the .pfx certificate.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.common_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">common_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.common_name" title="Link to this definition">¶</a></dt>
+<dd><p>Certificate Common Name. If none found, return empty string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.decrypt">
+<span class="sig-name descname"><span class="pre">decrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cypher_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.decrypt" title="Link to this definition">¶</a></dt>
+<dd><p>Decode a encrypted message using RSA with SHA1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cypher_text</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code>) – Encrypted message.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Decrypted message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.friendly_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">friendly_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.friendly_name" title="Link to this definition">¶</a></dt>
+<dd><p>Certificate friendly name (Not implemented).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.has_pk">
+<span class="sig-name descname"><span class="pre">has_pk</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.has_pk" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the certificate has a primary key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the certificate has a primary key.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.key_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">key_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.key_id" title="Link to this definition">¶</a></dt>
+<dd><p>Id of the key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.private_key">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">private_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.private_key" title="Link to this definition">¶</a></dt>
+<dd><p>Certificate private key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.pub_key">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pub_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.pub_key" title="Link to this definition">¶</a></dt>
+<dd><p>Public key in IL2 text representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.pub_key_hash">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pub_key_hash</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.pub_key_hash" title="Link to this definition">¶</a></dt>
+<dd><p>Public key hash in IL2 text representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.public_certificate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">public_certificate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.public_certificate" title="Link to this definition">¶</a></dt>
+<dd><p>Certificate public certificate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.public_exponent">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">public_exponent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.public_exponent" title="Link to this definition">¶</a></dt>
+<dd><p>Public exponent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.certificates.PKCS12Certificate.public_modulus">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">public_modulus</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyil2.utils.certificates.PKCS12Certificate.public_modulus" title="Link to this definition">¶</a></dt>
+<dd><p>Public modulus.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-pyil2.utils.range">
+<dt class="sig sig-object py" id="pyil2.utils.range.LimitedRange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.utils.range.</span></span><span class="sig-name descname"><span class="pre">LimitedRange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.utils.range.LimitedRange" title="Link to this definition">¶</a></dt>
+<dd><p>A closed interval of integers represented by the notation ‘[start-end]’.
+If the range has only one value, the range is represented by ‘[start]’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – Initial value of the interval.</p></li>
+<li><p><strong>count</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – How many elements are in the range.</p></li>
+<li><p><strong>end</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – If defined, define the end value of the interval.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If ‘count’ is 0</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.utils.range.LimitedRange.start">
+<span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#pyil2.utils.range.LimitedRange.start" title="Link to this definition">¶</a></dt>
+<dd><p>Initial value of the interval</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.utils.range.LimitedRange.end">
+<span class="sig-name descname"><span class="pre">end</span></span><a class="headerlink" href="#pyil2.utils.range.LimitedRange.end" title="Link to this definition">¶</a></dt>
+<dd><p>End value of the interval</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.range.LimitedRange.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyil2.utils.range.LimitedRange.__contains__" title="Link to this definition">¶</a></dt>
+<dd><p>Check if item is in self.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>/<a class="reference internal" href="#pyil2.utils.range.LimitedRange" title="pyil2.utils.range.LimitedRange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LimitedRange</span></code></a>) – Item to check if is in self.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return item in self.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.range.LimitedRange.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyil2.utils.range.LimitedRange.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>: Return self == other.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.range.LimitedRange.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pyil2.utils.range.LimitedRange.__str__" title="Link to this definition">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>: String representation of self.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.utils.range.LimitedRange.count">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#pyil2.utils.range.LimitedRange.count" title="Link to this definition">¶</a></dt>
+<dd><p>Number of elements in the interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.range.LimitedRange.overlaps_with">
+<span class="sig-name descname"><span class="pre">overlaps_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyil2.utils.range.LimitedRange.overlaps_with" title="Link to this definition">¶</a></dt>
+<dd><p>Check if there is an overlap between the intervals of self and other.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Return True if there is an overlap.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.utils.range.LimitedRange.resolve">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#pyil2.utils.range.LimitedRange.resolve" title="Link to this definition">¶</a></dt>
+<dd><p>Parses a string into a <a class="reference internal" href="#pyil2.utils.range.LimitedRange" title="pyil2.utils.range.LimitedRange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LimitedRange</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – String representing the range in the                 format of ‘[start]’ or ‘[start-end]’.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance of the LimitedRange represented by the <cite>text</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pyil2.utils.range.LimitedRange" title="pyil2.utils.range.LimitedRange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LimitedRange</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="2-pyil2.html">pyil2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.3-models.html">List of Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.4-enum.html">List of Enumerations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="2-pyil2.html">pyil2 package</a><ul>
+      <li>Previous: <a href="2.4-enum.html" title="previous chapter">List of Enumerations</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/2.5-utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

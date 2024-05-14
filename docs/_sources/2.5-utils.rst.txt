@@ -1,0 +1,26 @@
+List of Utils
+=============
+
+This is a list of the utility functions and objects used in the pyil2.
+
+Functions
+---------
+
+.. automodule:: pyil2.utils
+    :members:
+    
+
+Classes
+-------
+
+.. autoclass:: pyil2.utils.AppPermissions
+    :members:
+
+
+.. automodule:: pyil2.utils.certificates
+    :members:
+
+
+.. automodule:: pyil2.utils.range
+    :members:
+    

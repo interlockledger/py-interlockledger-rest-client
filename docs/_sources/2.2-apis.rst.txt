@@ -1,0 +1,29 @@
+List of APIs
+============
+
+This section shows the list of available APIs in the IL2Client.
+To get an instance of an API, you will need to indicate in the IL2Client:
+
+.. code-block:: python3
+    
+
+    from pyil2 import IL2Client
+    
+    client = IL2Client(
+        host='https://il2.node:32032/',
+        cert_filepath='rest.api.pfx',
+        cert_password='Str0ngPassword'
+    )
+    chain_api = client.api('<API name>')
+
+The available APIs are the following:
+
+.. toctree::
+    :maxdepth: 1
+
+    apis/1-node
+    apis/2-chain
+    apis/3-record
+    apis/4-opaque
+    apis/5-json
+    apis/6-documents

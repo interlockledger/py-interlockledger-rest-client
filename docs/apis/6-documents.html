@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DocumentsApi &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="List of Models" href="../2.3-models.html" />
+    <link rel="prev" title="JsonApi" href="5-json.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="documentsapi">
+<h1>DocumentsApi<a class="headerlink" href="#documentsapi" title="Link to this heading">¶</a></h1>
+<p>The DocumentsApi allows you to insert document files (PDF, docx, text files,…) inside an IL2 chain.
+To get an instance of the JsonApi, you can use the following example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyil2</span> <span class="kn">import</span> <span class="n">IL2Client</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">IL2Client</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;https://il2.node:32032/&#39;</span><span class="p">,</span>
+    <span class="n">cert_filepath</span><span class="o">=</span><span class="s1">&#39;rest.api.pfx&#39;</span><span class="p">,</span>
+    <span class="n">cert_password</span><span class="o">=</span><span class="s1">&#39;Str0ngPassword&#39;</span>
+<span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">api</span><span class="p">(</span><span class="s1">&#39;documents&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The DocumentsApi is based on transactions to upload the files.
+This way, it is possible to upload multiple files to a single record.
+In summary, the basic steps to upload document files are as follows:</p>
+<ul>
+<li><p>Begin an upload transaction;</p></li>
+<li><p>Upload file;</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Repeat for multiple files;</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Commit the upload transaction.</p></li>
+</ul>
+<p>An example on how to upload document files to an IL2 chain:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyil2.models.documents</span> <span class="kn">import</span> <span class="n">BeginDocumentTransactionModel</span>
+
+<span class="n">new_transaction</span> <span class="o">=</span> <span class="n">BeginDocumentTransactionModel</span><span class="p">(</span>
+    <span class="n">chain</span><span class="o">=</span><span class="s1">&#39;UHtr...REDACTED...vXRY&#39;</span><span class="p">,</span>
+    <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;Additional comment to describe the files inside this record.&#39;</span><span class="p">,</span>
+    <span class="n">encryption</span><span class="o">=</span><span class="s1">&#39;PBKDF2-SHA512-AES256-MID&#39;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;1234567890123456&#39;</span>
+<span class="p">)</span>
+<span class="n">transaction</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">begin_document_transaction</span><span class="p">(</span><span class="n">new_transaction</span><span class="p">)</span>
+
+<span class="n">transaction</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">upload_document</span><span class="p">(</span>
+    <span class="n">transaction_id</span><span class="o">=</span><span class="n">transaction</span><span class="o">.</span><span class="n">transaction_id</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;file1.txt&#39;</span><span class="p">,</span>
+    <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+    <span class="n">file_bytes</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;Example 1&#39;</span><span class="p">,</span>
+    <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;Uploading a file using raw bytes as payload.&#39;</span>
+<span class="p">)</span>
+
+<span class="n">transaction</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">upload_document_file</span><span class="p">(</span>
+    <span class="n">transaction_id</span><span class="o">=</span><span class="n">transaction</span><span class="o">.</span><span class="n">transaction_id</span><span class="p">,</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s1">&#39;/path/to/file2.txt&#39;</span><span class="p">,</span>
+    <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;Uploading a file passing the file path.&#39;</span>
+<span class="p">)</span>
+
+<span class="n">locator</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">commit_document_transaction</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">transaction_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After commiting the upload transaction, you will receive a locator to access the files inside the record.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The locator will be available only in the response to the transaction commit.
+It will not be possible to recover the locator afterward, store it in a safe location.</p>
+</div>
+<p>With the locator, it is possible to get the details of the files in the record, or download the files.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_document_metadata</span><span class="p">(</span><span class="n">locator</span><span class="p">)</span>
+
+<span class="c1"># Download a single file</span>
+<span class="c1"># This method will return the path to the downloaded file</span>
+<span class="n">document_path</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">download_single_document_at</span><span class="p">(</span>
+    <span class="n">locator</span><span class="o">=</span><span class="n">locator</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">dst_path</span><span class="o">=</span><span class="s1">&#39;/path/to/download/folder&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Download all files as a zip file</span>
+<span class="c1"># This method will return the path to the downloaded file</span>
+<span class="n">document_path</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">download_documents_as_zip</span><span class="p">(</span>
+    <span class="n">locator</span><span class="o">=</span><span class="n">locator</span><span class="p">,</span>
+    <span class="n">dst_path</span><span class="o">=</span><span class="s1">&#39;/path/to/download/folder&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The list of methods in the DOcumentsApi are described as follows:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.api.</span></span><span class="sig-name descname"><span class="pre">DocumentsApi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../2.1-client.html#pyil2.IL2Client" title="pyil2.IL2Client"><span class="pre">IL2Client</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.api.DocumentsApi" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseApi</span></code></p>
+<p>API class for the Multi-Documents requests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client</strong> (<a class="reference internal" href="../2.1-client.html#pyil2.IL2Client" title="pyil2.IL2Client"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.IL2Client</span></code></a>) – IL2Client to be used to send requests.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.base_url">
+<span class="sig-name descname"><span class="pre">base_url</span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.base_url" title="Link to this definition">¶</a></dt>
+<dd><p>Base path of the requests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.begin_document_transaction">
+<span class="sig-name descname"><span class="pre">begin_document_transaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_transaction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.BeginDocumentTransactionModel" title="pyil2.models.documents.BeginDocumentTransactionModel"><span class="pre">BeginDocumentTransactionModel</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentTransactionModel" title="pyil2.models.documents.DocumentTransactionModel"><span class="pre">DocumentTransactionModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.begin_document_transaction" title="Link to this definition">¶</a></dt>
+<dd><p>Begin a document upload transaction.</p>
+<p>The transaction will rollback on timeout or errors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_transaction</strong> (<a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.BeginDocumentTransactionModel" title="pyil2.models.documents.BeginDocumentTransactionModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.documents.BeginDocumentTransactionModel</span></code></a>) – Begin transaction details.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Document upload                 transaction status.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentTransactionModel" title="pyil2.models.documents.DocumentTransactionModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.documents.DocumentTransactionModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.commit_document_transaction">
+<span class="sig-name descname"><span class="pre">commit_document_transaction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transaction_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.commit_document_transaction" title="Link to this definition">¶</a></dt>
+<dd><p>Commits a document upload transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>transaction_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Document upload transaction ID.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Document locator.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.documents_configuration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">documents_configuration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentUploadConfigurationModel" title="pyil2.models.documents.DocumentUploadConfigurationModel"><span class="pre">DocumentUploadConfigurationModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></em><a class="headerlink" href="#pyil2.api.DocumentsApi.documents_configuration" title="Link to this definition">¶</a></dt>
+<dd><p>Documents upload configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentUploadConfigurationModel" title="pyil2.models.documents.DocumentUploadConfigurationModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.documents.DocumentUploadConfigurationModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.download_documents_as_zip">
+<span class="sig-name descname"><span class="pre">download_documents_as_zip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'./'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.download_documents_as_zip" title="Link to this definition">¶</a></dt>
+<dd><p>Download documents in a compressed file to a folder (default: current folder).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>locator</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – A Documents Storage Locator.</p></li>
+<li><p><strong>dst_path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Download the file to this folder.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Downloaded file full path.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.download_documents_as_zip_as_response">
+<span class="sig-name descname"><span class="pre">download_documents_as_zip_as_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Response</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.download_documents_as_zip_as_response" title="Link to this definition">¶</a></dt>
+<dd><p>Get the request response to download documents in a compressed file.</p>
+<p><em>Note:</em> For advance use only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>locator</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – A Documents Storage Locator.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Request response.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">requests.Response</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.download_single_document_at">
+<span class="sig-name descname"><span class="pre">download_single_document_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'./'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.download_single_document_at" title="Link to this definition">¶</a></dt>
+<dd><p>Download a single document by position from the set of documents
+to a folder (default: current folder).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>locator</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – A Documents Storage Locator.</p></li>
+<li><p><strong>index</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – Index of the file.</p></li>
+<li><p><strong>dst_path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Download the file to this folder.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Downloaded file full path.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.download_single_document_at_as_response">
+<span class="sig-name descname"><span class="pre">download_single_document_at_as_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Response</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.download_single_document_at_as_response" title="Link to this definition">¶</a></dt>
+<dd><p>Get the request response to download a single document by position
+from the set of documents.</p>
+<p><em>Note:</em> For advance use only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>locator</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – A Documents Storage Locator.</p></li>
+<li><p><strong>index</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – Index of the file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Request response.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">requests.Response</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.get_document_metadata">
+<span class="sig-name descname"><span class="pre">get_document_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentMetadataModel" title="pyil2.models.documents.DocumentMetadataModel"><span class="pre">DocumentMetadataModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.get_document_metadata" title="Link to this definition">¶</a></dt>
+<dd><p>Get the documents metadata by the locator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>locator</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Document locator.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Documents metadata.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentMetadataModel" title="pyil2.models.documents.DocumentMetadataModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.documents.DocumentMetadataModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.get_document_transaction_status">
+<span class="sig-name descname"><span class="pre">get_document_transaction_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transaction_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentTransactionModel" title="pyil2.models.documents.DocumentTransactionModel"><span class="pre">DocumentTransactionModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.get_document_transaction_status" title="Link to this definition">¶</a></dt>
+<dd><p>Get a document upload transaction status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>transaction_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Document upload transaction ID.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Document upload                 transaction status.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentTransactionModel" title="pyil2.models.documents.DocumentTransactionModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.documents.DocumentTransactionModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.upload_document">
+<span class="sig-name descname"><span class="pre">upload_document</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transaction_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_bytes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentTransactionModel" title="pyil2.models.documents.DocumentTransactionModel"><span class="pre">DocumentTransactionModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.upload_document" title="Link to this definition">¶</a></dt>
+<dd><p>Add a file to a document upload transaction using bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transaction_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Document upload transaction ID.</p></li>
+<li><p><strong>filename</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – File name.</p></li>
+<li><p><strong>content_type</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – File mime-type</p></li>
+<li><p><strong>file_bytes</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code>) – File bytes.</p></li>
+<li><p><strong>comment</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Additional comment.</p></li>
+<li><p><strong>relative_path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Relative path of the file inside the record.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Document upload transaction                 status.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentTransactionModel" title="pyil2.models.documents.DocumentTransactionModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.documents.DocumentTransactionModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.DocumentsApi.upload_document_file">
+<span class="sig-name descname"><span class="pre">upload_document_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transaction_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentTransactionModel" title="pyil2.models.documents.DocumentTransactionModel"><span class="pre">DocumentTransactionModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.DocumentsApi.upload_document_file" title="Link to this definition">¶</a></dt>
+<dd><p>Add a file to a document upload transaction using file path.
+This method will try to get the filename and the MIME-type from the filepath.
+If needed, you can force the filename and/or the content-type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transaction_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Document upload transaction ID.</p></li>
+<li><p><strong>filepath</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – File path.</p></li>
+<li><p><strong>comment</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Additional comment.</p></li>
+<li><p><strong>relative_path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Relative path of the file inside the record.</p></li>
+<li><p><strong>filename</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – File name.                 If None, it will try to use the filename in the filepath.</p></li>
+<li><p><strong>content_type</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – File mime-type.                 If None, it will try to guess the mime-type based on the file extension.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Document upload transaction                 status.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/8-documents.html#pyil2.models.documents.DocumentTransactionModel" title="pyil2.models.documents.DocumentTransactionModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.documents.DocumentTransactionModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../2-pyil2.html">pyil2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.3-models.html">List of Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.4-enum.html">List of Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.5-utils.html">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../2-pyil2.html">pyil2 package</a><ul>
+  <li><a href="../2.2-apis.html">List of APIs</a><ul>
+      <li>Previous: <a href="5-json.html" title="previous chapter">JsonApi</a></li>
+      <li>Next: <a href="../2.3-models.html" title="next chapter">List of Models</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/apis/6-documents.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

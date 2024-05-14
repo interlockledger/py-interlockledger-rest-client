@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>List of Enumerations &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="List of Utils" href="2.5-utils.html" />
+    <link rel="prev" title="Errors Models" href="models/9-errors.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-pyil2.enum">
+<span id="list-of-enumerations"></span><h1>List of Enumerations<a class="headerlink" href="#module-pyil2.enum" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.Algorithms">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">Algorithms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.Algorithms" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of the digital signature algorithms available in IL2.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.Algorithms.DSA">
+<span class="sig-name descname"><span class="pre">DSA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DSA'</span></em><a class="headerlink" href="#pyil2.enum.Algorithms.DSA" title="Link to this definition">¶</a></dt>
+<dd><p>DSA</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.Algorithms.ECDSA">
+<span class="sig-name descname"><span class="pre">ECDSA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'EcDSA'</span></em><a class="headerlink" href="#pyil2.enum.Algorithms.ECDSA" title="Link to this definition">¶</a></dt>
+<dd><p>Elliptic Curve Digital Signature Algorithm</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.Algorithms.EDDSA">
+<span class="sig-name descname"><span class="pre">EDDSA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'EdDSA'</span></em><a class="headerlink" href="#pyil2.enum.Algorithms.EDDSA" title="Link to this definition">¶</a></dt>
+<dd><p>Edwards-curve Digital Signature Algorithm</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.Algorithms.EL_GAMMAL">
+<span class="sig-name descname"><span class="pre">EL_GAMMAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ElGamal'</span></em><a class="headerlink" href="#pyil2.enum.Algorithms.EL_GAMMAL" title="Link to this definition">¶</a></dt>
+<dd><p>ElGamal signature</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.Algorithms.RSA">
+<span class="sig-name descname"><span class="pre">RSA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RSA'</span></em><a class="headerlink" href="#pyil2.enum.Algorithms.RSA" title="Link to this definition">¶</a></dt>
+<dd><p>PKCS#1 RSASSA-PSS</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.Algorithms.RSA15">
+<span class="sig-name descname"><span class="pre">RSA15</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RSA15'</span></em><a class="headerlink" href="#pyil2.enum.Algorithms.RSA15" title="Link to this definition">¶</a></dt>
+<dd><p>RSASSA-PKCS1-v1_5</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.CipherAlgorithms">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">CipherAlgorithms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.CipherAlgorithms" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of the cipher algorithms available in IL2.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.CipherAlgorithms.AES256">
+<span class="sig-name descname"><span class="pre">AES256</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AES256'</span></em><a class="headerlink" href="#pyil2.enum.CipherAlgorithms.AES256" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.CipherAlgorithms.NONE">
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'None'</span></em><a class="headerlink" href="#pyil2.enum.CipherAlgorithms.NONE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.DataFieldCast">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">DataFieldCast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.DataFieldCast" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of casting options for DataField</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.DataFieldCast.DATETIME">
+<span class="sig-name descname"><span class="pre">DATETIME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DateTime'</span></em><a class="headerlink" href="#pyil2.enum.DataFieldCast.DATETIME" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.DataFieldCast.INTEGER">
+<span class="sig-name descname"><span class="pre">INTEGER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Integer'</span></em><a class="headerlink" href="#pyil2.enum.DataFieldCast.INTEGER" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.DataFieldCast.NONE">
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'None'</span></em><a class="headerlink" href="#pyil2.enum.DataFieldCast.NONE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.DataFieldCast.TIMESPAN">
+<span class="sig-name descname"><span class="pre">TIMESPAN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'TimeSpan'</span></em><a class="headerlink" href="#pyil2.enum.DataFieldCast.TIMESPAN" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.DocumentsCompression">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">DocumentsCompression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.DocumentsCompression" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of the compression algorithm.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.DocumentsCompression.BROTLI">
+<span class="sig-name descname"><span class="pre">BROTLI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BROTLI'</span></em><a class="headerlink" href="#pyil2.enum.DocumentsCompression.BROTLI" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.DocumentsCompression.GZIP">
+<span class="sig-name descname"><span class="pre">GZIP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'GZIP'</span></em><a class="headerlink" href="#pyil2.enum.DocumentsCompression.GZIP" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.DocumentsCompression.NONE">
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NONE'</span></em><a class="headerlink" href="#pyil2.enum.DocumentsCompression.NONE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.DocumentsCompression.ZSTD">
+<span class="sig-name descname"><span class="pre">ZSTD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ZSTD'</span></em><a class="headerlink" href="#pyil2.enum.DocumentsCompression.ZSTD" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.HashAlgorithms">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">HashAlgorithms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.HashAlgorithms" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of the hash algorithms available in IL2.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.HashAlgorithms.COPY">
+<span class="sig-name descname"><span class="pre">COPY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Copy'</span></em><a class="headerlink" href="#pyil2.enum.HashAlgorithms.COPY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.HashAlgorithms.SHA1">
+<span class="sig-name descname"><span class="pre">SHA1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SHA1'</span></em><a class="headerlink" href="#pyil2.enum.HashAlgorithms.SHA1" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.HashAlgorithms.SHA256">
+<span class="sig-name descname"><span class="pre">SHA256</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SHA256'</span></em><a class="headerlink" href="#pyil2.enum.HashAlgorithms.SHA256" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.HashAlgorithms.SHA3_256">
+<span class="sig-name descname"><span class="pre">SHA3_256</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SHA3_256'</span></em><a class="headerlink" href="#pyil2.enum.HashAlgorithms.SHA3_256" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.HashAlgorithms.SHA3_512">
+<span class="sig-name descname"><span class="pre">SHA3_512</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SHA3_512'</span></em><a class="headerlink" href="#pyil2.enum.HashAlgorithms.SHA3_512" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.HashAlgorithms.SHA512">
+<span class="sig-name descname"><span class="pre">SHA512</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SHA512'</span></em><a class="headerlink" href="#pyil2.enum.HashAlgorithms.SHA512" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.KeyPurpose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">KeyPurpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.KeyPurpose" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of the purpose of keys in IL2.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyPurpose.ACTION">
+<span class="sig-name descname"><span class="pre">ACTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Action'</span></em><a class="headerlink" href="#pyil2.enum.KeyPurpose.ACTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyPurpose.CHAIN_OPERATION">
+<span class="sig-name descname"><span class="pre">CHAIN_OPERATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ChainOperation'</span></em><a class="headerlink" href="#pyil2.enum.KeyPurpose.CHAIN_OPERATION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyPurpose.CLAIM_SIGNER">
+<span class="sig-name descname"><span class="pre">CLAIM_SIGNER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ClaimSigner'</span></em><a class="headerlink" href="#pyil2.enum.KeyPurpose.CLAIM_SIGNER" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyPurpose.ENCRYPTION">
+<span class="sig-name descname"><span class="pre">ENCRYPTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Encryption'</span></em><a class="headerlink" href="#pyil2.enum.KeyPurpose.ENCRYPTION" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyPurpose.FORCE_INTERLOCK">
+<span class="sig-name descname"><span class="pre">FORCE_INTERLOCK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ForceInterlock'</span></em><a class="headerlink" href="#pyil2.enum.KeyPurpose.FORCE_INTERLOCK" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyPurpose.INVALID_KEY">
+<span class="sig-name descname"><span class="pre">INVALID_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'InvalidKey'</span></em><a class="headerlink" href="#pyil2.enum.KeyPurpose.INVALID_KEY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyPurpose.KEY_MANAGEMENT">
+<span class="sig-name descname"><span class="pre">KEY_MANAGEMENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'KeyManagement'</span></em><a class="headerlink" href="#pyil2.enum.KeyPurpose.KEY_MANAGEMENT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyPurpose.PROTOCOL">
+<span class="sig-name descname"><span class="pre">PROTOCOL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Protocol'</span></em><a class="headerlink" href="#pyil2.enum.KeyPurpose.PROTOCOL" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.KeyStrength">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">KeyStrength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.KeyStrength" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of the strength of keys.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyStrength.EXTRA_STRONG">
+<span class="sig-name descname"><span class="pre">EXTRA_STRONG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ExtraStrong'</span></em><a class="headerlink" href="#pyil2.enum.KeyStrength.EXTRA_STRONG" title="Link to this definition">¶</a></dt>
+<dd><p>RSA 4096</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyStrength.HYPER_STRONG">
+<span class="sig-name descname"><span class="pre">HYPER_STRONG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'HyperStrong'</span></em><a class="headerlink" href="#pyil2.enum.KeyStrength.HYPER_STRONG" title="Link to this definition">¶</a></dt>
+<dd><p>RSA 7172</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyStrength.MEGA_STRONG">
+<span class="sig-name descname"><span class="pre">MEGA_STRONG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MegaStrong'</span></em><a class="headerlink" href="#pyil2.enum.KeyStrength.MEGA_STRONG" title="Link to this definition">¶</a></dt>
+<dd><p>RSA 5120</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyStrength.NORMAL">
+<span class="sig-name descname"><span class="pre">NORMAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Normal'</span></em><a class="headerlink" href="#pyil2.enum.KeyStrength.NORMAL" title="Link to this definition">¶</a></dt>
+<dd><p>RSA 2048</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyStrength.STRONG">
+<span class="sig-name descname"><span class="pre">STRONG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Strong'</span></em><a class="headerlink" href="#pyil2.enum.KeyStrength.STRONG" title="Link to this definition">¶</a></dt>
+<dd><p>RSA 3072</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyStrength.SUPER_STRONG">
+<span class="sig-name descname"><span class="pre">SUPER_STRONG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SuperStrong'</span></em><a class="headerlink" href="#pyil2.enum.KeyStrength.SUPER_STRONG" title="Link to this definition">¶</a></dt>
+<dd><p>RSA 6144</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.KeyStrength.ULTRA_STRONG">
+<span class="sig-name descname"><span class="pre">ULTRA_STRONG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UltraStrong'</span></em><a class="headerlink" href="#pyil2.enum.KeyStrength.ULTRA_STRONG" title="Link to this definition">¶</a></dt>
+<dd><p>RSA 8192</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">NetworkPredefinedPorts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of the default ports of the IL2 networks.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts.MAINNET">
+<span class="sig-name descname"><span class="pre">MAINNET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32032</span></em><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts.MAINNET" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts.METANET">
+<span class="sig-name descname"><span class="pre">METANET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32036</span></em><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts.METANET" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts.TESTNET_APOLLO">
+<span class="sig-name descname"><span class="pre">TESTNET_APOLLO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32020</span></em><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts.TESTNET_APOLLO" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts.TESTNET_JANUS">
+<span class="sig-name descname"><span class="pre">TESTNET_JANUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32022</span></em><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts.TESTNET_JANUS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts.TESTNET_JUPITER">
+<span class="sig-name descname"><span class="pre">TESTNET_JUPITER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32030</span></em><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts.TESTNET_JUPITER" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts.TESTNET_LIBER">
+<span class="sig-name descname"><span class="pre">TESTNET_LIBER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32018</span></em><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts.TESTNET_LIBER" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts.TESTNET_MINERVA">
+<span class="sig-name descname"><span class="pre">TESTNET_MINERVA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32024</span></em><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts.TESTNET_MINERVA" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts.TESTNET_NEPTUNE">
+<span class="sig-name descname"><span class="pre">TESTNET_NEPTUNE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32026</span></em><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts.TESTNET_NEPTUNE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkPredefinedPorts.TESTNET_SATURN">
+<span class="sig-name descname"><span class="pre">TESTNET_SATURN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32028</span></em><a class="headerlink" href="#pyil2.enum.NetworkPredefinedPorts.TESTNET_SATURN" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">NetworkProtocol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.NetworkProtocol" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of the network protocols.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkProtocol.HTTPS_PROXIED">
+<span class="sig-name descname"><span class="pre">HTTPS_PROXIED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'HTTPS_Proxied'</span></em><a class="headerlink" href="#pyil2.enum.NetworkProtocol.HTTPS_PROXIED" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkProtocol.ORIGINATOR_ONLY">
+<span class="sig-name descname"><span class="pre">ORIGINATOR_ONLY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Originator_Only'</span></em><a class="headerlink" href="#pyil2.enum.NetworkProtocol.ORIGINATOR_ONLY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkProtocol.TCP_DIRECT">
+<span class="sig-name descname"><span class="pre">TCP_DIRECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'TCP_Direct'</span></em><a class="headerlink" href="#pyil2.enum.NetworkProtocol.TCP_DIRECT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.NetworkProtocol.TCP_PROXIED">
+<span class="sig-name descname"><span class="pre">TCP_PROXIED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'TCP_Proxied'</span></em><a class="headerlink" href="#pyil2.enum.NetworkProtocol.TCP_PROXIED" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.enum.RecordType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.enum.</span></span><span class="sig-name descname"><span class="pre">RecordType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.enum.RecordType" title="Link to this definition">¶</a></dt>
+<dd><p>Enumeration of the types of Records available in IL2.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.RecordType.CLOSING">
+<span class="sig-name descname"><span class="pre">CLOSING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Closing'</span></em><a class="headerlink" href="#pyil2.enum.RecordType.CLOSING" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.RecordType.CORRUPTED">
+<span class="sig-name descname"><span class="pre">CORRUPTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Corrupted'</span></em><a class="headerlink" href="#pyil2.enum.RecordType.CORRUPTED" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.RecordType.DATA">
+<span class="sig-name descname"><span class="pre">DATA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Data'</span></em><a class="headerlink" href="#pyil2.enum.RecordType.DATA" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.RecordType.EMERGENCY_CLOSING">
+<span class="sig-name descname"><span class="pre">EMERGENCY_CLOSING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'EmergencyClosing'</span></em><a class="headerlink" href="#pyil2.enum.RecordType.EMERGENCY_CLOSING" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.enum.RecordType.ROOT">
+<span class="sig-name descname"><span class="pre">ROOT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Root'</span></em><a class="headerlink" href="#pyil2.enum.RecordType.ROOT" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="2-pyil2.html">pyil2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.3-models.html">List of Models</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">List of Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.5-utils.html">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="2-pyil2.html">pyil2 package</a><ul>
+      <li>Previous: <a href="models/9-errors.html" title="previous chapter">Errors Models</a></li>
+      <li>Next: <a href="2.5-utils.html" title="next chapter">List of Utils</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/2.4-enum.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>JsonApi &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DocumentsApi" href="6-documents.html" />
+    <link rel="prev" title="OpaqueApi" href="4-opaque.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="jsonapi">
+<h1>JsonApi<a class="headerlink" href="#jsonapi" title="Link to this heading">¶</a></h1>
+<p>The JsonApi allows you to insert records with an arbitrary JSON payload.
+The JSON payload will be encrypted and it will only be possible to decode the payload if you have the correct key.
+By default, the payload will be encrypted using the key used to insert the JSON payload, but it is possible to insert a JSON payload with different reading keys.
+To get an instance of the JsonApi, you can use the following example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyil2</span> <span class="kn">import</span> <span class="n">IL2Client</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">IL2Client</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;https://il2.node:32032/&#39;</span><span class="p">,</span>
+    <span class="n">cert_filepath</span><span class="o">=</span><span class="s1">&#39;rest.api.pfx&#39;</span><span class="p">,</span>
+    <span class="n">cert_password</span><span class="o">=</span><span class="s1">&#39;Str0ngPassword&#39;</span>
+<span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">api</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To insert a JSON encrypted with the certificate used to insert the JSON:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;attr&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span>
+<span class="p">}</span>
+<span class="n">json_doc</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_json_document</span><span class="p">(</span>
+    <span class="n">chain_id</span><span class="o">=</span><span class="s1">&#39;UHtr...REDACTED...vXRY&#39;</span><span class="p">,</span>
+    <span class="n">payload</span><span class="o">=</span><span class="n">payload</span>
+<span class="p">)</span>
+<span class="n">serial</span> <span class="o">=</span> <span class="n">json_doc</span><span class="o">.</span><span class="n">serial</span>
+</pre></div>
+</div>
+<p>To get a JSON record and to decode the JSON payload:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">json_doc</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_json_document</span><span class="p">(</span>
+    <span class="n">chain_id</span><span class="o">=</span><span class="s1">&#39;UHtr...REDACTED...vXRY&#39;</span><span class="p">,</span>
+    <span class="n">serial</span><span class="o">=</span><span class="n">serial</span>
+<span class="p">)</span>
+
+<span class="n">decrypted</span> <span class="o">=</span> <span class="n">json_doc</span><span class="o">.</span><span class="n">encrypted_json</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">certificate</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As stated earlier, you can store a JSON with a secondary reading key.
+The reading key needs to be in the IL2 format.
+Currently, the pyil2 client only supports PKCS12 certificates (PFX files), so you can use another PKCS12 certificate to add another reading key.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">fom</span> <span class="n">pyil2</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">certificates</span> <span class="kn">import</span> <span class="nn">PKCS12Certificate</span>
+
+<span class="n">certificate_2</span> <span class="o">=</span> <span class="n">PKCS12Certificate</span><span class="p">(</span><span class="s1">&#39;certificate_2.pfx&#39;</span><span class="p">,</span> <span class="s1">&#39;Str0ngerPassword&#39;</span><span class="p">)</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;attr&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span>
+<span class="p">}</span>
+<span class="n">json_doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">add_json_document_with_key</span><span class="p">(</span>
+    <span class="n">chain_id</span><span class="o">=</span><span class="s1">&#39;UHtr...REDACTED...vXRY&#39;</span><span class="p">,</span>
+    <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+    <span class="n">public_key</span><span class="o">=</span><span class="n">certificate_2</span><span class="o">.</span><span class="n">pub_key</span><span class="p">,</span>
+    <span class="n">public_key_id</span><span class="o">=</span><span class="n">certificate_2</span><span class="o">.</span><span class="n">key_id</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The decodification process is the same as before but using <cite>certificate_2</cite> instead of <cite>client.certificate</cite>.</p>
+<p>If you need multiples reading keys, you can insert a record with a list of allowed reading keys:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyil2.models.json</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AllowedReadersModel</span><span class="p">,</span>
+    <span class="n">ReaderKeyModel</span>
+<span class="p">)</span>
+
+<span class="n">allowed_readers</span> <span class="o">=</span> <span class="n">AllowedReadersModel</span><span class="p">(</span>
+    <span class="n">contextId</span><span class="o">=</span><span class="s1">&#39;allowed_readers_list_name&#39;</span><span class="p">,</span>
+    <span class="n">readers</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">ReaderKeyModel</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">certificate_2</span><span class="o">.</span><span class="n">key_id</span><span class="p">,</span>
+            <span class="n">public_key</span><span class="o">=</span><span class="n">certificate_2</span><span class="o">.</span><span class="n">pub_key</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">reference</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">allow_json_document_readers</span><span class="p">(</span>
+    <span class="n">chain_id</span><span class="o">=</span><span class="s1">&#39;UHtr...REDACTED...vXRY&#39;</span><span class="p">,</span>
+    <span class="n">allowed_readers</span><span class="o">=</span><span class="n">allowed_readers</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>With a list of allowed reading keys inserted, we can now insert a JSON document with more reading keys:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;attr&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span>
+<span class="p">}</span>
+<span class="n">json_doc</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_json_document_with_indirect_keys</span><span class="p">(</span>
+    <span class="n">chain_id</span><span class="o">=</span><span class="s1">&#39;UHtr...REDACTED...vXRY&#39;</span><span class="p">,</span>
+    <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+    <span class="n">keys_references</span><span class="o">=</span><span class="p">[</span><span class="n">reference</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use more than one allowed reading keys record reference.</p>
+</div>
+<p>Finally, you can also insert a JSON document record with all reading keys allowed in one chain:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;attr&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span>
+<span class="p">}</span>
+<span class="n">json_doc</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_json_document_with_chain_keys</span><span class="p">(</span>
+    <span class="n">chain_id</span><span class="o">=</span><span class="s1">&#39;UHtr...REDACTED...vXRY&#39;</span><span class="p">,</span>
+    <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span>
+    <span class="n">keys_chain_id</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ArFj...REDACTED...bHxP&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The list of methods in the JsonApi are described as follows:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyil2.api.JsonApi">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.api.</span></span><span class="sig-name descname"><span class="pre">JsonApi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../2.1-client.html#pyil2.IL2Client" title="pyil2.IL2Client"><span class="pre">IL2Client</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.api.JsonApi" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseApi</span></code></p>
+<p>API class for the JSON documents requests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client</strong> (<a class="reference internal" href="../2.1-client.html#pyil2.IL2Client" title="pyil2.IL2Client"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.IL2Client</span></code></a>) – IL2Client to be used to send requests.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyil2.api.JsonApi.base_url">
+<span class="sig-name descname"><span class="pre">base_url</span></span><a class="headerlink" href="#pyil2.api.JsonApi.base_url" title="Link to this definition">¶</a></dt>
+<dd><p>Base path of the requests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.JsonApi.add_json_document">
+<span class="sig-name descname"><span class="pre">add_json_document</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><span class="pre">JsonDocumentModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.JsonApi.add_json_document" title="Link to this definition">¶</a></dt>
+<dd><p>Add a JSON document record encrypted with the client certificate used in the request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chain_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Chain ID.</p></li>
+<li><p><strong>payload</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – A valid JSON in dictionary format.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Added JSON document details.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.json.JsonDocumentModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.JsonApi.add_json_document_with_chain_keys">
+<span class="sig-name descname"><span class="pre">add_json_document_with_chain_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys_chain_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><span class="pre">JsonDocumentModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.JsonApi.add_json_document_with_chain_keys" title="Link to this definition">¶</a></dt>
+<dd><p>Add a JSON document record encrypted with the public keys from a given list of chains.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chain_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Chain ID.</p></li>
+<li><p><strong>payload</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – A valid JSON in dictionary format.</p></li>
+<li><p><strong>keys_chain_id</strong> ([<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>]) – List of IDs of a local chain from which the                 ‘allowed readers’ list of public keys will be used to encrypt the content.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Added JSON document details.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.json.JsonDocumentModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.JsonApi.add_json_document_with_indirect_keys">
+<span class="sig-name descname"><span class="pre">add_json_document_with_indirect_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys_references</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><span class="pre">JsonDocumentModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.JsonApi.add_json_document_with_indirect_keys" title="Link to this definition">¶</a></dt>
+<dd><p>Add a JSON document record encrypted with the public keys from a given list of chains.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chain_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Chain ID.</p></li>
+<li><p><strong>payload</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – A valid JSON in dictionary format.</p></li>
+<li><p><strong>keys_references</strong> ([<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>]) – List of references on the format <a class="reference external" href="mailto:'chainId&#37;&#52;&#48;serial">‘chainId<span>&#64;</span>serial</a>’                 to records on local chains containing ‘allowed readers’ lists.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Added JSON document details.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.json.JsonDocumentModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.JsonApi.add_json_document_with_key">
+<span class="sig-name descname"><span class="pre">add_json_document_with_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><span class="pre">JsonDocumentModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.JsonApi.add_json_document_with_key" title="Link to this definition">¶</a></dt>
+<dd><p>Add a JSON document record encrypted with a given key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chain_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Chain ID.</p></li>
+<li><p><strong>payload</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – A valid JSON in dictionary format.</p></li>
+<li><p><strong>public_key</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – IL2 text representation of a public key to                 encrypt the content for.</p></li>
+<li><p><strong>public_key_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – IL2 text representation of the key ID.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Added JSON document details.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.json.JsonDocumentModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.JsonApi.allow_json_document_readers">
+<span class="sig-name descname"><span class="pre">allow_json_document_readers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_readers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/7-json.html#pyil2.models.json.AllowedReadersModel" title="pyil2.models.json.AllowedReadersModel"><span class="pre">AllowedReadersModel</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.JsonApi.allow_json_document_readers" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new list of allowed readers to encrypt JSON documents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chain_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Chain ID.</p></li>
+<li><p><strong>allowed_readers</strong> (<a class="reference internal" href="../models/7-json.html#pyil2.models.json.AllowedReadersModel" title="pyil2.models.json.AllowedReadersModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.json.AllowedReadersModel</span></code></a>) – List of reader keys to be allowed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A record reference in the format <a class="reference external" href="mailto:chainId&#37;&#52;&#48;recordSerial">chainId<span>&#64;</span>recordSerial</a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.JsonApi.get_json_document">
+<span class="sig-name descname"><span class="pre">get_json_document</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serial</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><span class="pre">JsonDocumentModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.JsonApi.get_json_document" title="Link to this definition">¶</a></dt>
+<dd><p>Get a JSON document record by serial number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chain_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Chain ID.</p></li>
+<li><p><strong>serial</strong> (<cite>int</cite>) – Record serial number.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>JSON document details.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/7-json.html#pyil2.models.json.JsonDocumentModel" title="pyil2.models.json.JsonDocumentModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.json.JsonDocumentModel</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.api.JsonApi.list_json_document_allowed_readers">
+<span class="sig-name descname"><span class="pre">list_json_document_allowed_readers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chain_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_to_first</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../models/1-base.html#pyil2.models.base.ListModel" title="pyil2.models.base.ListModel"><span class="pre">ListModel</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../models/7-json.html#pyil2.models.json.AllowedReadersDetailsModel" title="pyil2.models.json.AllowedReadersDetailsModel"><span class="pre">AllowedReadersDetailsModel</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../models/9-errors.html#pyil2.models.errors.ErrorDetailsModel" title="pyil2.models.errors.ErrorDetailsModel"><span class="pre">ErrorDetailsModel</span></a></span></span><a class="headerlink" href="#pyil2.api.JsonApi.list_json_document_allowed_readers" title="Link to this definition">¶</a></dt>
+<dd><p>Get a list of JSON document allowed reader keys.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chain_id</strong> (<cite>str</cite>) – Chain ID.</p></li>
+<li><p><strong>context_id</strong> (<cite>str</cite>) – Filter by context ID name.</p></li>
+<li><p><strong>last_to_first</strong> (<cite>bool</cite>) – If <cite>True</cite>, return the items in reverse order.</p></li>
+<li><p><strong>page</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – Page to return.</p></li>
+<li><p><strong>size</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>) – Number of items per page.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of allowed reader keys.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/1-base.html#pyil2.models.base.ListModel" title="pyil2.models.base.ListModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.base.ListModel</span></code></a>                 [<a class="reference internal" href="../models/7-json.html#pyil2.models.json.AllowedReadersDetailsModel" title="pyil2.models.json.AllowedReadersDetailsModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyil2.models.json.AllowedReadersDetailsModel</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../2-pyil2.html">pyil2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.3-models.html">List of Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.4-enum.html">List of Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.5-utils.html">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../2-pyil2.html">pyil2 package</a><ul>
+  <li><a href="../2.2-apis.html">List of APIs</a><ul>
+      <li>Previous: <a href="4-opaque.html" title="previous chapter">OpaqueApi</a></li>
+      <li>Next: <a href="6-documents.html" title="next chapter">DocumentsApi</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/apis/5-json.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

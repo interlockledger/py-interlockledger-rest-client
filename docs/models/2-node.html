@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Node Models &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Apps Models" href="3-apps.html" />
+    <link rel="prev" title="Base Models" href="1-base.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-pyil2.models.node">
+<span id="node-models"></span><h1>Node Models<a class="headerlink" href="#module-pyil2.models.node" title="Link to this heading">¶</a></h1>
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.node.</span></span><span class="sig-name descname"><span class="pre">BaseNodeModel</span></span><a class="headerlink" href="#pyil2.models.node.BaseNodeModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Base node details model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel.color">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.BaseNodeModel.color" title="Link to this definition">¶</a></dt>
+<dd><p>Mapping color.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel.extensions">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extensions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.node.BaseNodeModel.extensions" title="Link to this definition">¶</a></dt>
+<dd><p>Dictionary with values for extensions on node configuration.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel.id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.BaseNodeModel.id" title="Link to this definition">¶</a></dt>
+<dd><p>Unique node ID.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.BaseNodeModel.name" title="Link to this definition">¶</a></dt>
+<dd><p>Node name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.BaseNodeModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network this node participates on.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel.owner_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">owner_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ownerId')</span></em><a class="headerlink" href="#pyil2.models.node.BaseNodeModel.owner_id" title="Link to this definition">¶</a></dt>
+<dd><p>Node owner ID.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel.owner_name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">owner_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ownerName')</span></em><a class="headerlink" href="#pyil2.models.node.BaseNodeModel.owner_name" title="Link to this definition">¶</a></dt>
+<dd><p>Node owner name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel.roles">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.node.BaseNodeModel.roles" title="Link to this definition">¶</a></dt>
+<dd><p>List of active roles running in the node.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.BaseNodeModel.software_versions">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">software_versions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyil2.models.node.SoftwareVersionModel" title="pyil2.models.node.SoftwareVersionModel"><span class="pre">SoftwareVersionModel</span></a></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'softwareVersions')</span></em><a class="headerlink" href="#pyil2.models.node.BaseNodeModel.software_versions" title="Link to this definition">¶</a></dt>
+<dd><p>Version of software running the node.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.node.</span></span><span class="sig-name descname"><span class="pre">NodeDetailsModel</span></span><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyil2.models.node.BaseNodeModel" title="pyil2.models.node.BaseNodeModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseNodeModel</span></code></a></p>
+<p>Node details model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.chains">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chains</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.chains" title="Link to this definition">¶</a></dt>
+<dd><p>List of chains (only the IDs) in the node.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.color">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.color" title="Link to this definition">¶</a></dt>
+<dd><p>Mapping color.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.extensions">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extensions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.extensions" title="Link to this definition">¶</a></dt>
+<dd><p>Dictionary with values for extensions on node configuration.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.id" title="Link to this definition">¶</a></dt>
+<dd><p>Unique node ID.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.name" title="Link to this definition">¶</a></dt>
+<dd><p>Node name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network this node participates on.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.owner_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">owner_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ownerId')</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.owner_id" title="Link to this definition">¶</a></dt>
+<dd><p>Node owner ID.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.owner_name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">owner_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ownerName')</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.owner_name" title="Link to this definition">¶</a></dt>
+<dd><p>Node owner name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.peer_address">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">peer_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'peerAddress')</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.peer_address" title="Link to this definition">¶</a></dt>
+<dd><p>Peer address.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.roles">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.roles" title="Link to this definition">¶</a></dt>
+<dd><p>List of active roles running in the node.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.NodeDetailsModel.software_versions">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">software_versions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyil2.models.node.SoftwareVersionModel" title="pyil2.models.node.SoftwareVersionModel"><span class="pre">SoftwareVersionModel</span></a></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'softwareVersions')</span></em><a class="headerlink" href="#pyil2.models.node.NodeDetailsModel.software_versions" title="Link to this definition">¶</a></dt>
+<dd><p>Version of software running the node.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.node.</span></span><span class="sig-name descname"><span class="pre">PeerNodeModel</span></span><a class="headerlink" href="#pyil2.models.node.PeerNodeModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyil2.models.node.BaseNodeModel" title="pyil2.models.node.BaseNodeModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseNodeModel</span></code></a></p>
+<p>Peer node details model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.address">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.address" title="Link to this definition">¶</a></dt>
+<dd><p>Network address to contact the peer.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.color">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.color" title="Link to this definition">¶</a></dt>
+<dd><p>Mapping color.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.extensions">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extensions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.extensions" title="Link to this definition">¶</a></dt>
+<dd><p>Dictionary with values for extensions on node configuration.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.id" title="Link to this definition">¶</a></dt>
+<dd><p>Unique node ID.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.name" title="Link to this definition">¶</a></dt>
+<dd><p>Node name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network this node participates on.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.owner_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">owner_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ownerId')</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.owner_id" title="Link to this definition">¶</a></dt>
+<dd><p>Node owner ID.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.owner_name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">owner_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'ownerName')</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.owner_name" title="Link to this definition">¶</a></dt>
+<dd><p>Node owner name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.port">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.port" title="Link to this definition">¶</a></dt>
+<dd><p>Port the peer is listening.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.roles">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.roles" title="Link to this definition">¶</a></dt>
+<dd><p>List of active roles running in the node.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.PeerNodeModel.software_versions">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">software_versions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyil2.models.node.SoftwareVersionModel" title="pyil2.models.node.SoftwareVersionModel"><span class="pre">SoftwareVersionModel</span></a></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'softwareVersions')</span></em><a class="headerlink" href="#pyil2.models.node.PeerNodeModel.software_versions" title="Link to this definition">¶</a></dt>
+<dd><p>Version of software running the node.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.node.SoftwareVersionModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.node.</span></span><span class="sig-name descname"><span class="pre">SoftwareVersionModel</span></span><a class="headerlink" href="#pyil2.models.node.SoftwareVersionModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Version of the IL2 node.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.SoftwareVersionModel.core_libs">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">core_libs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'coreLibs')</span></em><a class="headerlink" href="#pyil2.models.node.SoftwareVersionModel.core_libs" title="Link to this definition">¶</a></dt>
+<dd><p>Version of the core libs.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.SoftwareVersionModel.main">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">main</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.SoftwareVersionModel.main" title="Link to this definition">¶</a></dt>
+<dd><p>Version of the node.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.SoftwareVersionModel.peer2peer">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">peer2peer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'peer2Peer')</span></em><a class="headerlink" href="#pyil2.models.node.SoftwareVersionModel.peer2peer" title="Link to this definition">¶</a></dt>
+<dd><p>Version of the P2P.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.node.SoftwareVersionModel.tags">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.node.SoftwareVersionModel.tags" title="Link to this definition">¶</a></dt>
+<dd><p>Version of the IL2 tags.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../2-pyil2.html">pyil2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../2.3-models.html">List of Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.4-enum.html">List of Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.5-utils.html">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../2-pyil2.html">pyil2 package</a><ul>
+  <li><a href="../2.3-models.html">List of Models</a><ul>
+      <li>Previous: <a href="1-base.html" title="previous chapter">Base Models</a></li>
+      <li>Next: <a href="3-apps.html" title="next chapter">Apps Models</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/models/2-node.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

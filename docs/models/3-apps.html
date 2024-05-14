@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Apps Models &#8212; IL2 Python Client 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css?v=a0a71c94" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chain Models" href="4-chain.html" />
+    <link rel="prev" title="Node Models" href="2-node.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-pyil2.models.apps">
+<span id="apps-models"></span><h1>Apps Models<a class="headerlink" href="#module-pyil2.models.apps" title="Link to this heading">¶</a></h1>
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.apps.AppsModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.apps.</span></span><span class="sig-name descname"><span class="pre">AppsModel</span></span><a class="headerlink" href="#pyil2.models.apps.AppsModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>List of valid apps in the network.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.AppsModel.network">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">network</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.apps.AppsModel.network" title="Link to this definition">¶</a></dt>
+<dd><p>Network name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.AppsModel.valid_apps">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">valid_apps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.apps.InterlockAppTraitsModel" title="pyil2.models.apps.InterlockAppTraitsModel"><span class="pre">InterlockAppTraitsModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'validApps')</span></em><a class="headerlink" href="#pyil2.models.apps.AppsModel.valid_apps" title="Link to this definition">¶</a></dt>
+<dd><p>Currently valid apps for this network.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldEnumeration">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.apps.</span></span><span class="sig-name descname"><span class="pre">DataFieldEnumeration</span></span><a class="headerlink" href="#pyil2.models.apps.DataFieldEnumeration" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Data field enumeration model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldEnumeration.description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldEnumeration.description" title="Link to this definition">¶</a></dt>
+<dd><p>Description of the data field enumeration.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldEnumeration.id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldEnumeration.id" title="Link to this definition">¶</a></dt>
+<dd><p>Data field enumeration ID.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldEnumeration.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldEnumeration.name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the data field enumeration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldEnumeration.from_concatenated_string">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_concatenated_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Self</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyil2.models.apps.DataFieldEnumeration.from_concatenated_string" title="Link to this definition">¶</a></dt>
+<dd><p>Parse a string with concatenated DataFieldEnumeration in the format: #&lt;int&gt;|&lt;str&gt;|[&lt;str&gt;|].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – A string with concatenated DataFieldEnumerations in string format.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of data field enumerations.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[<a class="reference internal" href="#pyil2.models.apps.DataFieldEnumeration" title="pyil2.models.apps.DataFieldEnumeration">DataFieldEnumeration</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldEnumeration.to_il2_string">
+<span class="sig-name descname"><span class="pre">to_il2_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pyil2.models.apps.DataFieldEnumeration.to_il2_string" title="Link to this definition">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>: IL2 string representation of the DataFieldEnumeration: #&lt;int&gt;|&lt;str&gt;|[&lt;str&gt;|].</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.apps.</span></span><span class="sig-name descname"><span class="pre">DataFieldModel</span></span><a class="headerlink" href="#pyil2.models.apps.DataFieldModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Data field model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validators<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.apps.DataFieldModel.pre_process_enumeration" title="pyil2.models.apps.DataFieldModel.pre_process_enumeration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pre_process_enumeration</span></code></a> » <a class="reference internal" href="#pyil2.models.apps.DataFieldModel.enumeration" title="pyil2.models.apps.DataFieldModel.enumeration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enumeration</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.cast">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cast</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../2.4-enum.html#pyil2.enum.DataFieldCast" title="pyil2.enum.DataFieldCast"><span class="pre">DataFieldCast</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.cast" title="Link to this definition">¶</a></dt>
+<dd><p>Type of the data field.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.description" title="Link to this definition">¶</a></dt>
+<dd><p>Data field description.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.element_tag_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">element_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'elementTagId')</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.element_tag_id" title="Link to this definition">¶</a></dt>
+<dd><p>The type of the field in case it is an array.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.enumeration">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">enumeration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.apps.DataFieldEnumeration" title="pyil2.models.apps.DataFieldEnumeration"><span class="pre">DataFieldEnumeration</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.enumeration" title="Link to this definition">¶</a></dt>
+<dd><p>A list of data field enumerations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.apps.DataFieldModel.pre_process_enumeration" title="pyil2.models.apps.DataFieldModel.pre_process_enumeration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pre_process_enumeration</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.enumeration_as_flags">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">enumeration_as_flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'enumerationAsFlags')</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.enumeration_as_flags" title="Link to this definition">¶</a></dt>
+<dd><p>If <cite>True</cite>, the enumerations can be combined using bitwise-or.
+If <cite>False</cite>, only one value can be used.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.is_dreprecated">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_dreprecated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'isDreprecated')</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.is_dreprecated" title="Link to this definition">¶</a></dt>
+<dd><p>If <cite>True</cite> the field is deprecated.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.is_opaque">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_opaque</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'isOpaque')</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.is_opaque" title="Link to this definition">¶</a></dt>
+<dd><p>If <cite>True</cite> the field is stored in raw bytes.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the data  field.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.sub_data_fields">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sub_data_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.apps.DataFieldModel" title="pyil2.models.apps.DataFieldModel"><span class="pre">DataFieldModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'subDataFields')</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.sub_data_fields" title="Link to this definition">¶</a></dt>
+<dd><p>If the data field in composed of more fields, indicates the metadata of the subdata fields.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.tag_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'tagId')</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.tag_id" title="Link to this definition">¶</a></dt>
+<dd><p>Type of the field. (see tags in the InterlockLedger node documentation)</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.version" title="Link to this definition">¶</a></dt>
+<dd><p>Version of the data field.</p>
+</dd></dl>
+
+<dl class="py method pydantic_validator">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.pre_process_enumeration">
+<em class="property"><span class="pre">validator</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pre_process_enumeration</span></span><em class="autodoc_pydantic_validator_arrow property">&#160; <span class="pre">»</span>&#160; </em><a class="reference internal" href="#pyil2.models.apps.DataFieldModel.enumeration" title="pyil2.models.apps.DataFieldModel.enumeration"><em class="xref py py-obj"><span class="pre">enumeration</span></em></a><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.pre_process_enumeration" title="Link to this definition">¶</a></dt>
+<dd><p>Deserialize from string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataFieldModel.serialize_enumeration">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serialize_enumeration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.apps.DataFieldEnumeration" title="pyil2.models.apps.DataFieldEnumeration"><span class="pre">DataFieldEnumeration</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.models.apps.DataFieldModel.serialize_enumeration" title="Link to this definition">¶</a></dt>
+<dd><p>Serialize DataField enumeration.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataIndexElementModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.apps.</span></span><span class="sig-name descname"><span class="pre">DataIndexElementModel</span></span><a class="headerlink" href="#pyil2.models.apps.DataIndexElementModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Data index element.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataIndexElementModel.descending_order">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">descending_order</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'descendingOrder')</span></em><a class="headerlink" href="#pyil2.models.apps.DataIndexElementModel.descending_order" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate if the field is ordered in descending order.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataIndexElementModel.field_path">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">field_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'fieldPath')</span></em><a class="headerlink" href="#pyil2.models.apps.DataIndexElementModel.field_path" title="Link to this definition">¶</a></dt>
+<dd><p>Path of the data field to be indexed.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataIndexElementModel.function">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">function</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.apps.DataIndexElementModel.function" title="Link to this definition">¶</a></dt>
+<dd><p>To be defined.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataIndexModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.apps.</span></span><span class="sig-name descname"><span class="pre">DataIndexModel</span></span><a class="headerlink" href="#pyil2.models.apps.DataIndexModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Index of the data model.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataIndexModel.elements">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">elements</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.apps.DataIndexElementModel" title="pyil2.models.apps.DataIndexElementModel"><span class="pre">DataIndexElementModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.apps.DataIndexModel.elements" title="Link to this definition">¶</a></dt>
+<dd><p>Elements of the index.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataIndexModel.is_unique">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_unique</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'isUnique')</span></em><a class="headerlink" href="#pyil2.models.apps.DataIndexModel.is_unique" title="Link to this definition">¶</a></dt>
+<dd><p>Indicate if the data field is unique.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataIndexModel.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.apps.DataIndexModel.name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the index.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.apps.</span></span><span class="sig-name descname"><span class="pre">DataModel</span></span><a class="headerlink" href="#pyil2.models.apps.DataModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Data model for the payloads and actions for the records the application stores in the chains.</p>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataModel.data_fields">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.apps.DataFieldModel" title="pyil2.models.apps.DataFieldModel"><span class="pre">DataFieldModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'dataFields')</span></em><a class="headerlink" href="#pyil2.models.apps.DataModel.data_fields" title="Link to this definition">¶</a></dt>
+<dd><p>The list of data fields.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataModel.description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyil2.models.apps.DataModel.description" title="Link to this definition">¶</a></dt>
+<dd><p>Description of the data model.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataModel.indexes">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">indexes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.apps.DataIndexModel" title="pyil2.models.apps.DataIndexModel"><span class="pre">DataIndexModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Optional]</span></em><a class="headerlink" href="#pyil2.models.apps.DataModel.indexes" title="Link to this definition">¶</a></dt>
+<dd><p>List of indexes for records of this type.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataModel.payload_name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadName')</span></em><a class="headerlink" href="#pyil2.models.apps.DataModel.payload_name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of the record model.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataModel.payload_tag_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payload_tag_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'payloadTagId')</span></em><a class="headerlink" href="#pyil2.models.apps.DataModel.payload_tag_id" title="Link to this definition">¶</a></dt>
+<dd><p>Tag id for this payload type. It must be a number in the reserved ranges.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.DataModel.version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.apps.DataModel.version" title="Link to this definition">¶</a></dt>
+<dd><p>Version of this data model, should start from 1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class pydantic_model">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel">
+<em class="property"><span class="pre">pydantic</span> <span class="pre">model</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyil2.models.apps.</span></span><span class="sig-name descname"><span class="pre">InterlockAppTraitsModel</span></span><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="1-base.html#pyil2.models.base.BaseCamelModel" title="pyil2.models.base.BaseCamelModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCamelModel</span></code></a></p>
+<p>Interlock App details model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validators<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.apps.InterlockAppTraitsModel.pre_process_reserved_tags" title="pyil2.models.apps.InterlockAppTraitsModel.pre_process_reserved_tags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pre_process_reserved_tags</span></code></a> » <a class="reference internal" href="#pyil2.models.apps.InterlockAppTraitsModel.reserved_il_tag_ids" title="pyil2.models.apps.InterlockAppTraitsModel.reserved_il_tag_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reserved_il_tag_ids</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.app_version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">app_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'appVersion')</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.app_version" title="Link to this definition">¶</a></dt>
+<dd><p>Application semantic version, with four numeric parts.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.data_models">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_models</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pyil2.models.apps.DataModel" title="pyil2.models.apps.DataModel"><span class="pre">DataModel</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'dataModels')</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.data_models" title="Link to this definition">¶</a></dt>
+<dd><p>The list of data models for the payloads of the records stored in the chains.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.description">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.description" title="Link to this definition">¶</a></dt>
+<dd><p>Description of the application.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.id" title="Link to this definition">¶</a></dt>
+<dd><p>Unique ID for the application.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.name" title="Link to this definition">¶</a></dt>
+<dd><p>Application name.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.publisher_id">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">publisher_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'publisherId')</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.publisher_id" title="Link to this definition">¶</a></dt>
+<dd><p>Publisher ID, which is the identifier for the key the publisher uses to
+sign the workflow requests in its own chain.
+It should match the publisher_name</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.publisher_name">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">publisher_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'publisherName')</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.publisher_name" title="Link to this definition">¶</a></dt>
+<dd><p>Publisher name as registered in the Genesis chain of the network.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.reserved_il_tag_ids">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reserved_il_tag_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../2.5-utils.html#pyil2.utils.range.LimitedRange" title="pyil2.utils.range.LimitedRange"><span class="pre">LimitedRange</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">[Required]</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'reservedILTagIds')</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.reserved_il_tag_ids" title="Link to this definition">¶</a></dt>
+<dd><p>The list of ranges of ILTagIds to reserve for the application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#pyil2.models.apps.InterlockAppTraitsModel.pre_process_reserved_tags" title="pyil2.models.apps.InterlockAppTraitsModel.pre_process_reserved_tags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pre_process_reserved_tags</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.start">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.start" title="Link to this definition">¶</a></dt>
+<dd><p>The start date for the validity of the app, but if prior to the effective
+publication of the app will be overridden with the publication date and time.</p>
+</dd></dl>
+
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.version">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.version" title="Link to this definition">¶</a></dt>
+<dd><p>Version of the application.</p>
+</dd></dl>
+
+<dl class="py method pydantic_validator">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.pre_process_reserved_tags">
+<em class="property"><span class="pre">validator</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pre_process_reserved_tags</span></span><em class="autodoc_pydantic_validator_arrow property">&#160; <span class="pre">»</span>&#160; </em><a class="reference internal" href="#pyil2.models.apps.InterlockAppTraitsModel.reserved_il_tag_ids" title="pyil2.models.apps.InterlockAppTraitsModel.reserved_il_tag_ids"><em class="xref py py-obj"><span class="pre">reserved_il_tag_ids</span></em></a><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.pre_process_reserved_tags" title="Link to this definition">¶</a></dt>
+<dd><p>Deserialize reserved tags from list of strings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyil2.models.apps.InterlockAppTraitsModel.serialize_reserved_tags">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serialize_reserved_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../2.5-utils.html#pyil2.utils.range.LimitedRange" title="pyil2.utils.range.LimitedRange"><span class="pre">LimitedRange</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyil2.models.apps.InterlockAppTraitsModel.serialize_reserved_tags" title="Link to this definition">¶</a></dt>
+<dd><p>Serialize reseved tags.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IL2 Python Client</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../0-installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../2-pyil2.html">pyil2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../2.1-client.html">IL2Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.2-apis.html">List of APIs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../2.3-models.html">List of Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.4-enum.html">List of Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2.5-utils.html">List of Utils</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../2-pyil2.html">pyil2 package</a><ul>
+  <li><a href="../2.3-models.html">List of Models</a><ul>
+      <li>Previous: <a href="2-node.html" title="previous chapter">Node Models</a></li>
+      <li>Next: <a href="4-chain.html" title="next chapter">Chain Models</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2016-2024 InterlockLedger Network. All rights reserved.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/models/3-apps.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
