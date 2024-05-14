@@ -26,7 +26,7 @@ The pyil2 package can be installing using:
 Installation From Source
 ------------------------
 
-The package can also be installed by downloading the `source code <https://il2.io/>`_ and running the following command on the ``setup.py`` folder:
+The package can also be installed by downloading the `source code <https://github.com/interlockledger/py-interlockledger-rest-client>`_ and running the following command on the ``setup.py`` folder:
 
 .. code-block:: console
 
