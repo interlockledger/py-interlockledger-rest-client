@@ -2,7 +2,7 @@
 
 This package is a python client to the InterlockLedger Node REST API. It connects to InterlockLedger nodes, allowing the creation of chains, interlocks, and storage of records and documents.
 
-This library replaces the original client, 
+This library replaces the original client,
 [interlockledger-rest-client-python](https://github.com/interlockledger/interlockledger-rest-client-python),
 that is now deprecated.
 
@@ -20,7 +20,7 @@ importantly, any external logic can validate the multiple dimensions of validity
 -   Python 3.11.3
 
     -   pydantic 2.6.1
-    -   requests 2.31.0
+    -   requests 2.32.2
     -   pyOpenSSL 24.1.0
     -   pyilint 0.2.2
     -   pyiltags 0.1.1
@@ -75,4 +75,3 @@ This program is licensed under the **BSD 3-Clause License**.
 
 We are not actively looking for contributions but if you want to help, feel free
 to do so via the [project's gitHub page](https://github.com/interlockledger/py-interlockledger-rest-client).
-
