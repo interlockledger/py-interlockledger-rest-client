@@ -283,6 +283,10 @@ class DocumentsApi(BaseApi):
         Args:
             locator (:obj:`str`): A Documents Storage Locator.
             dst_path (:obj:`str`): Download the file to this folder.
+            omit_from_parent (:obj:`bool`): If True, does not include the \
+                .from-parent control file in the zip.
+            omit_to_children (:obj:`bool`): If True, does not include the \
+                .to-children control file in the zip.
 
         Returns:
             :obj:`str`: Downloaded file full path.
@@ -336,6 +340,10 @@ class DocumentsApi(BaseApi):
 
         Args:
             locator (:obj:`str`): A Documents Storage Locator.
+            omit_from_parent (:obj:`bool`): If True, does not include the \
+                .from-parent control file in the zip.
+            omit_to_children (:obj:`bool`): If True, does not include the \
+                .to-children control file in the zip.
 
         Returns:
             :obj:`requests.Response`: Request response.

@@ -26,7 +26,7 @@ importantly, any external logic can validate the multiple dimensions of validity
     -   pyiltags 0.1.1
 
 -   InterlockLedger:
-    -   API 14.0.0
+    -   API 14.2.2
 
 ## How to install
 

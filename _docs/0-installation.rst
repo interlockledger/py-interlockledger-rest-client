@@ -12,7 +12,7 @@ The pyil2 requires Python 3.11+ and uses the following packages:
     - pyilint
     - pyiltags
 
-And requires the IL2 node version to be at least v14.0.0.
+And requires the IL2 node version to be at least v14.2.2.
 
 Installation from PyPi
 ----------------------

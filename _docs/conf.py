@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.abspath('../src/'))
 project = 'IL2 Python Client'
 copyright = f'2016-{datetime.datetime.now().year} InterlockLedger Network. All rights reserved'
 author = 'Daniel Chino'
-release = '0.1.1'
+release = '0.1.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
