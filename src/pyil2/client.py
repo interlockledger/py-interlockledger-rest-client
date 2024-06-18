@@ -361,7 +361,8 @@ class IL2Client:
     def download_file(
             self,
             url: str,
-            dst_path: str = './'
+            dst_path: str = './',
+            params: Dict[str, str]=None,
         ) -> str:
         """
         Method to download a file to a destination path.
@@ -370,7 +371,7 @@ class IL2Client:
         """
         cur_uri = self._join_uri(url)
         s = self._get_session()
-        with s.get(cur_uri, stream=True, timeout=self.timeout) as r:
+        with s.get(cur_uri, stream=True, timeout=self.timeout, params=params) as r:
             err = self._handle_error_response(r)
             if isinstance(err, ErrorDetailsModel):
                 return err
@@ -381,7 +382,11 @@ class IL2Client:
                 shutil.copyfileobj(r.raw, f)
         return filepath
 
-    def download_response(self, url: str) -> requests.Response:
+    def download_response(
+            self,
+            url: str,
+            params: Dict[str, str]=None,
+        ) -> requests.Response:
         """
         Method to retrieve an stream GET response directly.
 
@@ -389,5 +394,5 @@ class IL2Client:
         """
         cur_uri = self._join_uri(url)
         s = self._get_session()
-        resp = s.get(cur_uri, stream=True, timeout=self.timeout)
+        resp = s.get(cur_uri, stream=True, timeout=self.timeout, params=params)
         return self._handle_error_response(resp)

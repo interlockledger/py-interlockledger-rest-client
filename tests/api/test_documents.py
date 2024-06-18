@@ -29,6 +29,7 @@ from pydantic import ValidationError
 from .base import BaseApiTest
 import requests
 import os
+import zipfile
 from src.pyil2.models.errors import ErrorDetailsModel
 from src.pyil2.models import documents as documents_models
 
@@ -213,6 +214,12 @@ class DocumentsApiTest(BaseApiTest):
         self.assertIsInstance(document_response, requests.Response)
 
     def test_documents_update(self):
+        '''
+        This test is quite large because it requires to test the whole cycle of uploading,
+        updating and removing files in a multi-document record.
+
+        It also tests the download as zip parameters.
+        '''
         new_transaction = documents_models.BeginDocumentTransactionModel(
             chain=self.default_chain,
             comment='This is a comment',
@@ -253,13 +260,16 @@ class DocumentsApiTest(BaseApiTest):
         new_locator = self.api.commit_document_transaction(
             update_transaction.transaction_id)
         new_metadata = self.api.get_document_metadata(new_locator)
-        self.assertGreater(len(new_metadata.public_directory),
-                           len(metadata.public_directory))
+        self.assertGreater(
+            len(new_metadata.public_directory),
+            len(metadata.public_directory)
+        )
         index = 0
         for idx, item in enumerate(new_metadata.public_directory):
             if item.name == 'file1.txt':
                 index = idx
-
+        
+        # Test removing file from previous
         new_transaction = documents_models.BeginDocumentTransactionModel(
             chain=self.default_chain,
             comment='This is a comment',
@@ -279,7 +289,61 @@ class DocumentsApiTest(BaseApiTest):
             if item.name == 'file1.txt':
                 found = True
         self.assertFalse(found)
+        
+        # Testing download as files with omit parameters
+        zip_filename = self.api.download_documents_as_zip(
+            new_locator
+        )
+        zip = zipfile.ZipFile(zip_filename)
+        file_list = zip.namelist()
+        self.assertTrue('.to-children' in file_list)
+        self.assertTrue('.from-parent' in file_list)
+        zip.close()
+        os.remove(zip_filename)
 
+        zip_filename = self.api.download_documents_as_zip(
+            new_locator,
+            omit_from_parent=True
+        )
+        zip = zipfile.ZipFile(zip_filename)
+        file_list = zip.namelist()
+        self.assertTrue('.to-children' in file_list)
+        self.assertFalse('.from-parent' in file_list)
+        zip.close()
+        os.remove(zip_filename)
+
+        zip_filename = self.api.download_documents_as_zip(
+            new_locator,
+            omit_to_children=True
+        )
+        zip = zipfile.ZipFile(zip_filename)
+        file_list = zip.namelist()
+        self.assertFalse('.to-children' in file_list)
+        self.assertTrue('.from-parent' in file_list)
+        zip.close()
+        os.remove(zip_filename)
+
+        # Testing download as response with omit parameters
+        zip_response = self.api.download_documents_as_zip_as_response(
+            new_locator
+        )
+        self.assertTrue(b'.to-children' in zip_response.content)
+        self.assertTrue(b'.from-parent' in zip_response.content)
+        
+        zip_response = self.api.download_documents_as_zip_as_response(
+            new_locator,
+            omit_from_parent=True
+        )
+        self.assertTrue(b'.to-children' in zip_response.content)
+        self.assertFalse(b'.from-parent' in zip_response.content)
+        
+        zip_response = self.api.download_documents_as_zip_as_response(
+            new_locator,
+            omit_to_children=True
+        )
+        self.assertFalse(b'.to-children' in zip_response.content)
+        self.assertTrue(b'.from-parent' in zip_response.content)
+        
     def test_documents_update_not_valid(self):
         new_transaction = documents_models.BeginDocumentTransactionModel(
             chain=self.default_chain,

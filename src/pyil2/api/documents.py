@@ -264,7 +264,7 @@ class DocumentsApi(BaseApi):
         """
         resp = self._client.download_file(
             f'{self.base_url}/{locator}/{index}',
-            dst_path=dst_path
+            dst_path=dst_path,
         )
         if isinstance(resp, ErrorDetailsModel):
             return resp
@@ -274,6 +274,8 @@ class DocumentsApi(BaseApi):
             self,
             locator: str,
             dst_path: str = './',
+            omit_from_parent: bool=False,
+            omit_to_children: bool=False,
         ) -> str | ErrorDetailsModel:
         """
         Download documents in a compressed file to a folder (default: current folder).
@@ -285,9 +287,14 @@ class DocumentsApi(BaseApi):
         Returns:
             :obj:`str`: Downloaded file full path.
         """
+        params = {
+            "omitFromParentControlFile": omit_from_parent,
+            "omitToChildrenControlFile": omit_to_children
+        }
         resp = self._client.download_file(
             f'{self.base_url}/{locator}/zip',
-            dst_path=dst_path
+            dst_path=dst_path,
+            params=params,
         )
         if isinstance(resp, ErrorDetailsModel):
             return resp
@@ -319,6 +326,8 @@ class DocumentsApi(BaseApi):
     def download_documents_as_zip_as_response(
             self,
             locator: str,
+            omit_from_parent: bool=False,
+            omit_to_children: bool=False,
         ) -> requests.Response | ErrorDetailsModel:
         """
         Get the request response to download documents in a compressed file.
@@ -331,7 +340,12 @@ class DocumentsApi(BaseApi):
         Returns:
             :obj:`requests.Response`: Request response.
         """
+        params = {
+            "omitFromParentControlFile": omit_from_parent,
+            "omitToChildrenControlFile": omit_to_children
+        }
         resp = self._client.download_response(
             f'{self.base_url}/{locator}/zip',
+            params=params,
         )
         return resp
