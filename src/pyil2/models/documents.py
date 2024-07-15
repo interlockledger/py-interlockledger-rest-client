@@ -30,8 +30,10 @@ from typing import (
     List,
 )
 import datetime
+import base64
 from pydantic import (
     Field,
+    field_serializer,
     model_validator,
 )
 from .base import BaseCamelModel
@@ -129,6 +131,14 @@ class BeginDocumentTransactionModel(BaseDocumentTransactionModel):
     """
     Comment added for children records.
     """
+    from_parent_content: Optional[bytes] = None
+    """
+    Content of the control file '.to-children' of the `previous` document record.
+
+    This property is required if the `previous` is a partial locator (without the password 
+    part).
+    If this property is set, the property 'previous_documents_not_to_copy' will be ignored.
+    """
 
     @model_validator(mode='after')
     def validate_encrypted_password(self):
@@ -138,6 +148,15 @@ class BeginDocumentTransactionModel(BaseDocumentTransactionModel):
         if self.encryption and not self.password:
             raise ValueError('Password is required if encryption is defined.')
         return self
+
+    @field_serializer('from_parent_content', when_used='always')
+    @classmethod
+    def serialize_from_parent_content(cls, value: bytes) -> bytes:
+        """
+        Serialize the from_parent_content to URL safe Base64.
+        """
+        b64 = base64.urlsafe_b64encode(value)
+        return b64
 
 
 class DocumentTransactionModel(BaseDocumentTransactionModel):
