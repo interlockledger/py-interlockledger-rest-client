@@ -171,14 +171,14 @@ class BeginDocumentTransactionModel(BaseDocumentTransactionModel):
 
     @field_serializer('from_parent_content', when_used='always')
     @classmethod
-    def serialize_from_parent_content(cls, value: bytes) -> bytes:
+    def serialize_from_parent_content(cls, value: bytes) -> str:
         """
         Serialize the from_parent_content to URL safe Base64.
         """
         if value is None:
             return None
         b64 = base64.urlsafe_b64encode(value)
-        return b64
+        return b64.decode()
 
 
 class DocumentTransactionModel(BaseDocumentTransactionModel):

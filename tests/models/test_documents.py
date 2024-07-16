@@ -55,7 +55,7 @@ class BeginDocumentTransactionModelTest(TestCase):
             from_parent_content=b'test'
         )
         model_dump = dto.model_dump(by_alias=True)
-        self.assertEqual(model_dump['fromParentContent'], b'dGVzdA==')
+        self.assertEqual(model_dump['fromParentContent'], 'dGVzdA==')
         
     def test_from_parent_content_from_file(self):
         filepath = './filename.txt'
@@ -72,7 +72,7 @@ class BeginDocumentTransactionModelTest(TestCase):
             from_parent_content=filepath
         )
         model_dump = dto.model_dump(by_alias=True)
-        self.assertEqual(model_dump['fromParentContent'], b'dGVzdA==')
+        self.assertEqual(model_dump['fromParentContent'], 'dGVzdA==')
 
         os.remove(filepath)
     
