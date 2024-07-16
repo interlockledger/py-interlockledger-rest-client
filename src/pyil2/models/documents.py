@@ -29,11 +29,13 @@ from typing import (
     Optional,
     List,
 )
+import os
 import datetime
 import base64
 from pydantic import (
     Field,
     field_serializer,
+    field_validator,
     model_validator,
 )
 from .base import BaseCamelModel
@@ -149,12 +151,32 @@ class BeginDocumentTransactionModel(BaseDocumentTransactionModel):
             raise ValueError('Password is required if encryption is defined.')
         return self
 
+    @field_validator('from_parent_content', mode='before')
+    @classmethod
+    def pre_process_from_parent_content(cls, raw: str | bytes) -> bytes:
+        """
+        Deserialize from_parent_content from .to-children filepath.
+
+        If the content bytes is passed, just assign the value.
+        """
+        if raw is None:
+            return raw
+        if isinstance(raw, bytes):
+            return raw
+        if not isinstance(raw, str):
+            raise ValueError('from_parent_content must be bytes or a filepath string.')
+        with open(raw, 'rb') as f:
+            ret = f.read()
+        return ret
+
     @field_serializer('from_parent_content', when_used='always')
     @classmethod
     def serialize_from_parent_content(cls, value: bytes) -> bytes:
         """
         Serialize the from_parent_content to URL safe Base64.
         """
+        if value is None:
+            return None
         b64 = base64.urlsafe_b64encode(value)
         return b64
 

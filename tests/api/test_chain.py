@@ -32,7 +32,7 @@ from src.pyil2.models import (
     keys as keys_models,
     record,
 )
-
+from src.pyil2.enum import HashAlgorithms
 
 class ChainApiTest(BaseApiTest):
     def setUp(self):
@@ -92,8 +92,16 @@ class ChainApiTest(BaseApiTest):
         for item in interlocks.items:
             self.assertIsInstance(item, record.InterlockingRecordModel)
 
-    def test_force_interlock(self):
+    def test_force_interlock_copy(self):
         interlock = record.ForceInterlockModel(target_chain=self.second_chain)
+        response = self.api.force_interlocking(self.default_chain, interlock)
+        self.assertIsInstance(response, record.InterlockingRecordModel)
+    
+    def test_force_interlock_sha256(self):
+        interlock = record.ForceInterlockModel(
+            target_chain=self.second_chain,
+            hash_algorithm=HashAlgorithms.SHA256
+        )
         response = self.api.force_interlocking(self.default_chain, interlock)
         self.assertIsInstance(response, record.InterlockingRecordModel)
 

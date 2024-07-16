@@ -30,6 +30,20 @@ from unittest import TestCase
 from src.pyil2.models import documents as documents_models
 
 class BeginDocumentTransactionModelTest(TestCase):
+    def test_from_parent_content_none(self):
+        dto = documents_models.BeginDocumentTransactionModel(
+            chain='chain_id',
+            comment='This is a comment',
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+            allow_children=False,
+            previous='locator_without_password',
+        )
+        model_dump = dto.model_dump(by_alias=True)
+        self.assertIsNone(model_dump['fromParentContent'])
+        model_dump = dto.model_dump(by_alias=True, exclude_none=True)
+        self.assertFalse('fromParentContent' in model_dump)
+
     def test_from_parent_content_bytes(self):
         dto = documents_models.BeginDocumentTransactionModel(
             chain='chain_id',
@@ -43,3 +57,35 @@ class BeginDocumentTransactionModelTest(TestCase):
         model_dump = dto.model_dump(by_alias=True)
         self.assertEqual(model_dump['fromParentContent'], b'dGVzdA==')
         
+    def test_from_parent_content_from_file(self):
+        filepath = './filename.txt'
+        with open(filepath, 'wb') as f:
+            f.write(b'test')
+
+        dto = documents_models.BeginDocumentTransactionModel(
+            chain='chain_id',
+            comment='This is a comment',
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+            allow_children=False,
+            previous='locator_without_password',
+            from_parent_content=filepath
+        )
+        model_dump = dto.model_dump(by_alias=True)
+        self.assertEqual(model_dump['fromParentContent'], b'dGVzdA==')
+
+        os.remove(filepath)
+    
+    def test_from_parent_content_from_file_not_found(self):
+        filepath = './filename.txt'
+        with self.assertRaises(FileNotFoundError):
+            dto = documents_models.BeginDocumentTransactionModel(
+                chain='chain_id',
+                comment='This is a comment',
+                encryption='PBKDF2-SHA512-AES256-MID',
+                password='1234567890123456',
+                allow_children=False,
+                previous='locator_without_password',
+                from_parent_content=filepath
+            )
+            
