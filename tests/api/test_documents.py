@@ -343,7 +343,149 @@ class DocumentsApiTest(BaseApiTest):
         )
         self.assertFalse(b'.to-children' in zip_response.content)
         self.assertTrue(b'.from-parent' in zip_response.content)
+    
+    def test_documents_update_no_password(self):
+        '''
+        This test is quite large because it requires to test the whole cycle of uploading,
+        updating and removing files in a multi-document record.
+        '''
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+        )
+        transaction = self.api.begin_document_transaction(new_transaction)
+
+        transaction = self.api.upload_document(
+            transaction_id=transaction.transaction_id,
+            filename='file1.txt',
+            content_type='text/plain',
+            file_bytes=b'file 1',
+            comment='File comment'
+        )
+        locator = self.api.commit_document_transaction(
+            transaction.transaction_id)
+
+        metadata = self.api.get_document_metadata(locator)
+
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            previous=locator,
+        )
+        update_transaction = self.api.begin_document_transaction(
+            new_transaction)
+
+        update_transaction = self.api.upload_document(
+            transaction_id=update_transaction.transaction_id,
+            filename='file2.txt',
+            content_type='text/plain',
+            file_bytes=b'file 2',
+            comment='File comment'
+        )
+        new_locator = self.api.commit_document_transaction(
+            update_transaction.transaction_id)
+        new_metadata = self.api.get_document_metadata(new_locator)
+        self.assertGreater(
+            len(new_metadata.public_directory),
+            len(metadata.public_directory)
+        )
+    
+    def test_documents_update_using_from_parent_content(self):
+        '''
+        This test is quite large because it requires to test the whole cycle of uploading,
+        updating and removing files in a multi-document record.
+        '''
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+        )
+        transaction = self.api.begin_document_transaction(new_transaction)
+
+        transaction = self.api.upload_document(
+            transaction_id=transaction.transaction_id,
+            filename='file1.txt',
+            content_type='text/plain',
+            file_bytes=b'file 1',
+            comment='File comment'
+        )
+        locator = self.api.commit_document_transaction(
+            transaction.transaction_id)
+        locator_without_password = locator.split('$')[0]
+
+        metadata = self.api.get_document_metadata(locator)
+        index = 0
+        for idx, item in enumerate(metadata.public_directory):
+            if item.name == '.to-children':
+                index = idx
+        to_children = self.api.download_single_document_at_as_response(
+            locator=locator,
+            index=index
+        )
+        data = to_children.content
+
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            previous=locator_without_password,
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+            from_parent_content=data
+        )
+        update_transaction = self.api.begin_document_transaction(
+            new_transaction)
+
+        update_transaction = self.api.upload_document(
+            transaction_id=update_transaction.transaction_id,
+            filename='file2.txt',
+            content_type='text/plain',
+            file_bytes=b'file 2',
+            comment='File comment'
+        )
+        new_locator = self.api.commit_document_transaction(
+            update_transaction.transaction_id)
+        new_metadata = self.api.get_document_metadata(new_locator)
+        self.assertGreater(
+            len(new_metadata.public_directory),
+            len(metadata.public_directory)
+        )
         
+    def test_documents_update_without_password_and_from_parent_content(self):
+        '''
+        This test is quite large because it requires to test the whole cycle of uploading,
+        updating and removing files in a multi-document record.
+        '''
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+        )
+        transaction = self.api.begin_document_transaction(new_transaction)
+
+        transaction = self.api.upload_document(
+            transaction_id=transaction.transaction_id,
+            filename='file1.txt',
+            content_type='text/plain',
+            file_bytes=b'file 1',
+            comment='File comment'
+        )
+        locator = self.api.commit_document_transaction(
+            transaction.transaction_id)
+        locator_without_password = locator.split('$')[0]
+
+        new_transaction = documents_models.BeginDocumentTransactionModel(
+            chain=self.default_chain,
+            comment='This is a comment',
+            previous=locator_without_password,
+            encryption='PBKDF2-SHA512-AES256-MID',
+            password='1234567890123456',
+        )
+        update_transaction = self.api.begin_document_transaction(
+            new_transaction)
+        self.assertIsInstance(update_transaction, ErrorDetailsModel)
+
     def test_documents_update_not_valid(self):
         new_transaction = documents_models.BeginDocumentTransactionModel(
             chain=self.default_chain,
